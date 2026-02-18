@@ -107,6 +107,21 @@ Puppet mode (manual demo capture):
    - `Q` clear movement (idle)
 - While puppet mode is active, autonomous decisions are paused and training recorder logs your manual actions to `Training/datasets`.
 
+Observer mode (real Minecraft client teaching):
+- Use this when you want to play in a real Minecraft client and have the bot record your behavior as training data.
+- Set in `.env`:
+   - `BOT_OBSERVER_MODE=true`
+   - `BOT_OBSERVER_USERNAME=<your-real-client-username>`
+   - `BOT_OBSERVER_CAPTURE_RADIUS=24` (`0` disables local radius cap)
+   - `BOT_OBSERVER_FOLLOW_ENABLED=true` to keep bot near you while traveling
+   - `BOT_OBSERVER_FOLLOW_DISTANCE=3.5` desired follow distance
+   - `BOT_OBSERVER_FOLLOW_REFRESH_MS=700` follow update rate
+- Keep `BOT_PUPPET_MODE=false` and `BOT_FPV_PUPPET_ENABLED=false`.
+- Run bot with `npm start`, then join the same server/world from your real client account.
+- Recorder adds `state.observer` and labels actions like `OBSERVER_MOVE`, `OBSERVER_SPRINT`, `OBSERVER_JUMP`, `OBSERVER_LOOK`.
+- In observer mode, bot autonomy/chat reactions are disabled so it focuses on follow + observe.
+- Observer samples drop bot-thought/chat noise (`activeIntent`, `activeMode`, `lastBrainAction`, `lastChatMessages`).
+
 First-person viewer puppet mode (browser):
 - Set `BOT_FPV_PUPPET_ENABLED=true` in `.env`.
 - Start bot with `npm start`.

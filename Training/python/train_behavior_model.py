@@ -130,7 +130,13 @@ def train(args):
         f'dataset_records={n} in_features={in_features} model_type={model_type} '
         f'normalize={args.normalize_features} class_weighted_loss={args.class_weighted_loss} dropout={args.dropout}'
     )
-    print('label_distribution=' + json.dumps({ACTION_VOCAB[i]: int(c) for i, c in enumerate(np.bincount(y, minlength=len(ACTION_VOCAB)))}, ensure_ascii=False))
+    label_counts = np.bincount(y, minlength=len(ACTION_VOCAB))
+    print('label_distribution=' + json.dumps({ACTION_VOCAB[i]: int(c) for i, c in enumerate(label_counts)}, ensure_ascii=False))
+    dominant_idx = int(np.argmax(label_counts))
+    dominant_ratio = float(label_counts[dominant_idx] / max(1, int(label_counts.sum())))
+    print(f'dominant_label={ACTION_VOCAB[dominant_idx]} dominant_ratio={dominant_ratio:.3f}')
+    if dominant_ratio > 0.70:
+        print('warning=class_imbalance dominant label exceeds 70%')
 
     for epoch in range(1, args.epochs + 1):
         model.train()

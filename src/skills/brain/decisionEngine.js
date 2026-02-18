@@ -6,6 +6,120 @@ function createDecisionEngine({ bot, config, dynamicAgent, runAction, runDynamic
   const actionCooldownUntil = new Map()
   const intentLoop = createIntentLoop({ bot, dynamicAgent, sessionMemory })
   const ENABLE_INTENT_LOOP = true
+  const POLICY_ACTIONS = new Set([
+    'IDLE', 'DEFEND', 'ATTACK_MOB', 'ATTACK_PLAYER', 'EAT', 'EQUIP', 'FLY', 'GET_ITEMS', 'USE_ITEM',
+    'USE_TRIDENT', 'ENCHANT', 'USE_ANVIL', 'BUILD', 'BREAK', 'SLEEP', 'USE_FURNACE', 'CRAFT', 'COLLECT',
+    'HELP_PLAYER', 'SOCIAL', 'TOGGLE_OFFHAND', 'EXPLORE', 'RECOVER',
+  ])
+
+  function safeNumber(value, fallback = 0) {
+    const n = Number(value)
+    return Number.isFinite(n) ? n : Number(fallback)
+  }
+
+  function safeString(value, fallback = '') {
+    const text = String(value == null ? '' : value).trim()
+    return text || fallback
+  }
+
+  function round(value, digits = 3) {
+    const n = Number(value)
+    if (!Number.isFinite(n)) return 0
+    const factor = Math.pow(10, digits)
+    return Math.round(n * factor) / factor
+  }
+
+  function getFacingStep(yawValue = 0) {
+    const yaw = Number(yawValue || 0)
+    const dx = Math.round(-Math.sin(yaw))
+    const dz = Math.round(-Math.cos(yaw))
+    return { dx, dz }
+  }
+
+  function buildPolicyStateSnapshot() {
+    const entity = bot?.entity
+    if (!entity?.position) return null
+
+    const base = entity.position.floored?.() || entity.position
+    const facing = getFacingStep(entity?.yaw)
+    const blockBelow = bot.blockAt?.(base.offset?.(0, -1, 0) || entity.position)?.name || 'unknown'
+    const blockFront = bot.blockAt?.(base.offset?.(facing.dx, 0, facing.dz) || entity.position)?.name || 'unknown'
+
+    const nearbyEntities = Object.values(bot.entities || {})
+      .filter((target) => target && target.id !== entity.id && target.position)
+      .map((target) => {
+        const dist = entity.position.distanceTo(target.position)
+        return { target, dist }
+      })
+      .filter(({ dist }) => Number.isFinite(dist) && dist <= 12)
+      .sort((a, b) => a.dist - b.dist)
+      .slice(0, 12)
+      .map(({ target, dist }) => ({
+        id: target.id,
+        type: safeString(target.type, 'unknown'),
+        name: safeString(target.name || target.username || target.displayName, 'unknown'),
+        distance: round(dist, 3),
+      }))
+
+    const inventoryItems = (bot?.inventory?.items?.() || []).map((item) => ({
+      name: safeString(item?.name, 'unknown'),
+      count: safeNumber(item?.count, 0),
+      type: safeNumber(item?.type, -1),
+    }))
+
+    return {
+      velocity: {
+        vx: round(entity.velocity?.x || 0),
+        vy: round(entity.velocity?.y || 0),
+        vz: round(entity.velocity?.z || 0),
+      },
+      yaw: round(entity?.yaw || 0),
+      pitch: round(entity?.pitch || 0),
+      onGround: Boolean(entity?.onGround),
+      inAir: !Boolean(entity?.onGround),
+      health: safeNumber(bot?.health, 20),
+      hunger: safeNumber(bot?.food, 20),
+      selectedHotbarSlot: safeNumber(bot?.quickBarSlot, -1),
+      heldItem: {
+        name: safeString(bot?.heldItem?.name, 'none'),
+        type: safeNumber(bot?.heldItem?.type, -1),
+      },
+      blockBelow,
+      blockFront,
+      nearbyEntities,
+      inventory: inventoryItems,
+    }
+  }
+
+  async function requestPolicyDecision() {
+    if (!config.policyAutonomyEnabled) return null
+    const stateSnapshot = buildPolicyStateSnapshot()
+    if (!stateSnapshot) return null
+
+    const timeoutMs = Math.max(200, Number(config.policyTimeoutMs || 1200))
+    const controller = new AbortController()
+    const timer = setTimeout(() => controller.abort(), timeoutMs)
+
+    try {
+      const response = await fetch(String(config.policyServerUrl || 'http://127.0.0.1:8765/predict'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          state: stateSnapshot,
+          agent_id: String(bot?.username || 'bot'),
+        }),
+        signal: controller.signal,
+      })
+      if (!response.ok) return null
+      const payload = await response.json()
+      if (!payload?.ok) return null
+      return payload
+    } catch {
+      return null
+    } finally {
+      clearTimeout(timer)
+    }
+  }
 
   function markCooldown(action, ms) {
     const key = String(action || '').trim().toUpperCase()
@@ -184,6 +298,37 @@ function createDecisionEngine({ bot, config, dynamicAgent, runAction, runDynamic
 
       const strategicGoal = dynamicAgent.deriveGoalNow?.()?.goal || null
       if (strategicGoal) onGoalChosen?.(strategicGoal)
+
+      if (config.policyAutonomyEnabled) {
+        const policyDecision = await requestPolicyDecision()
+        const policyAction = String(policyDecision?.action || '').trim().toUpperCase()
+        const policyConfidence = Number(policyDecision?.confidence || 0)
+        const minConfidence = Number(config.policyMinConfidence || 0.35)
+
+        if (policyAction && POLICY_ACTIONS.has(policyAction) && (policyConfidence >= minConfidence || policyAction === 'IDLE')) {
+          onGoalChosen?.(`policy: ${policyAction}`)
+
+          let policyActed = true
+          if (policyAction !== 'IDLE') {
+            policyActed = Boolean(await runAction(policyAction))
+            markCooldown(policyAction, policyActed ? Number(config.actionRepeatCooldownMs || 4_000) : 1_200)
+          }
+
+          onActionChosen?.(policyAction)
+          internalState?.onActionOutcome?.({ action: policyAction, success: policyActed })
+          reportOutcome(policyAction, policyActed, 'policy-model', {
+            confidence: policyConfidence,
+            modelType: String(policyDecision?.model_type || 'unknown'),
+          })
+
+          sessionMemory?.addMemory(
+            `Policy action ${policyActed ? 'success' : 'failed'}: ${policyAction} (conf=${policyConfidence.toFixed(3)})`,
+            policyActed ? 'action-success' : 'action-fail',
+            { tags: ['autonomy', 'policy-model'] }
+          )
+          return
+        }
+      }
 
       const urgentDecision = await dynamicAgent.decideUrgentActions()
       if (urgentDecision?.urgentActions?.length) {

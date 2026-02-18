@@ -55,7 +55,6 @@ class BehaviorLSTM(nn.Module):
 
 class PredictRequest(BaseModel):
     state: Dict[str, Any]
-    intent: str = ''
     agent_id: str = 'default'
 
 
@@ -129,7 +128,7 @@ def predict(request: PredictRequest):
             'fallback_action': 'EXPLORE',
         }
 
-    x = state_to_feature_vector(request.state, intent_override=request.intent)
+    x = state_to_feature_vector(request.state)
     if (
         MODEL_BUNDLE.get('normalize_features', True)
         and MODEL_BUNDLE['feature_mean'] is not None
@@ -175,7 +174,6 @@ def predict(request: PredictRequest):
         'ok': True,
         'action': action_name,
         'confidence': confidence,
-        'intent': request.intent,
         'agent_id': agent_key,
         'model_type': model_type,
     }

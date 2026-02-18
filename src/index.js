@@ -151,6 +151,55 @@ const antiFlight = createAntiFlightGuard({
 })
 
 let brain = null
+let lastDisconnectReason = 'unknown'
+let observerFollowTimer = null
+
+function getObserverEntity() {
+  const observerName = String(config.observerUsername || '').trim().toLowerCase()
+  if (!observerName) return null
+  const entities = Object.values(bot.entities || {})
+  return entities.find((entity) =>
+    entity &&
+    entity.type === 'player' &&
+    String(entity.username || '').trim().toLowerCase() === observerName
+  ) || null
+}
+
+function stopObserverFollow() {
+  if (!observerFollowTimer) return
+  clearInterval(observerFollowTimer)
+  observerFollowTimer = null
+}
+
+function startObserverFollow() {
+  if (!config.observerModeEnabled || !config.observerFollowEnabled) return
+  if (observerFollowTimer) return
+  observerFollowTimer = setInterval(() => {
+    if (!bot?.entity || bot?.__puppetActive) return
+    const observerEntity = getObserverEntity()
+    if (!observerEntity?.position) {
+      try {
+        bot.pathfinder?.setGoal?.(null)
+      } catch {}
+      return
+    }
+
+    const followDistance = Math.max(1.5, Number(config.observerFollowDistance || 3.5))
+    const distance = bot.entity.position.distanceTo(observerEntity.position)
+    if (!Number.isFinite(distance)) return
+
+    try {
+      if (distance <= followDistance) {
+        bot.pathfinder?.setGoal?.(null)
+      } else {
+        const followGoal = new goals.GoalFollow(observerEntity, followDistance)
+        bot.pathfinder?.setGoal?.(followGoal, true)
+      }
+    } catch {}
+  }, Math.max(250, Number(config.observerFollowRefreshMs || 700)))
+
+  sessionMemory.addMemory(`Observer follow enabled for ${String(config.observerUsername || 'observer')}.`, 'training')
+}
 
 const trainingRecorder = createTrainingRecorder({
   bot,
@@ -159,6 +208,13 @@ const trainingRecorder = createTrainingRecorder({
   enabled: config.trainingEnabled,
   intervalMs: config.trainingIntervalMs,
   liveConsole: config.trainingLiveConsole,
+  observerModeEnabled: config.observerModeEnabled,
+  observerUsername: config.observerUsername,
+  observerCaptureRadius: config.observerCaptureRadius,
+  observerSampleMinMs: config.observerSampleMinMs,
+  observerIdleSampleMinMs: config.observerIdleSampleMinMs,
+  observerMoveSampleMinDistance: config.observerMoveSampleMinDistance,
+  getObserverEntity,
   getIntent: () => brain?.getGoal?.() || '',
   getMode: () => brain?.getMode?.() || 'idle',
   getLastAction: () => brain?.getLastAction?.() || null,
@@ -261,6 +317,7 @@ bot.once('spawn', () => {
   trainingRecorder.start()
   puppetMode.start()
   firstPersonPuppet.start()
+  startObserverFollow()
 
   brain.onSpawn()
 })
@@ -278,6 +335,7 @@ bot.on('physicsTick', () => {
 })
 
 bot.on('chat', (playerName, message) => {
+  if (config.observerModeEnabled) return
   chatRuntime.onChat(playerName, message)
 })
 
@@ -295,16 +353,21 @@ bot.on('wake', () => {
   brain.onWake()
 })
 
-bot.on('end', () => {
+bot.on('end', (reason) => {
+  const reasonText = String(reason || lastDisconnectReason || 'unknown')
+  console.log('Disconnected:', reasonText)
+  sessionMemory.addMemory(`Disconnected: ${reasonText}`, 'world')
   sessionMemory.addMemory('Session ending (bot disconnected).', 'session')
   firstPersonPuppet.stop()
   puppetMode.stop()
   trainingRecorder.stop()
+  stopObserverFollow()
   sessionMemory.endSession()
   brain.onEnd()
 })
 
 bot.on('kicked', (reason) => {
+  lastDisconnectReason = String(reason || 'kicked')
   console.log('Kicked:', reason)
   sessionMemory.addMemory(`Kicked: ${String(reason)}`, 'world')
 })
@@ -315,6 +378,9 @@ bot.on('error', (err) => {
   firstPersonPuppet.stop()
   puppetMode.stop()
   trainingRecorder.stop()
+  stopObserverFollow()
 })
 
-brain.start()
+if (!config.observerModeEnabled) {
+  brain.start()
+}

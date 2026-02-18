@@ -36,20 +36,6 @@ ACTION_VOCAB = [
 ACTION_TO_ID = {name: idx for idx, name in enumerate(ACTION_VOCAB)}
 ID_TO_ACTION = {idx: name for name, idx in ACTION_TO_ID.items()}
 
-INTENT_VOCAB = [
-    'NONE',
-    'EXPLORE',
-    'BUILD',
-    'COLLECT',
-    'CRAFT',
-    'COMBAT',
-    'SOCIAL',
-    'RECOVER',
-    'SLEEP',
-]
-
-INTENT_TO_ID = {name: idx for idx, name in enumerate(INTENT_VOCAB)}
-
 
 def _safe_float(value, default=0.0):
     try:
@@ -66,11 +52,6 @@ def _safe_str(value, default='') -> str:
     if value is None:
         return default
     return str(value).strip()
-
-
-def _contains_any(text: str, words: List[str]) -> bool:
-    line = text.lower()
-    return any(word in line for word in words)
 
 
 def _categorize_item_name(name: str) -> str:
@@ -133,67 +114,40 @@ def _block_one_hot(name: str) -> List[float]:
     return [1.0 if bucket == key else 0.0 for key in keys]
 
 
-def normalize_intent(intent_text: str) -> str:
-    text = _safe_str(intent_text, '').lower()
-    if not text:
-        return 'NONE'
-    if _contains_any(text, ['build', 'construct', 'hall', 'house', 'base']):
-        return 'BUILD'
-    if _contains_any(text, ['collect', 'gather', 'loot', 'pickup', 'resource']):
-        return 'COLLECT'
-    if _contains_any(text, ['craft', 'smelt', 'furnace', 'recipe']):
-        return 'CRAFT'
-    if _contains_any(text, ['attack', 'fight', 'defend', 'combat', 'mob', 'pvp']):
-        return 'COMBAT'
-    if _contains_any(text, ['chat', 'talk', 'social', 'help player']):
-        return 'SOCIAL'
-    if _contains_any(text, ['recover', 'escape', 'stabilize', 'water']):
-        return 'RECOVER'
-    if _contains_any(text, ['sleep', 'bed', 'night']):
-        return 'SLEEP'
-    if _contains_any(text, ['explore', 'wander', 'scout', 'move']):
-        return 'EXPLORE'
-    return 'NONE'
-
-
-def _intent_one_hot(intent_text: str) -> List[float]:
-    intent_name = normalize_intent(intent_text)
-    return [1.0 if intent_name == key else 0.0 for key in INTENT_VOCAB]
-
-
-def state_to_feature_vector(state: Dict, intent_override: str = '') -> np.ndarray:
+def state_to_feature_vector(state: Dict) -> np.ndarray:
     velocity = state.get('velocity', {})
-    controls = state.get('controls', {})
     entities = state.get('nearbyEntities', [])
     inventory = state.get('inventory', [])
     held_item = state.get('heldItem', {})
+    observer = state.get('observer', {})
 
     closest_entity = _closest_entity_features(entities)
     held_item_features = _item_type_one_hot(_safe_str(held_item.get('name', 'none'), 'none'))
     block_below_features = _block_one_hot(_safe_str(state.get('blockBelow', 'unknown'), 'unknown'))
     block_front_features = _block_one_hot(_safe_str(state.get('blockFront', 'unknown'), 'unknown'))
-    intent_text = _safe_str(intent_override, '') or _safe_str(state.get('activeIntent', ''), '')
-    intent_features = _intent_one_hot(intent_text)
 
     vx = _safe_float(velocity.get('vx'))
     vy = _safe_float(velocity.get('vy'))
     vz = _safe_float(velocity.get('vz'))
     horizontal_speed = float(np.sqrt(vx * vx + vz * vz))
+    yaw = _safe_float(state.get('yaw'), _safe_float(observer.get('yaw')))
+    pitch = _safe_float(state.get('pitch'), _safe_float(observer.get('pitch')))
+    yaw_sin = float(np.sin(yaw))
+    yaw_cos = float(np.cos(yaw))
+    pitch_sin = float(np.sin(pitch))
+    pitch_cos = float(np.cos(pitch))
 
     feature = [
         vx,
         vy,
         vz,
         horizontal_speed,
+        yaw_sin,
+        yaw_cos,
+        pitch_sin,
+        pitch_cos,
         _safe_bool(state.get('onGround')),
         _safe_bool(state.get('inAir')),
-        _safe_bool(controls.get('forward')),
-        _safe_bool(controls.get('back')),
-        _safe_bool(controls.get('left')),
-        _safe_bool(controls.get('right')),
-        _safe_bool(controls.get('jump')),
-        _safe_bool(controls.get('sprint')),
-        _safe_bool(controls.get('sneak')),
         _safe_float(state.get('health'), 20.0),
         _safe_float(state.get('hunger'), 20.0),
         _safe_float(state.get('selectedHotbarSlot'), -1.0),
@@ -206,7 +160,6 @@ def state_to_feature_vector(state: Dict, intent_override: str = '') -> np.ndarra
     feature.extend(closest_entity)
     feature.extend(block_below_features)
     feature.extend(block_front_features)
-    feature.extend(intent_features)
 
     return np.array(feature, dtype=np.float32)
 
@@ -232,7 +185,7 @@ def load_dataset(jsonl_path: Path) -> Tuple[np.ndarray, np.ndarray]:
             action = row.get('action', {})
             label_name = normalize_action_label(action)
             labels.append(ACTION_TO_ID[label_name])
-            features.append(state_to_feature_vector(state, intent_override=_safe_str(state.get('activeIntent', ''), '')))
+            features.append(state_to_feature_vector(state))
 
     if not features:
         raise ValueError(f'No records found in dataset: {jsonl_path}')
@@ -257,7 +210,7 @@ def load_dataset_sequences(jsonl_path: Path, sequence_length: int = 8) -> Tuple[
             action = row.get('action', {})
             label_name = normalize_action_label(action)
             labels.append(ACTION_TO_ID[label_name])
-            features.append(state_to_feature_vector(state, intent_override=_safe_str(state.get('activeIntent', ''), '')))
+            features.append(state_to_feature_vector(state))
 
     if len(features) < seq_len:
         raise ValueError(f'Not enough records for sequence_length={seq_len}. Found {len(features)} in dataset: {jsonl_path}')
