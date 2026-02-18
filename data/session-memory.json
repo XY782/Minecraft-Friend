@@ -1,0 +1,1626 @@
+{
+  "sessions": [
+    {
+      "id": "1771406909929-b1yy43",
+      "startedAt": "2026-02-18T09:28:29.929Z",
+      "endedAt": null,
+      "entries": [
+        {
+          "id": "445d2cad-c3c8-4b7c-8b4a-a043d88e4f28",
+          "content": "Session started (bot rebooted into world).",
+          "type": "session",
+          "tags": [
+            "session"
+          ],
+          "importance": 0.5,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:28:29.931Z",
+          "references": [
+            "f485cbe3-a837-41c5-bfb5-c80f86847e33",
+            "94064495-4994-4b11-b41d-3ef2104338b0",
+            "b1bc323a-e55e-4a58-bbab-c3e01334ad07",
+            "397e889b-78a1-4db1-aeb3-ce8e20a1dd30"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "1759d083-0edd-4a03-adf8-61b7f2608219",
+          "content": "Spawned into Minecraft world.",
+          "type": "world",
+          "tags": [
+            "world",
+            "minecraft"
+          ],
+          "importance": 0.5,
+          "emotion": "positive",
+          "context": [],
+          "createdAt": "2026-02-18T09:28:32.475Z",
+          "references": [
+            "b195ee89-8b82-452c-af9f-aaab0bf5b3cb",
+            "445d2cad-c3c8-4b7c-8b4a-a043d88e4f28",
+            "0a078d47-8f63-44f3-9d97-b03f7321c811",
+            "f44d8462-e179-4c0d-bd8f-f63f267dc6c3"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "95ffca6e-f973-462d-8432-4ab3dccf510a",
+          "content": "Training recorder started.",
+          "type": "training",
+          "tags": [
+            "training"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:28:32.475Z",
+          "references": [
+            "8da274bc-2a8a-44b6-9279-e83bb0e650f8",
+            "445d2cad-c3c8-4b7c-8b4a-a043d88e4f28",
+            "c18858a5-745c-4707-90a4-038261b06c3c",
+            "64ea2f84-4333-4f2b-8be3-2679c087b934"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 7,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "62d5a3d1-1300-4a0e-9aaf-26f720d7d1d7",
+          "content": "FPV puppet mode started.",
+          "type": "training",
+          "tags": [
+            "training"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:28:32.768Z",
+          "references": [
+            "445d2cad-c3c8-4b7c-8b4a-a043d88e4f28",
+            "02504118-b62c-4689-90f5-71301c7173d5",
+            "5498cdca-949e-48f8-9752-a96b0af6c47b",
+            "3298073c-bd70-408f-b866-b3213cbaf043"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 7,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "39369f3e-9dcd-42ac-88c3-4062ff5177d1",
+          "content": "FPV puppet connected (clients=1).",
+          "type": "training",
+          "tags": [
+            "training"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:28:33.058Z",
+          "references": [
+            "3e3731ff-177a-48f5-a63b-8dd133dff886",
+            "4fba13f1-c6fe-486c-900e-3326b3e96151",
+            "26f840c0-bfc4-4da5-8616-304879c94661",
+            "62d5a3d1-1300-4a0e-9aaf-26f720d7d1d7"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 5,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "201ba469-a56d-4886-a9fd-a82a9216bb01",
+          "content": "Action failed: help nearest player",
+          "type": "action-fail",
+          "tags": [
+            "action-fail",
+            "player",
+            "autonomy",
+            "dynamic-decision"
+          ],
+          "importance": 0.54,
+          "emotion": "negative",
+          "context": [
+            "source:gemini",
+            "rawActionText:help nearest player",
+            "normalizedKind:invalid"
+          ],
+          "createdAt": "2026-02-18T09:28:42.591Z",
+          "references": [
+            "c791910e-1277-4d61-a57e-f3fcd87574d5",
+            "51c17295-ee12-468e-88af-13cf7851335a",
+            "d69b42ee-f965-4afe-a006-1d2934b02b22",
+            "ed2583e8-2410-425c-ae38-42628b2cb31f"
+          ],
+          "summary": null,
+          "meta": {
+            "source": "gemini",
+            "rawActionText": "help nearest player",
+            "normalizedKind": "invalid",
+            "tags": [
+              "autonomy",
+              "dynamic-decision"
+            ]
+          },
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "651dd916-e8df-4d78-a471-ab3895539880",
+          "content": "Fallback action failed: COLLECT",
+          "type": "action-fail",
+          "tags": [
+            "action-fail",
+            "autonomy",
+            "fallback"
+          ],
+          "importance": 0.459,
+          "emotion": "negative",
+          "context": [
+            "rawActionText:collect dropped item"
+          ],
+          "createdAt": "2026-02-18T09:28:42.593Z",
+          "references": [
+            "123951cb-180d-416e-bb7c-da2585148b3d",
+            "2c6dcb2a-50ab-4473-9d6d-7029b275deb2",
+            "201ba469-a56d-4886-a9fd-a82a9216bb01",
+            "51c17295-ee12-468e-88af-13cf7851335a",
+            "651dd916-e8df-4d78-a471-ab3895539880",
+            "2d177002-857c-4fb0-bc63-179f911b1eb7"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "autonomy",
+              "fallback"
+            ],
+            "rawActionText": "collect dropped item",
+            "repeatCount": 2,
+            "lastSeenAt": "2026-02-18T09:29:23.777Z"
+          },
+          "accessCount": 7,
+          "repeatCount": 2,
+          "consolidated": false
+        },
+        {
+          "id": "96aa84e6-c1b4-4719-924b-3bc8579b7f43",
+          "content": "Strategic intent selected: Construct an emergency shelter to safely regenerate health. | Subgoals: Mine 3 dirt blocks from the ground. -> Dig a 1x1 hole two blocks deep. -> Move into the hole. -> Place a dirt block overhead to seal the shelter. -> Stay still to allow health to regenerate from food saturation.",
+          "type": "plan",
+          "tags": [
+            "plan",
+            "mine",
+            "intent-layer1",
+            "intent-layer2",
+            "autonomy"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:28:43.555Z",
+          "references": [
+            "651dd916-e8df-4d78-a471-ab3895539880",
+            "201ba469-a56d-4886-a9fd-a82a9216bb01",
+            "1759d083-0edd-4a03-adf8-61b7f2608219",
+            "445d2cad-c3c8-4b7c-8b4a-a043d88e4f28"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "intent-layer1",
+              "intent-layer2",
+              "autonomy"
+            ]
+          },
+          "accessCount": 6,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "2c5f7e1d-1f2c-4420-922d-9a7de7d172e5",
+          "content": "Bot died.",
+          "type": "world",
+          "tags": [
+            "world"
+          ],
+          "importance": 0.5,
+          "emotion": "negative",
+          "context": [],
+          "createdAt": "2026-02-18T09:29:18.672Z",
+          "references": [
+            "1593fdbe-a155-4fd2-84e4-7550240d91a5",
+            "445d2cad-c3c8-4b7c-8b4a-a043d88e4f28",
+            "07b0ab54-9fd7-40b5-b97b-289f927dc6d0",
+            "651dd916-e8df-4d78-a471-ab3895539880"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "d4dd878c-2eb1-4503-aed5-df525edcdc0d",
+          "content": "Emergency response failed: DEFEND",
+          "type": "action-fail",
+          "tags": [
+            "action-fail",
+            "autonomy",
+            "environment-reactive"
+          ],
+          "importance": 0.54,
+          "emotion": "negative",
+          "context": [
+            "emergencyReason:hurt"
+          ],
+          "createdAt": "2026-02-18T09:29:20.104Z",
+          "references": [
+            "651dd916-e8df-4d78-a471-ab3895539880",
+            "201ba469-a56d-4886-a9fd-a82a9216bb01",
+            "d69b42ee-f965-4afe-a006-1d2934b02b22",
+            "2c5f7e1d-1f2c-4420-922d-9a7de7d172e5"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "autonomy",
+              "environment-reactive"
+            ],
+            "emergencyReason": "hurt",
+            "damageContext": {
+              "at": 1771406958666,
+              "threatType": "",
+              "threatName": "",
+              "threatId": null,
+              "distance": null
+            }
+          },
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "5c9ecffd-bc28-4e27-9161-178cff8b309b",
+          "content": "Subgoal expanded: Mine 3 dirt blocks from the ground. | Actions: Mine 3 dirt blocks from the ground.",
+          "type": "plan",
+          "tags": [
+            "plan",
+            "mine",
+            "intent-layer2",
+            "intent-layer3",
+            "autonomy"
+          ],
+          "importance": 0.323,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:29:20.314Z",
+          "references": [
+            "96aa84e6-c1b4-4719-924b-3bc8579b7f43",
+            "3bc18a9a-bbe8-4e0e-9ee1-a2c3160848d4",
+            "d4dd878c-2eb1-4503-aed5-df525edcdc0d",
+            "651dd916-e8df-4d78-a471-ab3895539880",
+            "5c9ecffd-bc28-4e27-9161-178cff8b309b",
+            "2d177002-857c-4fb0-bc63-179f911b1eb7"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "intent-layer2",
+              "intent-layer3",
+              "autonomy"
+            ],
+            "repeatCount": 2,
+            "lastSeenAt": "2026-02-18T09:29:26.517Z"
+          },
+          "accessCount": 5,
+          "repeatCount": 2,
+          "consolidated": false
+        },
+        {
+          "id": "6c11f9f9-3097-412c-a72a-5421d774706a",
+          "content": "Intent action failed: BREAK",
+          "type": "action-fail",
+          "tags": [
+            "action-fail",
+            "autonomy",
+            "intent-step"
+          ],
+          "importance": 0.54,
+          "emotion": "negative",
+          "context": [],
+          "createdAt": "2026-02-18T09:29:20.406Z",
+          "references": [
+            "d69b42ee-f965-4afe-a006-1d2934b02b22",
+            "651dd916-e8df-4d78-a471-ab3895539880",
+            "201ba469-a56d-4886-a9fd-a82a9216bb01",
+            "d4dd878c-2eb1-4503-aed5-df525edcdc0d"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "autonomy",
+              "intent-step"
+            ]
+          },
+          "accessCount": 5,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "2d177002-857c-4fb0-bc63-179f911b1eb7",
+          "content": "Action failed: /respawn",
+          "type": "action-fail",
+          "tags": [
+            "action-fail",
+            "autonomy",
+            "dynamic-decision"
+          ],
+          "importance": 0.54,
+          "emotion": "negative",
+          "context": [
+            "source:gemini",
+            "rawActionText:/respawn",
+            "normalizedKind:command"
+          ],
+          "createdAt": "2026-02-18T09:29:23.776Z",
+          "references": [
+            "201ba469-a56d-4886-a9fd-a82a9216bb01",
+            "6c11f9f9-3097-412c-a72a-5421d774706a",
+            "651dd916-e8df-4d78-a471-ab3895539880",
+            "c791910e-1277-4d61-a57e-f3fcd87574d5"
+          ],
+          "summary": null,
+          "meta": {
+            "source": "gemini",
+            "rawActionText": "/respawn",
+            "normalizedKind": "command",
+            "tags": [
+              "autonomy",
+              "dynamic-decision"
+            ]
+          },
+          "accessCount": 4,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "636c5d83-c8d9-470a-ac64-2f1b9f6c2f16",
+          "content": "Intent action success: BREAK",
+          "type": "action-success",
+          "tags": [
+            "action-success",
+            "autonomy",
+            "intent-step"
+          ],
+          "importance": 0.54,
+          "emotion": "positive",
+          "context": [],
+          "createdAt": "2026-02-18T09:29:26.833Z",
+          "references": [
+            "6c11f9f9-3097-412c-a72a-5421d774706a",
+            "d69b42ee-f965-4afe-a006-1d2934b02b22",
+            "2d177002-857c-4fb0-bc63-179f911b1eb7",
+            "201ba469-a56d-4886-a9fd-a82a9216bb01"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "autonomy",
+              "intent-step"
+            ]
+          },
+          "accessCount": 3,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "c183d595-1e29-42e3-9a4a-17ca543ebbf3",
+          "content": "Subgoal completed: Mine 3 dirt blocks from the ground.",
+          "type": "action-success",
+          "tags": [
+            "action-success",
+            "mine",
+            "intent-layer2",
+            "complete"
+          ],
+          "importance": 0.54,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:29:26.833Z",
+          "references": [
+            "5c9ecffd-bc28-4e27-9161-178cff8b309b",
+            "96aa84e6-c1b4-4719-924b-3bc8579b7f43",
+            "636c5d83-c8d9-470a-ac64-2f1b9f6c2f16",
+            "2d177002-857c-4fb0-bc63-179f911b1eb7"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "intent-layer2",
+              "complete"
+            ]
+          },
+          "accessCount": 3,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "658a3fb7-4334-4c22-8984-866d0e310fb9",
+          "content": "Intent action completed: Mine 3 dirt blocks from the ground.",
+          "type": "action-success",
+          "tags": [
+            "action-success",
+            "mine",
+            "intent-layer3",
+            "step"
+          ],
+          "importance": 0.54,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:29:26.834Z",
+          "references": [
+            "c183d595-1e29-42e3-9a4a-17ca543ebbf3",
+            "96aa84e6-c1b4-4719-924b-3bc8579b7f43",
+            "5c9ecffd-bc28-4e27-9161-178cff8b309b",
+            "636c5d83-c8d9-470a-ac64-2f1b9f6c2f16"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "intent-layer3",
+              "step"
+            ]
+          },
+          "accessCount": 3,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "e66b0ca5-73fc-462a-bfa2-6f8d8b6437c9",
+          "content": "Strategic intent selected: Respawn and secure a safe shelter for the night. | Subgoals: Respawn -> Mine 5 blocks of terracotta -> Dig a 2-block deep hole -> Move into the hole -> Place one block above head to seal the space",
+          "type": "plan",
+          "tags": [
+            "plan",
+            "mine",
+            "intent-layer1",
+            "intent-layer2",
+            "autonomy"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:29:27.851Z",
+          "references": [
+            "96aa84e6-c1b4-4719-924b-3bc8579b7f43",
+            "658a3fb7-4334-4c22-8984-866d0e310fb9",
+            "c183d595-1e29-42e3-9a4a-17ca543ebbf3",
+            "2d177002-857c-4fb0-bc63-179f911b1eb7"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "intent-layer1",
+              "intent-layer2",
+              "autonomy"
+            ]
+          },
+          "accessCount": 3,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "954c93be-f763-44d1-a8ec-9642aace5f9c",
+          "content": "Subgoal expanded: Respawn | Actions: Respawn",
+          "type": "plan",
+          "tags": [
+            "plan",
+            "intent-layer2",
+            "intent-layer3",
+            "autonomy"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:29:29.243Z",
+          "references": [
+            "2d177002-857c-4fb0-bc63-179f911b1eb7",
+            "c183d595-1e29-42e3-9a4a-17ca543ebbf3",
+            "5c9ecffd-bc28-4e27-9161-178cff8b309b",
+            "3bc18a9a-bbe8-4e0e-9ee1-a2c3160848d4"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "intent-layer2",
+              "intent-layer3",
+              "autonomy"
+            ]
+          },
+          "accessCount": 2,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "bbcc6386-ae5f-43e5-b7c6-e40efbe834ad",
+          "content": "Intent action failed: Respawn",
+          "type": "action-fail",
+          "tags": [
+            "action-fail",
+            "autonomy",
+            "intent-step"
+          ],
+          "importance": 0.54,
+          "emotion": "negative",
+          "context": [],
+          "createdAt": "2026-02-18T09:29:29.337Z",
+          "references": [
+            "2d177002-857c-4fb0-bc63-179f911b1eb7",
+            "6c11f9f9-3097-412c-a72a-5421d774706a",
+            "658a3fb7-4334-4c22-8984-866d0e310fb9",
+            "636c5d83-c8d9-470a-ac64-2f1b9f6c2f16"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "autonomy",
+              "intent-step"
+            ]
+          },
+          "accessCount": 1,
+          "repeatCount": 1,
+          "consolidated": false
+        }
+      ],
+      "meta": {
+        "reactedTo": {}
+      }
+    },
+    {
+      "id": "1771406501194-syv8q1",
+      "startedAt": "2026-02-18T09:21:41.194Z",
+      "endedAt": null,
+      "entries": [
+        {
+          "id": "f485cbe3-a837-41c5-bfb5-c80f86847e33",
+          "content": "Session started (bot rebooted into world).",
+          "type": "session",
+          "tags": [
+            "session"
+          ],
+          "importance": 0.5,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:21:41.196Z",
+          "references": [
+            "b1bc323a-e55e-4a58-bbab-c3e01334ad07",
+            "d44e84a4-082c-4bdc-9c17-d8e3a8aff314",
+            "94064495-4994-4b11-b41d-3ef2104338b0",
+            "397e889b-78a1-4db1-aeb3-ce8e20a1dd30"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 10,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "b195ee89-8b82-452c-af9f-aaab0bf5b3cb",
+          "content": "Spawned into Minecraft world.",
+          "type": "world",
+          "tags": [
+            "world",
+            "minecraft"
+          ],
+          "importance": 0.5,
+          "emotion": "positive",
+          "context": [],
+          "createdAt": "2026-02-18T09:21:43.405Z",
+          "references": [
+            "f44d8462-e179-4c0d-bd8f-f63f267dc6c3",
+            "f485cbe3-a837-41c5-bfb5-c80f86847e33",
+            "0a078d47-8f63-44f3-9d97-b03f7321c811",
+            "b1bc323a-e55e-4a58-bbab-c3e01334ad07"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 10,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "c18858a5-745c-4707-90a4-038261b06c3c",
+          "content": "Training recorder started.",
+          "type": "training",
+          "tags": [
+            "training"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:21:43.406Z",
+          "references": [
+            "8da274bc-2a8a-44b6-9279-e83bb0e650f8",
+            "8eeb5500-586b-4cf8-a0fa-2d915335a357",
+            "5498cdca-949e-48f8-9752-a96b0af6c47b",
+            "f485cbe3-a837-41c5-bfb5-c80f86847e33"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "02504118-b62c-4689-90f5-71301c7173d5",
+          "content": "FPV puppet mode started.",
+          "type": "training",
+          "tags": [
+            "training"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:21:43.719Z",
+          "references": [
+            "5498cdca-949e-48f8-9752-a96b0af6c47b",
+            "2262e1cc-35cf-4a59-8746-4ce1f53e800d",
+            "f485cbe3-a837-41c5-bfb5-c80f86847e33",
+            "b1bc323a-e55e-4a58-bbab-c3e01334ad07"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "3e3731ff-177a-48f5-a63b-8dd133dff886",
+          "content": "FPV puppet connected (clients=1).",
+          "type": "training",
+          "tags": [
+            "training"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:21:44.736Z",
+          "references": [
+            "4fba13f1-c6fe-486c-900e-3326b3e96151",
+            "99d969c2-db6f-45dc-ab26-c13410e47644",
+            "26f840c0-bfc4-4da5-8616-304879c94661",
+            "02504118-b62c-4689-90f5-71301c7173d5"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 7,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "4372a350-976e-4f98-8b0b-3e0e43b41aa8",
+          "content": "Strategic intent selected: Craft a wooden pickaxe to begin stone tool progression. | Subgoals: Craft 16 dark_oak_planks from logs. -> Craft 1 crafting_table and 4 sticks. -> Place the crafting_table. -> Craft a wooden_pickaxe. -> Locate and mine 3 cobblestone blocks. -> Craft a stone_pickaxe.",
+          "type": "plan",
+          "tags": [
+            "plan",
+            "craft",
+            "mine",
+            "intent-layer1",
+            "intent-layer2",
+            "autonomy"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:21:50.993Z",
+          "references": [
+            "411d422a-9e0c-4d95-a7e6-03ffee7506c4",
+            "198f2898-b5ab-4039-85c0-1d5716f34029",
+            "123951cb-180d-416e-bb7c-da2585148b3d",
+            "c791910e-1277-4d61-a57e-f3fcd87574d5"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "intent-layer1",
+              "intent-layer2",
+              "autonomy"
+            ]
+          },
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "813c28d2-23ae-4163-b052-41cbe3d48d00",
+          "content": "Action success: CRAFT",
+          "type": "action-success",
+          "tags": [
+            "action-success",
+            "craft",
+            "autonomy",
+            "dynamic-decision"
+          ],
+          "importance": 0.54,
+          "emotion": "positive",
+          "context": [
+            "source:gemini",
+            "rawActionText:craft crafting table",
+            "normalizedKind:action"
+          ],
+          "createdAt": "2026-02-18T09:21:51.733Z",
+          "references": [
+            "af953173-b000-46b2-84b8-8935607ba54b",
+            "c791910e-1277-4d61-a57e-f3fcd87574d5",
+            "ed2583e8-2410-425c-ae38-42628b2cb31f",
+            "51c17295-ee12-468e-88af-13cf7851335a"
+          ],
+          "summary": null,
+          "meta": {
+            "source": "gemini",
+            "rawActionText": "craft crafting table",
+            "normalizedKind": "action",
+            "tags": [
+              "autonomy",
+              "dynamic-decision"
+            ]
+          },
+          "accessCount": 10,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "1593fdbe-a155-4fd2-84e4-7550240d91a5",
+          "content": "Bot died.",
+          "type": "world",
+          "tags": [
+            "world"
+          ],
+          "importance": 0.5,
+          "emotion": "negative",
+          "context": [],
+          "createdAt": "2026-02-18T09:22:09.271Z",
+          "references": [
+            "f485cbe3-a837-41c5-bfb5-c80f86847e33",
+            "07b0ab54-9fd7-40b5-b97b-289f927dc6d0",
+            "b1bc323a-e55e-4a58-bbab-c3e01334ad07",
+            "d44e84a4-082c-4bdc-9c17-d8e3a8aff314"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 9,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "ad05f8ee-49a1-4b38-9c7e-b71d4c713e00",
+          "content": "44_3: Summoned new Zombie]",
+          "type": "chat-in",
+          "tags": [
+            "chat-in"
+          ],
+          "importance": 0.391,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:22:31.557Z",
+          "references": [
+            "813c28d2-23ae-4163-b052-41cbe3d48d00",
+            "123951cb-180d-416e-bb7c-da2585148b3d",
+            "c791910e-1277-4d61-a57e-f3fcd87574d5",
+            "1593fdbe-a155-4fd2-84e4-7550240d91a5",
+            "ad05f8ee-49a1-4b38-9c7e-b71d4c713e00"
+          ],
+          "summary": null,
+          "meta": {
+            "repeatCount": 2,
+            "lastSeenAt": "2026-02-18T09:22:36.660Z"
+          },
+          "accessCount": 8,
+          "repeatCount": 2,
+          "consolidated": false
+        },
+        {
+          "id": "644617e6-1256-4ace-b22d-c5e135c4e4f7",
+          "content": "44_3: Teleported MyFriend to 44_3]",
+          "type": "chat-in",
+          "tags": [
+            "chat-in"
+          ],
+          "importance": 0.391,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:22:39.811Z",
+          "references": [
+            "813c28d2-23ae-4163-b052-41cbe3d48d00",
+            "1593fdbe-a155-4fd2-84e4-7550240d91a5",
+            "ad05f8ee-49a1-4b38-9c7e-b71d4c713e00",
+            "123951cb-180d-416e-bb7c-da2585148b3d",
+            "644617e6-1256-4ace-b22d-c5e135c4e4f7",
+            "3298073c-bd70-408f-b866-b3213cbaf043"
+          ],
+          "summary": null,
+          "meta": {
+            "repeatCount": 2,
+            "lastSeenAt": "2026-02-18T09:23:38.593Z"
+          },
+          "accessCount": 7,
+          "repeatCount": 2,
+          "consolidated": false
+        },
+        {
+          "id": "3298073c-bd70-408f-b866-b3213cbaf043",
+          "content": "44_3: Set MyFriend's game mode to Creative Mode]",
+          "type": "chat-in",
+          "tags": [
+            "chat-in",
+            "creative"
+          ],
+          "importance": 0.46,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:23:13.592Z",
+          "references": [
+            "644617e6-1256-4ace-b22d-c5e135c4e4f7",
+            "438e6473-6f33-4810-b8c8-6fa7bda973fd",
+            "813c28d2-23ae-4163-b052-41cbe3d48d00",
+            "1593fdbe-a155-4fd2-84e4-7550240d91a5"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        }
+      ],
+      "meta": {
+        "reactedTo": {}
+      }
+    },
+    {
+      "id": "1771405790149-1lc3np",
+      "startedAt": "2026-02-18T09:09:50.149Z",
+      "endedAt": null,
+      "entries": [
+        {
+          "id": "b1bc323a-e55e-4a58-bbab-c3e01334ad07",
+          "content": "Session started (bot rebooted into world).",
+          "type": "session",
+          "tags": [
+            "session"
+          ],
+          "importance": 0.5,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:09:50.151Z",
+          "references": [
+            "397e889b-78a1-4db1-aeb3-ce8e20a1dd30",
+            "d44e84a4-082c-4bdc-9c17-d8e3a8aff314",
+            "b1dfbb13-0bed-4cfc-8448-4fb1608d0320",
+            "94064495-4994-4b11-b41d-3ef2104338b0"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 9,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "f44d8462-e179-4c0d-bd8f-f63f267dc6c3",
+          "content": "Spawned into Minecraft world.",
+          "type": "world",
+          "tags": [
+            "world",
+            "minecraft"
+          ],
+          "importance": 0.5,
+          "emotion": "positive",
+          "context": [],
+          "createdAt": "2026-02-18T09:09:52.583Z",
+          "references": [
+            "a601d130-bde8-468c-88f2-b123f92e3338",
+            "7675a273-ed79-4b63-a7b6-5b56b9130657",
+            "0a078d47-8f63-44f3-9d97-b03f7321c811",
+            "b1bc323a-e55e-4a58-bbab-c3e01334ad07"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 9,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "8da274bc-2a8a-44b6-9279-e83bb0e650f8",
+          "content": "Training recorder started.",
+          "type": "training",
+          "tags": [
+            "training"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:09:52.583Z",
+          "references": [
+            "842ac66f-092f-4906-a3a7-d666d8579b42",
+            "8eeb5500-586b-4cf8-a0fa-2d915335a357",
+            "dfa41436-e81a-4574-94ca-715ac38b16ff",
+            "64ea2f84-4333-4f2b-8be3-2679c087b934"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 7,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "5498cdca-949e-48f8-9752-a96b0af6c47b",
+          "content": "FPV puppet mode started.",
+          "type": "training",
+          "tags": [
+            "training"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:09:52.882Z",
+          "references": [
+            "dfa41436-e81a-4574-94ca-715ac38b16ff",
+            "2262e1cc-35cf-4a59-8746-4ce1f53e800d",
+            "c9e604c2-13d4-437b-8ee3-d227ce2e9d4d",
+            "b1bc323a-e55e-4a58-bbab-c3e01334ad07"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "4fba13f1-c6fe-486c-900e-3326b3e96151",
+          "content": "FPV puppet connected (clients=1).",
+          "type": "training",
+          "tags": [
+            "training"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:09:53.810Z",
+          "references": [
+            "a7e7f96b-0933-4f7b-8236-6a700049e0a0",
+            "99d969c2-db6f-45dc-ab26-c13410e47644",
+            "26f840c0-bfc4-4da5-8616-304879c94661",
+            "5498cdca-949e-48f8-9752-a96b0af6c47b"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 7,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "c791910e-1277-4d61-a57e-f3fcd87574d5",
+          "content": "Action failed: BREAK",
+          "type": "action-fail",
+          "tags": [
+            "action-fail",
+            "autonomy",
+            "dynamic-decision"
+          ],
+          "importance": 0.54,
+          "emotion": "negative",
+          "context": [
+            "source:gemini",
+            "rawActionText:mine dark_oak_log",
+            "normalizedKind:action"
+          ],
+          "createdAt": "2026-02-18T09:09:59.238Z",
+          "references": [
+            "19803a7c-6be5-4d7d-ad7c-335b1763d817",
+            "d69b42ee-f965-4afe-a006-1d2934b02b22",
+            "51c17295-ee12-468e-88af-13cf7851335a",
+            "af953173-b000-46b2-84b8-8935607ba54b"
+          ],
+          "summary": null,
+          "meta": {
+            "source": "gemini",
+            "rawActionText": "mine dark_oak_log",
+            "normalizedKind": "action",
+            "tags": [
+              "autonomy",
+              "dynamic-decision"
+            ]
+          },
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "123951cb-180d-416e-bb7c-da2585148b3d",
+          "content": "Fallback action failed: COLLECT",
+          "type": "action-fail",
+          "tags": [
+            "action-fail",
+            "autonomy",
+            "fallback"
+          ],
+          "importance": 0.54,
+          "emotion": "negative",
+          "context": [
+            "rawActionText:collect dropped item"
+          ],
+          "createdAt": "2026-02-18T09:09:59.239Z",
+          "references": [
+            "330aed38-ac4d-4165-ad2e-39b140d9b559",
+            "5d767737-9448-4e9d-b04e-dc340ff3fcd7",
+            "2c6dcb2a-50ab-4473-9d6d-7029b275deb2",
+            "c791910e-1277-4d61-a57e-f3fcd87574d5"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "autonomy",
+              "fallback"
+            ],
+            "rawActionText": "collect dropped item"
+          },
+          "accessCount": 9,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "411d422a-9e0c-4d95-a7e6-03ffee7506c4",
+          "content": "Strategic intent selected: Gather wood to craft basic tools for survival during the night. | Subgoals: Locate a nearby dark oak tree trunk. -> Mine 4 dark oak log blocks. -> Craft 16 dark oak planks. -> Craft a crafting table and 4 sticks. -> Place the crafting table. -> Craft a wooden pickaxe.",
+          "type": "plan",
+          "tags": [
+            "plan",
+            "craft",
+            "survival",
+            "mine",
+            "intent-layer1",
+            "intent-layer2",
+            "autonomy"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:10:00.711Z",
+          "references": [
+            "d69b42ee-f965-4afe-a006-1d2934b02b22",
+            "123951cb-180d-416e-bb7c-da2585148b3d",
+            "c791910e-1277-4d61-a57e-f3fcd87574d5",
+            "51427fd8-7af3-4a1d-9857-be7ea317c176"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "intent-layer1",
+              "intent-layer2",
+              "autonomy"
+            ]
+          },
+          "accessCount": 9,
+          "repeatCount": 1,
+          "consolidated": false
+        }
+      ],
+      "meta": {
+        "reactedTo": {}
+      }
+    },
+    {
+      "id": "1771405534924-nifwin",
+      "startedAt": "2026-02-18T09:05:34.924Z",
+      "endedAt": null,
+      "entries": [
+        {
+          "id": "397e889b-78a1-4db1-aeb3-ce8e20a1dd30",
+          "content": "Session started (bot rebooted into world).",
+          "type": "session",
+          "tags": [
+            "session"
+          ],
+          "importance": 0.5,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:05:34.926Z",
+          "references": [
+            "94064495-4994-4b11-b41d-3ef2104338b0",
+            "d44e84a4-082c-4bdc-9c17-d8e3a8aff314",
+            "b1dfbb13-0bed-4cfc-8448-4fb1608d0320",
+            "382295f2-5f5b-446e-86fa-51bf7b1b1a44"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 9,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "7675a273-ed79-4b63-a7b6-5b56b9130657",
+          "content": "Spawned into Minecraft world.",
+          "type": "world",
+          "tags": [
+            "world",
+            "minecraft"
+          ],
+          "importance": 0.5,
+          "emotion": "positive",
+          "context": [],
+          "createdAt": "2026-02-18T09:05:36.975Z",
+          "references": [
+            "a601d130-bde8-468c-88f2-b123f92e3338",
+            "0a078d47-8f63-44f3-9d97-b03f7321c811",
+            "8b40edd2-9b97-42ad-80c4-79c96fbdab69",
+            "87514cca-5951-49fa-9f32-a1723ecbf878"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 9,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "64ea2f84-4333-4f2b-8be3-2679c087b934",
+          "content": "Training recorder started.",
+          "type": "training",
+          "tags": [
+            "training"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:05:36.976Z",
+          "references": [
+            "842ac66f-092f-4906-a3a7-d666d8579b42",
+            "8eeb5500-586b-4cf8-a0fa-2d915335a357",
+            "198f2898-b5ab-4039-85c0-1d5716f34029",
+            "b48d10ab-b008-46e2-8592-471d29f7a86b"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "c9e604c2-13d4-437b-8ee3-d227ce2e9d4d",
+          "content": "FPV puppet mode started.",
+          "type": "training",
+          "tags": [
+            "training"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:05:37.217Z",
+          "references": [
+            "dfa41436-e81a-4574-94ca-715ac38b16ff",
+            "2262e1cc-35cf-4a59-8746-4ce1f53e800d",
+            "efc0b499-fe7d-497b-8073-f04e0c3d36cf",
+            "397e889b-78a1-4db1-aeb3-ce8e20a1dd30"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 9,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "26f840c0-bfc4-4da5-8616-304879c94661",
+          "content": "FPV puppet connected (clients=1).",
+          "type": "training",
+          "tags": [
+            "training"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:05:37.904Z",
+          "references": [
+            "a7e7f96b-0933-4f7b-8236-6a700049e0a0",
+            "2688aafd-7f19-45b8-98e6-f68d5d5e3c91",
+            "99d969c2-db6f-45dc-ab26-c13410e47644",
+            "198f2898-b5ab-4039-85c0-1d5716f34029"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 7,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "51c17295-ee12-468e-88af-13cf7851335a",
+          "content": "Action failed: COLLECT",
+          "type": "action-fail",
+          "tags": [
+            "action-fail",
+            "autonomy",
+            "dynamic-decision"
+          ],
+          "importance": 0.54,
+          "emotion": "negative",
+          "context": [
+            "source:gemini",
+            "rawActionText:collect wood",
+            "normalizedKind:action"
+          ],
+          "createdAt": "2026-02-18T09:05:41.372Z",
+          "references": [
+            "19803a7c-6be5-4d7d-ad7c-335b1763d817",
+            "ed2583e8-2410-425c-ae38-42628b2cb31f",
+            "6bcbb2ff-a4f9-4735-a505-c0909a5900b2",
+            "330aed38-ac4d-4165-ad2e-39b140d9b559"
+          ],
+          "summary": null,
+          "meta": {
+            "source": "gemini",
+            "rawActionText": "collect wood",
+            "normalizedKind": "action",
+            "tags": [
+              "autonomy",
+              "dynamic-decision"
+            ]
+          },
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "41dd264b-71cf-4aa5-a684-dc59cf7ded48",
+          "content": "Strategic intent selected: Gather resources to craft stone tools for survival. | Subgoals: Mine 3 dark_oak_log blocks. -> Craft 12 dark_oak_planks. -> Craft a crafting_table and 4 sticks. -> Place the crafting_table and craft a wooden_pickaxe. -> Mine 3 cobblestone blocks from the ground. -> Craft a stone_pickaxe at the crafting_table.",
+          "type": "plan",
+          "tags": [
+            "plan",
+            "craft",
+            "survival",
+            "mine",
+            "intent-layer1",
+            "intent-layer2",
+            "autonomy"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:05:44.748Z",
+          "references": [
+            "198f2898-b5ab-4039-85c0-1d5716f34029",
+            "51427fd8-7af3-4a1d-9857-be7ea317c176",
+            "020a66c2-1b46-411d-a4d2-8d1b586f57c0",
+            "454d54cf-19bc-4376-8712-fa3edc59cba1"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "intent-layer1",
+              "intent-layer2",
+              "autonomy"
+            ]
+          },
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "3bc18a9a-bbe8-4e0e-9ee1-a2c3160848d4",
+          "content": "Subgoal expanded: Mine 3 dark_oak_log blocks. | Actions: Mine 3 dark_oak_log blocks.",
+          "type": "plan",
+          "tags": [
+            "plan",
+            "mine",
+            "intent-layer2",
+            "intent-layer3",
+            "autonomy"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T09:06:32.661Z",
+          "references": [
+            "198f2898-b5ab-4039-85c0-1d5716f34029",
+            "41dd264b-71cf-4aa5-a684-dc59cf7ded48",
+            "51427fd8-7af3-4a1d-9857-be7ea317c176",
+            "020a66c2-1b46-411d-a4d2-8d1b586f57c0"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "intent-layer2",
+              "intent-layer3",
+              "autonomy"
+            ]
+          },
+          "accessCount": 5,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "d69b42ee-f965-4afe-a006-1d2934b02b22",
+          "content": "Intent action failed: BREAK",
+          "type": "action-fail",
+          "tags": [
+            "action-fail",
+            "autonomy",
+            "intent-step"
+          ],
+          "importance": 0.54,
+          "emotion": "negative",
+          "context": [],
+          "createdAt": "2026-02-18T09:06:32.784Z",
+          "references": [
+            "19803a7c-6be5-4d7d-ad7c-335b1763d817",
+            "198f2898-b5ab-4039-85c0-1d5716f34029",
+            "51c17295-ee12-468e-88af-13cf7851335a",
+            "6bcbb2ff-a4f9-4735-a505-c0909a5900b2"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "autonomy",
+              "intent-step"
+            ]
+          },
+          "accessCount": 6,
+          "repeatCount": 1,
+          "consolidated": false
+        }
+      ],
+      "meta": {
+        "reactedTo": {}
+      }
+    },
+    {
+      "id": "1771405076441-3n3rzi",
+      "startedAt": "2026-02-18T08:57:56.441Z",
+      "endedAt": null,
+      "entries": [
+        {
+          "id": "94064495-4994-4b11-b41d-3ef2104338b0",
+          "content": "Session started (bot rebooted into world).",
+          "type": "session",
+          "tags": [
+            "session"
+          ],
+          "importance": 0.5,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T08:57:56.443Z",
+          "references": [
+            "d44e84a4-082c-4bdc-9c17-d8e3a8aff314",
+            "b1dfbb13-0bed-4cfc-8448-4fb1608d0320",
+            "382295f2-5f5b-446e-86fa-51bf7b1b1a44",
+            "87514cca-5951-49fa-9f32-a1723ecbf878"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "0a078d47-8f63-44f3-9d97-b03f7321c811",
+          "content": "Spawned into Minecraft world.",
+          "type": "world",
+          "tags": [
+            "world",
+            "minecraft"
+          ],
+          "importance": 0.5,
+          "emotion": "positive",
+          "context": [],
+          "createdAt": "2026-02-18T08:57:58.943Z",
+          "references": [
+            "87514cca-5951-49fa-9f32-a1723ecbf878",
+            "a601d130-bde8-468c-88f2-b123f92e3338",
+            "8b40edd2-9b97-42ad-80c4-79c96fbdab69",
+            "94064495-4994-4b11-b41d-3ef2104338b0"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "ed2583e8-2410-425c-ae38-42628b2cb31f",
+          "content": "Action failed: CRAFT",
+          "type": "action-fail",
+          "tags": [
+            "action-fail",
+            "craft",
+            "autonomy",
+            "dynamic-decision"
+          ],
+          "importance": 0.54,
+          "emotion": "negative",
+          "context": [
+            "source:gemini",
+            "rawActionText:craft crafting table",
+            "normalizedKind:action"
+          ],
+          "createdAt": "2026-02-18T08:58:11.142Z",
+          "references": [
+            "af953173-b000-46b2-84b8-8935607ba54b",
+            "6bcbb2ff-a4f9-4735-a505-c0909a5900b2",
+            "19803a7c-6be5-4d7d-ad7c-335b1763d817",
+            "5d767737-9448-4e9d-b04e-dc340ff3fcd7"
+          ],
+          "summary": null,
+          "meta": {
+            "source": "gemini",
+            "rawActionText": "craft crafting table",
+            "normalizedKind": "action",
+            "tags": [
+              "autonomy",
+              "dynamic-decision"
+            ]
+          },
+          "accessCount": 9,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "2c6dcb2a-50ab-4473-9d6d-7029b275deb2",
+          "content": "Fallback action failed: COLLECT",
+          "type": "action-fail",
+          "tags": [
+            "action-fail",
+            "autonomy",
+            "fallback"
+          ],
+          "importance": 0.54,
+          "emotion": "negative",
+          "context": [
+            "rawActionText:collect dropped item"
+          ],
+          "createdAt": "2026-02-18T08:58:11.143Z",
+          "references": [
+            "5d767737-9448-4e9d-b04e-dc340ff3fcd7",
+            "330aed38-ac4d-4165-ad2e-39b140d9b559",
+            "0fb78a88-a750-4358-8b83-6432dfc49a93",
+            "ed2583e8-2410-425c-ae38-42628b2cb31f"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "autonomy",
+              "fallback"
+            ],
+            "rawActionText": "collect dropped item"
+          },
+          "accessCount": 9,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "454d54cf-19bc-4376-8712-fa3edc59cba1",
+          "content": "Strategic intent selected: Craft stone tools to improve survival and resource gathering. | Subgoals: Craft a crafting_table. -> Place the crafting_table. -> Craft a wooden_pickaxe. -> Dig down to find and mine 3 stone blocks. -> Craft a stone_pickaxe. -> Break and collect the crafting_table.",
+          "type": "plan",
+          "tags": [
+            "plan",
+            "craft",
+            "survival",
+            "mine",
+            "intent-layer1",
+            "intent-layer2",
+            "autonomy"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T08:58:11.472Z",
+          "references": [
+            "7dada9a1-7385-4bdf-81ca-80e8dc9428aa",
+            "020a66c2-1b46-411d-a4d2-8d1b586f57c0",
+            "51427fd8-7af3-4a1d-9857-be7ea317c176",
+            "6bcbb2ff-a4f9-4735-a505-c0909a5900b2"
+          ],
+          "summary": null,
+          "meta": {
+            "tags": [
+              "intent-layer1",
+              "intent-layer2",
+              "autonomy"
+            ]
+          },
+          "accessCount": 9,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "438e6473-6f33-4810-b8c8-6fa7bda973fd",
+          "content": "44_3: Set own game mode to Creative Mode]",
+          "type": "chat-in",
+          "tags": [
+            "chat-in",
+            "creative"
+          ],
+          "importance": 0.46,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T08:58:42.387Z",
+          "references": [
+            "e0c533a9-8a35-488d-a906-ab4717db3046",
+            "2c6dcb2a-50ab-4473-9d6d-7029b275deb2",
+            "ed2583e8-2410-425c-ae38-42628b2cb31f",
+            "5d767737-9448-4e9d-b04e-dc340ff3fcd7"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "07b0ab54-9fd7-40b5-b97b-289f927dc6d0",
+          "content": "Bot died.",
+          "type": "world",
+          "tags": [
+            "world"
+          ],
+          "importance": 0.5,
+          "emotion": "negative",
+          "context": [],
+          "createdAt": "2026-02-18T08:59:12.675Z",
+          "references": [
+            "94064495-4994-4b11-b41d-3ef2104338b0",
+            "d44e84a4-082c-4bdc-9c17-d8e3a8aff314",
+            "b1dfbb13-0bed-4cfc-8448-4fb1608d0320",
+            "382295f2-5f5b-446e-86fa-51bf7b1b1a44"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 8,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "198f2898-b5ab-4039-85c0-1d5716f34029",
+          "content": "=== AUTONOMY CONSOLIDATED SUMMARY ===\nwindow: ~180s\ngeneratedAt: 2026-02-18T08:59:56.444Z\neventsAnalyzed: 12\ngroupClusters: 2\nhighImportanceCount: 0\navgImportance: 0.278\navgRepeatCount: 0.75\n--- event type distribution ---\n- training x3\n- chat-in x3\n- session x1\n- plan x1\n--- dominant tags ---\n- training x3\n- chat-in x3\n- session x1\n- plan x1\n- craft x1\n- survival x1\n- mine x1\n- intent-layer1 x1\n--- dominant context cues ---\n--- emotional profile ---\n- neutral x8\n--- action outcomes ---\n- successes: none\n- failures: none\n- player activity: none\n--- intents and direction ---\n- recent intents: Craft stone tools to improve survival and resource gathering. | Subgoals: Craft a crafting_table. -> Place the crafting_table. -> Craft a wooden_pickaxe. -> Dig down to find and mine 3 stone blocks. -> Craft a stone_pickaxe. -> Break and collect the crafting_table.\n- mixed event signatures: 3 training, 2 chat-in\n--- world observations ---\n- location cues: no explicit XYZ in recent events\n- notable errors: none\n--- operational guidance ---\n- prioritize survival-critical actions before progression\n- if repeated failures on same action, pivot to fallback resource actions\n- keep intent stable unless risk level rises sharply\n- use nearby players as social/assist opportunities only when safe\n- avoid redundant action loops by honoring recent success/fail memory",
+          "type": "summary",
+          "tags": [
+            "summary",
+            "consolidated-window",
+            "structured",
+            "long-summary",
+            "training",
+            "chat-in"
+          ],
+          "importance": 0.58,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-18T08:59:56.444Z",
+          "references": [
+            "92438833-6d26-4364-804c-499e31d988a1",
+            "599b6b22-cce1-442d-9862-a6e745e4ad60",
+            "e0b78b34-5eb8-4987-8f43-3ddf759f4bba",
+            "aafd84ee-5b29-4602-a5b1-aabb58c8d531",
+            "576a8871-ea82-4f2d-839f-05235cec2c14"
+          ],
+          "summary": "=== AUTONOMY CONSOLIDATED SUMMARY ===\nwindow: ~180s\ngeneratedAt: 2026-02-18T08:59:56.444Z\neventsAnalyzed: 12\ngroupClusters: 2\nhighImportanceCount: 0\navgImportance: 0.278\navgRepeatCount: 0.75\n--- event type distribution ---\n- training x3\n- chat-in x3\n- session x1\n- plan x1\n--- dominant tags ---\n- training x3\n- chat-in x3\n- session x1\n- plan x1\n- craft x1\n- survival x1\n- mine x1\n- intent-layer1 x1\n--- dominant context cues ---\n--- emotional profile ---\n- neutral x8\n--- action outcomes ---\n- successes: none\n- failures: none\n- player activity: none\n--- intents and direction ---\n- recent intents: Craft stone tools to improve survival and resource gathering. | Subgoals: Craft a crafting_table. -> Place the crafting_table. -> Craft a wooden_pickaxe. -> Dig down to find and mine 3 stone blocks. -> Craft a stone_pickaxe. -> Break and collect the crafting_table.\n- mixed event signatures: 3 training, 2 chat-in\n--- world observations ---\n- location cues: no explicit XYZ in recent events\n- notable errors: none\n--- operational guidance ---\n- prioritize survival-critical actions before progression\n- if repeated failures on same action, pivot to fallback resource actions\n- keep intent stable unless risk level rises sharply\n- use nearby players as social/assist opportunities only when safe\n- avoid redundant action loops by honoring recent success/fail memory",
+          "meta": {
+            "source": "structured-consolidation-v2",
+            "lineCount": 41
+          },
+          "accessCount": 10,
+          "repeatCount": 1,
+          "consolidated": false
+        }
+      ],
+      "meta": {
+        "reactedTo": {}
+      }
+    }
+  ]
+}
