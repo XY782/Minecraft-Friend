@@ -191,7 +191,6 @@ function createDecisionEngine({ bot, config, dynamicAgent, runAction, runDynamic
 
   async function runDecisionStep() {
     if (!config.autonomousMode) return
-    if (bot?.__puppetActive) return
     const now = Date.now()
     const emergencyUntil = Number(bot?.__envEmergencyUntil || 0)
     const recentlyHurt = (now - Number(bot?.__lastHurtAt || 0)) < 1_500

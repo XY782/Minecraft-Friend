@@ -42,15 +42,18 @@ A small Mineflayer-based Minecraft bot with optional Gemini-powered chat.
           - `BOT_PLAN_MAX_STEPS=5` controls plan length
    - Training recorder (hybrid prep):
      - `BOT_TRAINING_ENABLED=true` writes state-action samples to `Training/datasets/*.jsonl`
-     - `BOT_TRAINING_INTERVAL_MS=1000` controls capture frequency
+       - `BOT_TRAINING_INTERVAL_MS=350` base capture frequency
+      - `BOT_TRAINING_TARGET_FPS=4` hard cap for recorder frame rate (downsampling floor)
+       - `BOT_TRAINING_ADAPTIVE_INTERVAL=true` adaptively samples around `BOT_TRAINING_MIN_INTERVAL_MS`..`BOT_TRAINING_MAX_INTERVAL_MS` (default `200..500` ms)
+       - `BOT_TRAINING_LOS_MAX_DISTANCE=8` line-of-sight trace distance for camera context
+          - `BOT_TRAINING_ACTION_HISTORY_SIZE=12` number of past actions stored in each sample
+      - `BOT_TRAINING_BLOCK_COMPRESSION=air-rle` nearby-block encoding mode: `air-rle`, `non-air-surface`, or `all`
      - `BOT_TRAINING_LIVE_CONSOLE=true` prints live recording lines in terminal
-     - `BOT_TRAINING_POPUP_MONITOR=false` (Windows) opens a separate monitor terminal
 3. Install dependencies:
    - `npm install`
 
 ## Run
 - `npm start`
-- Optional training monitor: `npm run training:monitor`
 
 Autonomy:
 - The bot explores automatically on spawn and keeps roaming on its own.
@@ -86,26 +89,15 @@ Session memory (persistent across reboots):
 
 Training data + hybrid architecture:
 - The bot now records supervised training samples (state + action + success/failure metadata) every interval.
+- Recorder now includes richer state: local velocity, acceleration, angular velocity, movement flags (swim/climb/sneak/sprint/fly), armor/saturation/effects/xp, full held item + inventory durability/enchantments.
+- Environment capture now includes detailed nearby block metadata (hardness/fluid/light/tags), LOS samples, camera target, weather/time/biome/dimension/chunk info, redstone/crops/interactables/fluids/trap hints.
+- Temporal context now includes `frameDelta`, `lastAction`, `actionSequence`, event triggers, and projectile/entity context for imitation learning.
 - Files are stored in `Training/datasets/` as JSONL, suitable for Python model training.
 - Python-side training/inference files live in `Training/python/`.
 - Recommended flow: Node.js handles live Minecraft I/O, Python trains/serves policy models via local API.
 
 Chat without commands:
 - Mention the bot name in chat (e.g. `BotFriend: hello`) to get a Gemini reply.
-
-Puppet mode (manual demo capture):
-- Set `BOT_PUPPET_MODE=true` in `.env` to manually drive the bot from the terminal running `npm start`.
-- Controls:
-   - `P` toggle puppet on/off
-   - `H` help
-   - `W/A/S/D` toggle movement
-   - `Space` jump
-   - `R` toggle sprint
-   - `F` toggle sneak
-   - `T` attack nearest target
-   - `E` use held item
-   - `Q` clear movement (idle)
-- While puppet mode is active, autonomous decisions are paused and training recorder logs your manual actions to `Training/datasets`.
 
 Observer mode (real Minecraft client teaching):
 - Use this when you want to play in a real Minecraft client and have the bot record your behavior as training data.
@@ -116,26 +108,17 @@ Observer mode (real Minecraft client teaching):
    - `BOT_OBSERVER_FOLLOW_ENABLED=true` to keep bot near you while traveling
    - `BOT_OBSERVER_FOLLOW_DISTANCE=3.5` desired follow distance
    - `BOT_OBSERVER_FOLLOW_REFRESH_MS=700` follow update rate
-- Keep `BOT_PUPPET_MODE=false` and `BOT_FPV_PUPPET_ENABLED=false`.
 - Run bot with `npm start`, then join the same server/world from your real client account.
 - Recorder adds `state.observer` and labels actions like `OBSERVER_MOVE`, `OBSERVER_SPRINT`, `OBSERVER_JUMP`, `OBSERVER_LOOK`.
 - In observer mode, bot autonomy/chat reactions are disabled so it focuses on follow + observe.
 - Observer samples drop bot-thought/chat noise (`activeIntent`, `activeMode`, `lastBrainAction`, `lastChatMessages`).
 
-First-person viewer puppet mode (browser):
-- Set `BOT_FPV_PUPPET_ENABLED=true` in `.env`.
-- Start bot with `npm start`.
-- A browser control page opens automatically (or open `http://127.0.0.1:3010` manually).
-- Viewer URL is `http://127.0.0.1:3007` (embedded in control page).
-- Controls on control page:
-   - `W/A/S/D` move
-   - `Space` jump
-   - `Ctrl` sprint
-   - `Shift` sneak
-   - Mouse move = look
-   - Left click = attack nearest
-   - Right click = use held item
-- While connected, autonomous decisions pause so you can demonstrate behavior cleanly for training logs.
+Runtime toggle (no restart needed):
+- In game chat, use:
+   - `!train on` or `!mode observer` → enable observer training mode (follow + observer capture on)
+   - `!train off` or `!mode play` → switch to playing mode (observer capture off)
+   - `!mode status` → show current mode and recorder state
+- If `BOT_OBSERVER_USERNAME` is set, only that player can run these mode commands.
 
 ## Notes
 This is an MVP “companion” bot with autonomous choice behavior (movement + simple survival + social chat). Beating the game end-to-end autonomously is a much larger project (advanced combat, crafting pipelines, long-horizon planning, nether/end routing, etc.).

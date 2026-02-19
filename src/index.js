@@ -1,5 +1,4 @@
 const path = require('path')
-const { spawn } = require('child_process')
 
 process.env.DOTENV_CONFIG_QUIET = process.env.DOTENV_CONFIG_QUIET || 'true'
 require('dotenv').config({
@@ -22,8 +21,6 @@ const { createChatSender } = require('./runtime/chatSender')
 const { createChatRuntime } = require('./runtime/chatRuntime')
 const { createAntiFlightGuard } = require('./runtime/antiFlight')
 const { createTrainingRecorder } = require('./training/dataRecorder')
-const { createFirstPersonPuppet } = require('./training/firstPersonPuppet')
-const { createPuppetMode } = require('./training/puppetMode')
 
 const gemini = createGeminiClient({
   apiKey: process.env.GEMINI_API_KEY,
@@ -49,8 +46,6 @@ const bot = mineflayer.createBot({
   auth: mc.auth,
   version: mc.version,
 })
-
-gemini?.setSuppressionCheck?.(() => Boolean(bot?.__puppetActive))
 
 bot.loadPlugin(pathfinder)
 
@@ -153,6 +148,9 @@ const antiFlight = createAntiFlightGuard({
 let brain = null
 let lastDisconnectReason = 'unknown'
 let observerFollowTimer = null
+let runtimeObserverModeEnabled = Boolean(config.observerModeEnabled)
+
+bot.__observerModeActive = runtimeObserverModeEnabled
 
 function getObserverEntity() {
   const observerName = String(config.observerUsername || '').trim().toLowerCase()
@@ -172,10 +170,10 @@ function stopObserverFollow() {
 }
 
 function startObserverFollow() {
-  if (!config.observerModeEnabled || !config.observerFollowEnabled) return
+  if (!runtimeObserverModeEnabled || !config.observerFollowEnabled) return
   if (observerFollowTimer) return
   observerFollowTimer = setInterval(() => {
-    if (!bot?.entity || bot?.__puppetActive) return
+    if (!bot?.entity) return
     const observerEntity = getObserverEntity()
     if (!observerEntity?.position) {
       try {
@@ -201,12 +199,96 @@ function startObserverFollow() {
   sessionMemory.addMemory(`Observer follow enabled for ${String(config.observerUsername || 'observer')}.`, 'training')
 }
 
+function normalizeModeCommandText(text) {
+  return String(text || '').trim().toLowerCase().replace(/^\//, '')
+}
+
+function isTrainingController(playerName) {
+  const expected = String(config.observerUsername || '').trim().toLowerCase()
+  if (!expected) return true
+  return String(playerName || '').trim().toLowerCase() === expected
+}
+
+function setRuntimeObserverMode(nextEnabled, source = 'chat') {
+  const enabled = Boolean(nextEnabled)
+  if (runtimeObserverModeEnabled === enabled) return false
+
+  runtimeObserverModeEnabled = enabled
+  bot.__observerModeActive = enabled
+  config.observerModeEnabled = enabled
+
+  trainingRecorder.setObserverModeEnabled(enabled)
+
+  if (enabled) {
+    trainingRecorder.setEnabled(true)
+    config.autonomousMode = false
+    brain.stop?.()
+    startObserverFollow()
+    sessionMemory.addMemory(`Observer mode enabled at runtime (${source}).`, 'training')
+  } else {
+    stopObserverFollow()
+    trainingRecorder.setEnabled(false)
+    config.autonomousMode = Boolean(config.autonomousModeDefault)
+    if (config.autonomousMode) {
+      brain.start?.()
+    }
+    sessionMemory.addMemory(`Observer mode disabled at runtime (${source}).`, 'training')
+  }
+
+  return true
+}
+
+function handleRuntimeModeCommand(playerName, message) {
+  const text = normalizeModeCommandText(message)
+  if (!text) return false
+
+  const commandMatch = text.match(/^!(mode|train|training)\s+(observer|play|on|off|status)$/i)
+  if (!commandMatch) return false
+  if (!isTrainingController(playerName)) return false
+
+  const command = String(commandMatch[1] || '').toLowerCase()
+  const arg = String(commandMatch[2] || '').toLowerCase()
+
+  if (arg === 'status') {
+    const modeText = runtimeObserverModeEnabled ? 'observer-training' : 'playing'
+    const recorderText = trainingRecorder.isEnabled?.() ? 'on' : 'off'
+    sendChat(`mode=${modeText} recorder=${recorderText}`)
+    return true
+  }
+
+  const enableObserver = arg === 'observer' || arg === 'on'
+  const didChange = setRuntimeObserverMode(enableObserver, `${command}:${arg}`)
+
+  if (enableObserver) {
+    sendChat(didChange ? 'Observer training mode ON. Use !mode play to switch back.' : 'Observer training mode is already ON.')
+  } else {
+    sendChat(didChange ? 'Playing mode ON (observer training OFF).' : 'Playing mode is already ON.')
+  }
+
+  return true
+}
+
 const trainingRecorder = createTrainingRecorder({
   bot,
   rootDir: path.join(__dirname, '..'),
   sessionMemory,
   enabled: config.trainingEnabled,
   intervalMs: config.trainingIntervalMs,
+  adaptiveInterval: config.trainingAdaptiveInterval,
+  targetFps: config.trainingTargetFps,
+  minIntervalMs: config.trainingMinIntervalMs,
+  maxIntervalMs: config.trainingMaxIntervalMs,
+  lineOfSightMaxDistance: config.trainingLineOfSightMaxDistance,
+  actionHistorySize: config.trainingActionHistorySize,
+  blockCompressionMode: config.trainingBlockCompressionMode,
+  deduplicateFrames: config.trainingDeduplicateFrames,
+  minPositionDelta: config.trainingMinPositionDelta,
+  minYawDelta: config.trainingMinYawDelta,
+  minPitchDelta: config.trainingMinPitchDelta,
+  minVelocityDelta: config.trainingMinVelocityDelta,
+  forceRecordMs: config.trainingForceRecordMs,
+  logDedupSkips: config.trainingLogDedupSkips,
+  dedupLogIntervalMs: config.trainingDedupLogIntervalMs,
   liveConsole: config.trainingLiveConsole,
   observerModeEnabled: config.observerModeEnabled,
   observerUsername: config.observerUsername,
@@ -229,34 +311,6 @@ const trainingRecorder = createTrainingRecorder({
     return lines.slice(-10)
   },
 })
-
-const puppetMode = createPuppetMode({
-  bot,
-  config,
-  sessionMemory,
-  onActionOutcome: (payload) => trainingRecorder.recordActionOutcome(payload),
-})
-
-const firstPersonPuppet = createFirstPersonPuppet({
-  bot,
-  config,
-  sessionMemory,
-  onActionOutcome: (payload) => trainingRecorder.recordActionOutcome(payload),
-})
-
-if (config.trainingEnabled && config.trainingPopupMonitor) {
-  try {
-    const monitorPath = path.join(__dirname, 'training', 'liveMonitor.js')
-    const command = `node "${monitorPath}"`
-    spawn('powershell.exe', ['-NoExit', '-Command', command], {
-      detached: true,
-      stdio: 'ignore',
-      windowsHide: false,
-    }).unref()
-  } catch (e) {
-    console.log('training popup monitor failed to launch', e)
-  }
-}
 
 const chatRuntime = createChatRuntime({
   bot,
@@ -315,8 +369,6 @@ bot.once('spawn', () => {
   sessionMemory.addMemory('Spawned into Minecraft world.', 'world')
   antiFlight.enforceSurvivalNoFlight('spawn')
   trainingRecorder.start()
-  puppetMode.start()
-  firstPersonPuppet.start()
   startObserverFollow()
 
   brain.onSpawn()
@@ -335,7 +387,8 @@ bot.on('physicsTick', () => {
 })
 
 bot.on('chat', (playerName, message) => {
-  if (config.observerModeEnabled) return
+  if (handleRuntimeModeCommand(playerName, message)) return
+  if (runtimeObserverModeEnabled) return
   chatRuntime.onChat(playerName, message)
 })
 
@@ -358,8 +411,6 @@ bot.on('end', (reason) => {
   console.log('Disconnected:', reasonText)
   sessionMemory.addMemory(`Disconnected: ${reasonText}`, 'world')
   sessionMemory.addMemory('Session ending (bot disconnected).', 'session')
-  firstPersonPuppet.stop()
-  puppetMode.stop()
   trainingRecorder.stop()
   stopObserverFollow()
   sessionMemory.endSession()
@@ -375,12 +426,10 @@ bot.on('kicked', (reason) => {
 bot.on('error', (err) => {
   console.log('Error:', err)
   sessionMemory.addMemory(`Error: ${String(err?.message || err)}`, 'error')
-  firstPersonPuppet.stop()
-  puppetMode.stop()
   trainingRecorder.stop()
   stopObserverFollow()
 })
 
-if (!config.observerModeEnabled) {
+if (!runtimeObserverModeEnabled) {
   brain.start()
 }

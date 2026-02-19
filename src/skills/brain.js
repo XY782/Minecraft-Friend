@@ -132,11 +132,6 @@ function createBrain({ bot, goals, gemini, config, chatWindow, remember, session
       try {
         if (!bot.entity || bot.isSleeping) return
 
-        if (bot?.__puppetActive) {
-          movement.stopExploring()
-          return
-        }
-
         const nearbyEntities = Object.values(bot.entities || {})
         const nearbyPlayers = nearbyEntities.filter((entity) =>
           entity && entity.type === 'player' && entity.username !== bot.username && bot.entity.position.distanceTo(entity.position) <= 12
@@ -190,8 +185,15 @@ function createBrain({ bot, goals, gemini, config, chatWindow, remember, session
     scheduleDecisionLoop()
   }
 
+  function stop() {
+    clearDecisionTimer()
+    movement.stopExploring()
+    state.setMode('idle')
+  }
+
   return {
     start,
+    stop,
     onSpawn,
     onGoalReached,
     onDeath,

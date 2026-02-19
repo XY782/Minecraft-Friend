@@ -35,24 +35,24 @@ const config = {
   replyDistance: numEnv('BOT_REPLY_DISTANCE', 18, { min: 0 }),
   antiRepeatEnabled: boolEnv('BOT_ANTI_REPEAT_ENABLED', true),
   antiRepeatWindow: numEnv('BOT_ANTI_REPEAT_WINDOW', 8, { min: 3, max: 20 }),
-  autoExploreOnSpawn: boolEnv('BOT_AUTO_EXPLORE', true),
-  exploreRadius: numEnv('BOT_EXPLORE_RADIUS', 48, { min: 8 }),
-  explorePauseMs: numEnv('BOT_EXPLORE_PAUSE_MS', 5_000, { min: 1_500 }),
-  humanizeBehavior: boolEnv('BOT_HUMANIZE', true),
+  autoExploreOnSpawn: boolEnv('BOT_AUTO_EXPLORE', false),
+  exploreRadius: numEnv('BOT_EXPLORE_RADIUS', 0, { min: 0 }),
+  explorePauseMs: numEnv('BOT_EXPLORE_PAUSE_MS', 3_000, { min: 800 }),
+  humanizeBehavior: boolEnv('BOT_HUMANIZE', false),
   minReplyDelayMs: numEnv('BOT_REPLY_MIN_MS', 180, { min: 100 }),
   maxReplyDelayMs: numEnv('BOT_REPLY_MAX_MS', 900, { min: 120 }),
   lookAroundIntervalMs: numEnv('BOT_LOOK_AROUND_MS', 8_000, { min: 2_000 }),
   autonomousMode: boolEnv('BOT_AUTONOMY', true),
-  decisionIntervalMs: numEnv('BOT_DECISION_MS', 2_200, { min: 700 }),
-  decisionMinGapMs: numEnv('BOT_DECISION_MIN_GAP_MS', 450, { min: 200 }),
-  actionRepeatCooldownMs: numEnv('BOT_ACTION_REPEAT_COOLDOWN_MS', 4_000, { min: 500 }),
+  decisionIntervalMs: numEnv('BOT_DECISION_MS', 1_000, { min: 500 }),
+  decisionMinGapMs: numEnv('BOT_DECISION_MIN_GAP_MS', 250, { min: 150 }),
+  actionRepeatCooldownMs: numEnv('BOT_ACTION_REPEAT_COOLDOWN_MS', 1_200, { min: 300 }),
   maxConcurrentActions: numEnv('BOT_MAX_CONCURRENT_ACTIONS', 3, { min: 1, max: 3 }),
-  socialChance: numEnv('BOT_SOCIAL_CHANCE', 0.32, { min: 0, max: 1 }),
-  proactiveChatChance: numEnv('BOT_PROACTIVE_CHAT_CHANCE', 0.2, { min: 0, max: 1 }),
+  socialChance: numEnv('BOT_SOCIAL_CHANCE', 0.4, { min: 0, max: 1 }),
+  proactiveChatChance: numEnv('BOT_PROACTIVE_CHAT_CHANCE', 0.3, { min: 0, max: 1 }),
   followPlayers: boolEnv('BOT_FOLLOW_PLAYERS', true),
   followMaxDist: numEnv('BOT_FOLLOW_MAX_DIST', 20, { min: 6 }),
   collectItemRadius: numEnv('BOT_ITEM_COLLECT_RADIUS', 12, { min: 4 }),
-  dangerRadius: numEnv('BOT_DANGER_RADIUS', 10, { min: 4 }),
+  dangerRadius: numEnv('BOT_DANGER_RADIUS', 12, { min: 4 }),
   enchantSearchRadius: numEnv('BOT_ENCHANT_SEARCH_RADIUS', 20, { min: 4 }),
   lowFoodThreshold: numEnv('BOT_LOW_FOOD', 10, { min: 0, max: 20 }),
   equipEnabled: boolEnv('BOT_EQUIP_ENABLED', true),
@@ -70,19 +70,33 @@ const config = {
   craftingSearchRadius: numEnv('BOT_CRAFTING_SEARCH_RADIUS', 20, { min: 4 }),
   furnaceEnabled: boolEnv('BOT_FURNACE_ENABLED', true),
   furnaceSearchRadius: numEnv('BOT_FURNACE_SEARCH_RADIUS', 20, { min: 4 }),
-  plannerUseGemini: boolEnv('BOT_PLANNER_USE_GEMINI', true),
-  policyAutonomyEnabled: boolEnv('BOT_POLICY_AUTONOMY_ENABLED', false),
+  plannerUseGemini: true,
+  policyAutonomyEnabled: boolEnv('BOT_POLICY_AUTONOMY_ENABLED', true),
   policyServerUrl: strEnv('BOT_POLICY_SERVER_URL', 'http://127.0.0.1:8765/predict'),
   policyTimeoutMs: numEnv('BOT_POLICY_TIMEOUT_MS', 1200, { min: 200, max: 10_000 }),
-  policyMinConfidence: numEnv('BOT_POLICY_MIN_CONFIDENCE', 0.35, { min: 0, max: 1 }),
+  policyMinConfidence: numEnv('BOT_POLICY_MIN_CONFIDENCE', 0.25, { min: 0, max: 1 }),
   allowCheats: boolEnv('BOT_ALLOW_CHEATS', false),
   localLlmDetectorEnabled: boolEnv('BOT_LOCAL_LLM_DETECTOR_ENABLED', false),
   planIntervalMs: numEnv('BOT_PLAN_INTERVAL_MS', 20_000, { min: 5_000 }),
   planMaxSteps: numEnv('BOT_PLAN_MAX_STEPS', 5, { min: 2, max: 8 }),
   trainingEnabled: boolEnv('BOT_TRAINING_ENABLED', true),
-  trainingIntervalMs: numEnv('BOT_TRAINING_INTERVAL_MS', 1000, { min: 250 }),
+  trainingIntervalMs: numEnv('BOT_TRAINING_INTERVAL_MS', 450, { min: 250 }),
+  trainingAdaptiveInterval: boolEnv('BOT_TRAINING_ADAPTIVE_INTERVAL', true),
+  trainingTargetFps: numEnv('BOT_TRAINING_TARGET_FPS', 3, { min: 1, max: 30 }),
+  trainingMinIntervalMs: numEnv('BOT_TRAINING_MIN_INTERVAL_MS', 300, { min: 150, max: 2000 }),
+  trainingMaxIntervalMs: numEnv('BOT_TRAINING_MAX_INTERVAL_MS', 700, { min: 200, max: 5000 }),
+  trainingLineOfSightMaxDistance: numEnv('BOT_TRAINING_LOS_MAX_DISTANCE', 8, { min: 3, max: 24 }),
+  trainingActionHistorySize: numEnv('BOT_TRAINING_ACTION_HISTORY_SIZE', 12, { min: 3, max: 64 }),
+  trainingBlockCompressionMode: strEnv('BOT_TRAINING_BLOCK_COMPRESSION', 'air-rle').toLowerCase(),
+  trainingDeduplicateFrames: boolEnv('BOT_TRAINING_DEDUPLICATE_FRAMES', true),
+  trainingMinPositionDelta: numEnv('BOT_TRAINING_MIN_POSITION_DELTA', 0.22, { min: 0.02, max: 2.0 }),
+  trainingMinYawDelta: numEnv('BOT_TRAINING_MIN_YAW_DELTA', 0.12, { min: 0.01, max: 1.57 }),
+  trainingMinPitchDelta: numEnv('BOT_TRAINING_MIN_PITCH_DELTA', 0.08, { min: 0.01, max: 1.57 }),
+  trainingMinVelocityDelta: numEnv('BOT_TRAINING_MIN_VELOCITY_DELTA', 0.12, { min: 0.01, max: 2.0 }),
+  trainingForceRecordMs: numEnv('BOT_TRAINING_FORCE_RECORD_MS', 2200, { min: 300, max: 15000 }),
+  trainingLogDedupSkips: boolEnv('BOT_TRAINING_LOG_DEDUP_SKIPS', false),
+  trainingDedupLogIntervalMs: numEnv('BOT_TRAINING_DEDUP_LOG_INTERVAL_MS', 10000, { min: 1000, max: 120000 }),
   trainingLiveConsole: boolEnv('BOT_TRAINING_LIVE_CONSOLE', true),
-  trainingPopupMonitor: boolEnv('BOT_TRAINING_POPUP_MONITOR', false),
   observerModeEnabled: boolEnv('BOT_OBSERVER_MODE', false),
   observerUsername: strEnv('BOT_OBSERVER_USERNAME', ''),
   observerCaptureRadius: numEnv('BOT_OBSERVER_CAPTURE_RADIUS', 24, { min: 0, max: 128 }),
@@ -92,26 +106,14 @@ const config = {
   observerFollowDistance: numEnv('BOT_OBSERVER_FOLLOW_DISTANCE', 3.5, { min: 1.5, max: 12 }),
   observerFollowRefreshMs: numEnv('BOT_OBSERVER_FOLLOW_REFRESH_MS', 700, { min: 250, max: 5_000 }),
   observerMoveSampleMinDistance: numEnv('BOT_OBSERVER_MOVE_MIN_DISTANCE', 1.0, { min: 0.1, max: 8 }),
-  firstPersonPuppetEnabled: boolEnv('BOT_FPV_PUPPET_ENABLED', false),
-  firstPersonViewerPort: numEnv('BOT_FPV_VIEWER_PORT', 3007, { min: 1024, max: 65535 }),
-  firstPersonControlPort: numEnv('BOT_FPV_CONTROL_PORT', 3010, { min: 1024, max: 65535 }),
-  firstPersonAutoOpen: boolEnv('BOT_FPV_AUTO_OPEN', true),
-  firstPersonViewDistance: numEnv('BOT_FPV_VIEW_DISTANCE', 6, { min: 2, max: 10 }),
-  firstPersonMouseSensitivity: numEnv('BOT_FPV_MOUSE_SENSITIVITY', 0.002, { min: 0.0002, max: 0.02 }),
-  puppetModeEnabled: boolEnv('BOT_PUPPET_MODE', false),
-  puppetModeAutoActivate: boolEnv('BOT_PUPPET_AUTO_ACTIVATE', true),
-  puppetModeAnnounce: boolEnv('BOT_PUPPET_ANNOUNCE', true),
 }
+
+config.autonomousModeDefault = config.autonomousMode
+config.trainingMaxIntervalMs = Math.max(config.trainingMinIntervalMs, config.trainingMaxIntervalMs)
 
 config.maxReplyDelayMs = Math.max(config.minReplyDelayMs, config.maxReplyDelayMs)
 
-if (config.firstPersonPuppetEnabled) {
-  config.puppetModeEnabled = false
-}
-
 if (config.observerModeEnabled) {
-  config.puppetModeEnabled = false
-  config.firstPersonPuppetEnabled = false
   config.autonomousMode = false
   config.autoExploreOnSpawn = false
 }

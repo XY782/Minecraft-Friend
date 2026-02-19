@@ -1,1 +1,1 @@
-module.exports = require('./dataRecorder')
+module.exports = require('./dataRecorder/index')

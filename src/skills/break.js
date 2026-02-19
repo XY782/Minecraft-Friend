@@ -39,7 +39,7 @@ function findBreakableBlock(bot, maxDistance = 5) {
   if (!bot.entity) return null
   const origin = bot.entity.position.floored()
   let best = null
-  let bestDistance = Number.POSITIVE_INFINITY
+  let bestScore = Number.POSITIVE_INFINITY
 
   for (let y = -1; y <= 2; y++) {
     for (let x = -maxDistance; x <= maxDistance; x++) {
@@ -49,14 +49,15 @@ function findBreakableBlock(bot, maxDistance = 5) {
         if (typeof block.diggable === 'boolean' && !block.diggable) continue
 
         const distance = bot.entity.position.distanceTo(block.position)
-        if (distance > maxDistance || distance < 1.8) continue
+        if (distance > maxDistance || distance < 1.1) continue
 
         if (block.position.y <= origin.y - 1) continue
-        if (!isInFrontOfBot(bot, block)) continue
-        if (!isVisibleToBot(bot, block)) continue
+        const inFront = isInFrontOfBot(bot, block)
+        const visible = isVisibleToBot(bot, block)
+        const score = distance + (inFront ? 0 : 0.9) + (visible ? 0 : 0.6)
 
-        if (distance < bestDistance) {
-          bestDistance = distance
+        if (score < bestScore) {
+          bestScore = score
           best = block
         }
       }

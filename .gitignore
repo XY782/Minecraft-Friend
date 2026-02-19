@@ -3,3 +3,4 @@ node_modules/
 .venv/
 Training/python/__pycache__/
 *.pyc
+Training/datasets/state-action-????-??-??.jsonl

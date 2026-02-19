@@ -32,16 +32,22 @@ This creates `state-action-YYYY-MM-DD.clean.jsonl` and:
 
 Then train on the cleaned file:
 
-Quick MLP sanity run (1-3 epochs, reduced advanced options):
+Quick MLP sanity run (optional, 1-3 epochs):
 
 ```bash
 python train.py --dataset ../datasets/state-action-YYYY-MM-DD.clean.jsonl --model-type mlp --epochs 3 --baseline-mlp
 ```
 
-Default Phase-2 LSTM training:
+Default / recommended LSTM training:
 
 ```bash
 python train.py --dataset ../datasets/state-action-YYYY-MM-DD.clean.jsonl --out-dir ../models --model-type lstm --sequence-length 8 --epochs 16 --batch-size 128 --lr 1e-3 --seed 42 --dropout 0.2 --hidden-size 128 --lstm-layers 1
+
+Long-horizon LSTM (for multi-step behavior chains):
+
+```bash
+python train.py --dataset ../datasets/state-action-YYYY-MM-DD.jsonl --out-dir ../models --model-type lstm --sequence-length 64 --epochs 16 --batch-size 128 --lr 1e-3 --seed 42 --dropout 0.2 --hidden-size 256 --lstm-layers 2 --intent-loss-weight 0.8 --oversample-meaningful --intent-balanced-loss --min-feature-std 1e-3
+```
 ```
 
 Outputs:
@@ -51,10 +57,12 @@ Outputs:
 
 Notes:
 - Training now uses randomized split + class-weighted loss (helps with imbalanced action labels).
-- Features include velocity, yaw/pitch orientation encoding, health, hunger, held-item category, nearest-entity signal, and block context.
+- Features now include velocity + delta-time, yaw/pitch orientation encoding, health/hunger, richer inventory buckets, top-3 nearby entity encoding (type + relative direction), and nearby-block spatial context from the 3×3 neighborhood.
 - Phase-1 normalization is enabled: train-time `mean/std` is saved and reused during inference.
 - Absolute world position is removed from features to improve cross-map generalization.
 - Phase-2 temporal modeling is available with `--model-type lstm` + `--sequence-length`.
+- Policy training is now hybrid multi-head: discrete action classification (`ACTION_VOCAB`) + multi-intent prediction + continuous control targets (movement/aim/jump signals).
+- Keep `ACTION_VOCAB` stable for current runtime compatibility; hybrid outputs are additive and can be consumed progressively.
 
 ## 3) Run local inference API
 
@@ -86,3 +94,4 @@ Endpoints:
 
 The response includes action label + confidence for Node integration.
 For LSTM models, pass consistent `agent_id` so sequence memory is preserved across requests.
+Hybrid models also return `intent_scores`, `active_intents`, and `continuous_control` for smoother non-atomic behavior execution.

@@ -7,10 +7,6 @@ function createMovementSkill({ bot, goals, config, safeChat, randInt, chance, wa
   let lookAroundTimer = null
   let followStopTimer = null
 
-  function isManualOverrideActive() {
-    return Boolean(bot?.__puppetActive)
-  }
-
   function clearExploreTimer() {
     if (!exploreTimer) return
     clearTimeout(exploreTimer)
@@ -50,10 +46,8 @@ function createMovementSkill({ bot, goals, config, safeChat, randInt, chance, wa
 
   function resumeExploreSoon(delayMs = 1_000) {
     if (!config.autoExploreOnSpawn) return
-    if (isManualOverrideActive()) return
     clearAutonomyTimer()
     autonomyTimer = setTimeout(() => {
-      if (isManualOverrideActive()) return
       if (state.getMode() === 'idle') startExploring(false)
     }, delayMs)
   }
@@ -103,10 +97,6 @@ function createMovementSkill({ bot, goals, config, safeChat, randInt, chance, wa
 
   async function runExploreStep() {
     if (!exploring || !bot.entity) return
-    if (isManualOverrideActive()) {
-      stopExploring()
-      return
-    }
 
     const origin = bot.entity.position
     const target = chooseSafeExploreTarget(origin)
@@ -147,7 +137,6 @@ function createMovementSkill({ bot, goals, config, safeChat, randInt, chance, wa
   }
 
   function startExploring(announce = true) {
-    if (isManualOverrideActive()) return
     if (exploring) {
       if (announce) safeChat('Already roaming around.')
       return
@@ -177,7 +166,6 @@ function createMovementSkill({ bot, goals, config, safeChat, randInt, chance, wa
   }
 
   function startFollowingPlayer(playerEntity) {
-    if (isManualOverrideActive()) return false
     if (!playerEntity || !config.followPlayers) return false
     stopExploring()
     state.setMode('follow')
@@ -218,7 +206,6 @@ function createMovementSkill({ bot, goals, config, safeChat, randInt, chance, wa
 
     lookAroundTimer = setTimeout(async () => {
       try {
-        if (isManualOverrideActive()) return
         if (!bot.entity || !config.humanizeBehavior) return
         if (state.getMode() !== 'explore') return
         if (bot.pathfinder?.isMoving?.()) return

@@ -27,6 +27,7 @@ function createObserverSampler({
   observerMoveSampleMinDistance,
   getObserverEntity,
 }) {
+  let observerEnabled = Boolean(enabled)
   let observerPrevState = null
   let lastObserverMissingLogAt = 0
   let lastObserverSampleAt = 0
@@ -56,7 +57,7 @@ function createObserverSampler({
   }
 
   function sampleObserverState({ botEntity, liveConsole }) {
-    if (!enabled) return null
+    if (!observerEnabled) return null
 
     const observerEntity = getObserverEntity?.()
     const observerDistance = botEntity.position.distanceTo(observerEntity?.position || botEntity.position)
@@ -184,6 +185,13 @@ function createObserverSampler({
 
   return {
     sampleObserverState,
+    setEnabled: (value) => {
+      observerEnabled = Boolean(value)
+      if (!observerEnabled) {
+        resetState()
+      }
+    },
+    isEnabled: () => observerEnabled,
   }
 }
 
