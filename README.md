@@ -4,7 +4,6 @@ A small Mineflayer-based Minecraft bot with optional Gemini-powered chat.
 
 ## Important
 - Many servers forbid bots/automation. Only use this where you have permission.
-- This bot **does not impersonate a human**. If Gemini chat is enabled, it will identify itself as a bot.
 
 ## Setup
 1. Install Node.js (LTS recommended).
