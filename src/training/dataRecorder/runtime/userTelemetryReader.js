@@ -1,4 +1,5 @@
 const fs = require('fs')
+const path = require('path')
 
 function parseLatestJsonPayload(content) {
   const text = String(content || '').trim()
@@ -28,6 +29,16 @@ function createUserTelemetryReader({ filePath = '', maxAgeMs = 2000, liveConsole
       isEnabled: () => false,
     }
   }
+
+  try {
+    const dir = path.dirname(telemetryPath)
+    if (dir && dir !== '.') {
+      fs.mkdirSync(dir, { recursive: true })
+    }
+    if (!fs.existsSync(telemetryPath)) {
+      fs.writeFileSync(telemetryPath, '{}\n', 'utf8')
+    }
+  } catch {}
 
   let lastMtimeMs = -1
   let cached = null
@@ -67,10 +78,18 @@ function createUserTelemetryReader({ filePath = '', maxAgeMs = 2000, liveConsole
 
     if (!cached) return null
 
+    const state = cached?.state && typeof cached.state === 'object' ? cached.state : null
+    const hasPosition = Boolean(state?.position && typeof state.position === 'object')
+    if (!state || !hasPosition) {
+      maybeWarn(`invalid payload in ${telemetryPath}; expected state.position`)
+      return null
+    }
+
     const ts = Number(cached?.timestampMs || cached?.timestamp || 0)
     if (Number.isFinite(ts) && ts > 0) {
       const age = Date.now() - ts
       if (age > Math.max(250, Number(maxAgeMs || 2000))) {
+        maybeWarn(`stale telemetry at ${telemetryPath} (age=${Math.round(age)}ms)`)
         return null
       }
     }

@@ -4,3 +4,8 @@ node_modules/
 Training/python/__pycache__/
 *.pyc
 Training/datasets/state-action-????-??-??.jsonl
+Training/datasets/cache/
+Training/datasets/latest-user-telemetry.json
+**/__pycache__/
+tools/
+paper-plugin/player-pov-recorder/target/

@@ -58,8 +58,8 @@ public final class TelemetrySnapshotBuilder {
         state.put("hunger", player.getFoodLevel());
 
         double armorValue = 0.0;
-        if (player.getAttribute(Attribute.ARMOR) != null) {
-            armorValue = player.getAttribute(Attribute.ARMOR).getValue();
+        if (player.getAttribute(Attribute.GENERIC_ARMOR) != null) {
+            armorValue = player.getAttribute(Attribute.GENERIC_ARMOR).getValue();
         }
         state.put("armor", round4(armorValue));
 

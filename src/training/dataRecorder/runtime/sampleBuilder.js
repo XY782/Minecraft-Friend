@@ -311,9 +311,7 @@ function createSampleBuilder({
       }
     }
 
-    if (observerModeActive && !telemetryObserverActive) {
-      return null
-    }
+    const observerTelemetryMissing = observerModeActive && !telemetryObserverActive
 
     const subjectPosition = isObserverSample
       ? observerState.position
@@ -523,6 +521,7 @@ function createSampleBuilder({
 
     actionMetadata = {
       ...(actionMetadata || {}),
+      observerTelemetryMissing,
       likelyActions,
       labelQuality: actionLabeling.labelQuality({
         actionSource,

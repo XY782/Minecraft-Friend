@@ -1,12 +1,21 @@
 {
   "sessions": [
     {
-      "id": "1771669828232-cpvy97",
-      "startedAt": "2026-02-21T10:30:28.232Z",
-      "endedAt": "2026-02-21T10:30:28.410Z",
+      "id": "1771674892880-ynpxq9",
+      "startedAt": "2026-02-21T11:54:52.880Z",
+      "endedAt": null,
+      "entries": [],
+      "meta": {
+        "reactedTo": {}
+      }
+    },
+    {
+      "id": "1771674705777-4lsg8d",
+      "startedAt": "2026-02-21T11:51:45.777Z",
+      "endedAt": "2026-02-21T11:51:46.843Z",
       "entries": [
         {
-          "id": "5eab6c34-d880-41df-b55b-6065b6e0e635",
+          "id": "a32fda71-ccb9-45ff-9727-61f02fa9a069",
           "content": "Session started (bot rebooted into world).",
           "type": "session",
           "tags": [
@@ -15,8 +24,13 @@
           "importance": 0.5,
           "emotion": "neutral",
           "context": [],
-          "createdAt": "2026-02-21T10:30:28.234Z",
-          "references": [],
+          "createdAt": "2026-02-21T11:51:45.780Z",
+          "references": [
+            "52cd284d-fcb4-4516-a3d2-6230ba502521",
+            "5eab6c34-d880-41df-b55b-6065b6e0e635",
+            "56469478-69c0-4953-bd07-cbaa06ac5234",
+            "77adc8dc-17a9-42b0-bbeb-8c1e519ffe59"
+          ],
           "summary": null,
           "meta": {},
           "accessCount": 0,
@@ -24,7 +38,141 @@
           "consolidated": false
         },
         {
-          "id": "f7449bd3-dd52-4c3e-9e60-d9ffba64e623",
+          "id": "61fe7b7f-53a3-4315-a824-6edf019d3f87",
+          "content": "Kicked: {\"translate\":\"multiplayer.disconnect.unverified_username\"}",
+          "type": "world",
+          "tags": [
+            "world"
+          ],
+          "importance": 0.7,
+          "emotion": "negative",
+          "context": [],
+          "createdAt": "2026-02-21T11:51:46.842Z",
+          "references": [
+            "56469478-69c0-4953-bd07-cbaa06ac5234",
+            "77adc8dc-17a9-42b0-bbeb-8c1e519ffe59",
+            "878d93f4-2a2a-40af-a8fb-69796338f3e7",
+            "f7449bd3-dd52-4c3e-9e60-d9ffba64e623"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 0,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "d138180b-6e6a-4974-8d5b-e857dc6af403",
+          "content": "Disconnected: socketClosed",
+          "type": "world",
+          "tags": [
+            "world"
+          ],
+          "importance": 0.5,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-21T11:51:46.843Z",
+          "references": [
+            "de3a2f3f-e751-44e7-b08c-c9cabca16707",
+            "e3c71673-f7af-464f-81f3-d452e515463e",
+            "56469478-69c0-4953-bd07-cbaa06ac5234",
+            "77adc8dc-17a9-42b0-bbeb-8c1e519ffe59"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 0,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "e07763ee-f0ae-404d-ace1-b369119e00ad",
+          "content": "Session ending (bot disconnected).",
+          "type": "session",
+          "tags": [
+            "session"
+          ],
+          "importance": 0.5,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-21T11:51:46.843Z",
+          "references": [
+            "4e8d1921-d194-4e6a-a154-c56747c6cf41",
+            "c47a679b-bb4d-4a0a-9ba5-63d2e4661814",
+            "56469478-69c0-4953-bd07-cbaa06ac5234",
+            "77adc8dc-17a9-42b0-bbeb-8c1e519ffe59"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 0,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "e57fcbc1-be6b-412d-ba60-dac567ec9cdf",
+          "content": "Training recorder stopped.",
+          "type": "training",
+          "tags": [
+            "training"
+          ],
+          "importance": 0.38,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-21T11:51:46.843Z",
+          "references": [
+            "56469478-69c0-4953-bd07-cbaa06ac5234",
+            "77adc8dc-17a9-42b0-bbeb-8c1e519ffe59",
+            "878d93f4-2a2a-40af-a8fb-69796338f3e7",
+            "f7449bd3-dd52-4c3e-9e60-d9ffba64e623"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 0,
+          "repeatCount": 1,
+          "consolidated": false
+        }
+      ],
+      "meta": {
+        "reactedTo": {}
+      }
+    },
+    {
+      "id": "1771671926858-7oz5bn",
+      "startedAt": "2026-02-21T11:05:26.858Z",
+      "endedAt": null,
+      "entries": [],
+      "meta": {
+        "reactedTo": {}
+      }
+    },
+    {
+      "id": "1771671915386-dv6ucd",
+      "startedAt": "2026-02-21T11:05:15.386Z",
+      "endedAt": "2026-02-21T11:05:15.492Z",
+      "entries": [
+        {
+          "id": "52cd284d-fcb4-4516-a3d2-6230ba502521",
+          "content": "Session started (bot rebooted into world).",
+          "type": "session",
+          "tags": [
+            "session"
+          ],
+          "importance": 0.5,
+          "emotion": "neutral",
+          "context": [],
+          "createdAt": "2026-02-21T11:05:15.388Z",
+          "references": [
+            "5eab6c34-d880-41df-b55b-6065b6e0e635",
+            "878d93f4-2a2a-40af-a8fb-69796338f3e7",
+            "f7449bd3-dd52-4c3e-9e60-d9ffba64e623",
+            "c47a679b-bb4d-4a0a-9ba5-63d2e4661814"
+          ],
+          "summary": null,
+          "meta": {},
+          "accessCount": 0,
+          "repeatCount": 1,
+          "consolidated": false
+        },
+        {
+          "id": "77adc8dc-17a9-42b0-bbeb-8c1e519ffe59",
           "content": "Error: AggregateError",
           "type": "error",
           "tags": [
@@ -33,10 +181,12 @@
           "importance": 0.8300000000000001,
           "emotion": "negative",
           "context": [],
-          "createdAt": "2026-02-21T10:30:28.405Z",
+          "createdAt": "2026-02-21T11:05:15.490Z",
           "references": [
-            "27a0b15b-d2ca-42cc-b265-660c25d71dc7",
-            "5eab6c34-d880-41df-b55b-6065b6e0e635"
+            "878d93f4-2a2a-40af-a8fb-69796338f3e7",
+            "f7449bd3-dd52-4c3e-9e60-d9ffba64e623",
+            "52cd284d-fcb4-4516-a3d2-6230ba502521",
+            "e3c71673-f7af-464f-81f3-d452e515463e"
           ],
           "summary": null,
           "meta": {},
@@ -45,7 +195,7 @@
           "consolidated": false
         },
         {
-          "id": "976708ce-b50a-4840-9705-a8caaf941728",
+          "id": "e466d1ad-df60-498c-871c-f642808f90c2",
           "content": "Training recorder stopped.",
           "type": "training",
           "tags": [
@@ -54,25 +204,26 @@
           "importance": 0.27455,
           "emotion": "neutral",
           "context": [],
-          "createdAt": "2026-02-21T10:30:28.406Z",
+          "createdAt": "2026-02-21T11:05:15.490Z",
           "references": [
+            "77adc8dc-17a9-42b0-bbeb-8c1e519ffe59",
+            "878d93f4-2a2a-40af-a8fb-69796338f3e7",
             "f7449bd3-dd52-4c3e-9e60-d9ffba64e623",
-            "5eab6c34-d880-41df-b55b-6065b6e0e635",
             "976708ce-b50a-4840-9705-a8caaf941728",
-            "878d93f4-2a2a-40af-a8fb-69796338f3e7",
-            "e3c71673-f7af-464f-81f3-d452e515463e"
+            "e466d1ad-df60-498c-871c-f642808f90c2",
+            "56469478-69c0-4953-bd07-cbaa06ac5234"
           ],
           "summary": null,
           "meta": {
             "repeatCount": 3,
-            "lastSeenAt": "2026-02-21T10:30:28.410Z"
+            "lastSeenAt": "2026-02-21T11:05:15.492Z"
           },
           "accessCount": 0,
           "repeatCount": 3,
           "consolidated": false
         },
         {
-          "id": "878d93f4-2a2a-40af-a8fb-69796338f3e7",
+          "id": "56469478-69c0-4953-bd07-cbaa06ac5234",
           "content": "Error: AggregateError",
           "type": "error",
           "tags": [
@@ -81,11 +232,12 @@
           "importance": 0.8300000000000001,
           "emotion": "negative",
           "context": [],
-          "createdAt": "2026-02-21T10:30:28.407Z",
+          "createdAt": "2026-02-21T11:05:15.491Z",
           "references": [
+            "77adc8dc-17a9-42b0-bbeb-8c1e519ffe59",
+            "878d93f4-2a2a-40af-a8fb-69796338f3e7",
             "f7449bd3-dd52-4c3e-9e60-d9ffba64e623",
-            "27a0b15b-d2ca-42cc-b265-660c25d71dc7",
-            "5eab6c34-d880-41df-b55b-6065b6e0e635"
+            "52cd284d-fcb4-4516-a3d2-6230ba502521"
           ],
           "summary": null,
           "meta": {},
@@ -94,7 +246,7 @@
           "consolidated": false
         },
         {
-          "id": "e3c71673-f7af-464f-81f3-d452e515463e",
+          "id": "de3a2f3f-e751-44e7-b08c-c9cabca16707",
           "content": "Disconnected: socketClosed",
           "type": "world",
           "tags": [
@@ -103,11 +255,12 @@
           "importance": 0.5,
           "emotion": "neutral",
           "context": [],
-          "createdAt": "2026-02-21T10:30:28.409Z",
+          "createdAt": "2026-02-21T11:05:15.492Z",
           "references": [
-            "878d93f4-2a2a-40af-a8fb-69796338f3e7",
-            "f7449bd3-dd52-4c3e-9e60-d9ffba64e623",
-            "5eab6c34-d880-41df-b55b-6065b6e0e635"
+            "e3c71673-f7af-464f-81f3-d452e515463e",
+            "56469478-69c0-4953-bd07-cbaa06ac5234",
+            "77adc8dc-17a9-42b0-bbeb-8c1e519ffe59",
+            "878d93f4-2a2a-40af-a8fb-69796338f3e7"
           ],
           "summary": null,
           "meta": {},
@@ -116,7 +269,7 @@
           "consolidated": false
         },
         {
-          "id": "c47a679b-bb4d-4a0a-9ba5-63d2e4661814",
+          "id": "4e8d1921-d194-4e6a-a154-c56747c6cf41",
           "content": "Session ending (bot disconnected).",
           "type": "session",
           "tags": [
@@ -125,12 +278,12 @@
           "importance": 0.5,
           "emotion": "neutral",
           "context": [],
-          "createdAt": "2026-02-21T10:30:28.409Z",
+          "createdAt": "2026-02-21T11:05:15.492Z",
           "references": [
-            "878d93f4-2a2a-40af-a8fb-69796338f3e7",
-            "f7449bd3-dd52-4c3e-9e60-d9ffba64e623",
-            "5eab6c34-d880-41df-b55b-6065b6e0e635",
-            "e3c71673-f7af-464f-81f3-d452e515463e"
+            "c47a679b-bb4d-4a0a-9ba5-63d2e4661814",
+            "56469478-69c0-4953-bd07-cbaa06ac5234",
+            "77adc8dc-17a9-42b0-bbeb-8c1e519ffe59",
+            "878d93f4-2a2a-40af-a8fb-69796338f3e7"
           ],
           "summary": null,
           "meta": {},
@@ -144,1529 +297,10 @@
       }
     },
     {
-      "id": "1771651900122-46dc8i",
-      "startedAt": "2026-02-21T05:31:40.122Z",
+      "id": "1771671573144-fbs11u",
+      "startedAt": "2026-02-21T10:59:33.144Z",
       "endedAt": null,
       "entries": [],
-      "meta": {
-        "reactedTo": {}
-      }
-    },
-    {
-      "id": "1771649345839-41ehne",
-      "startedAt": "2026-02-21T04:49:05.839Z",
-      "endedAt": null,
-      "entries": [],
-      "meta": {
-        "reactedTo": {}
-      }
-    },
-    {
-      "id": "1771649044244-aa3emu",
-      "startedAt": "2026-02-21T04:44:04.244Z",
-      "endedAt": null,
-      "entries": [
-        {
-          "id": "ede1ab27-66ee-4267-a691-0c264f8b6b1a",
-          "content": "Session started (bot rebooted into world).",
-          "type": "session",
-          "tags": [
-            "session"
-          ],
-          "importance": 0.5,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:44:04.246Z",
-          "references": [
-            "3b762191-9bb1-478e-92ee-64bdac63b569",
-            "4d378403-da48-4d6c-8843-8e1ca9ab936e",
-            "060d5315-1d01-4a07-8f38-ed5ffde89007",
-            "148ef94d-ebb0-4139-ae2d-9d0b1943c9ea"
-          ],
-          "summary": null,
-          "meta": {},
-          "accessCount": 13,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "81c1f21a-b688-4d13-a6dc-4d2ff13fe29a",
-          "content": "Spawned into Minecraft world.",
-          "type": "world",
-          "tags": [
-            "world",
-            "minecraft"
-          ],
-          "importance": 0.5,
-          "emotion": "positive",
-          "context": [],
-          "createdAt": "2026-02-21T04:44:05.799Z",
-          "references": [
-            "1ffd8404-1954-4b48-8450-19190a8d727e",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "7f0feac5-bd32-46f7-ae2d-5163b77a2d68",
-            "27a0b15b-d2ca-42cc-b265-660c25d71dc7"
-          ],
-          "summary": null,
-          "meta": {},
-          "accessCount": 13,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "1e1d6019-574a-4769-a98d-d81d87bab1e0",
-          "content": "Action failed: COLLECT",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "dynamic-decision"
-          ],
-          "importance": 0.39015,
-          "emotion": "negative",
-          "context": [
-            "source:gemini",
-            "rawActionText:collect wood",
-            "normalizedKind:action"
-          ],
-          "createdAt": "2026-02-21T04:44:11.592Z",
-          "references": [
-            "ede1ab27-66ee-4267-a691-0c264f8b6b1a",
-            "eb9172a5-448e-4136-911b-a4940642fe77",
-            "fd071b04-7ad7-4f37-b8e8-99eb805f7e02",
-            "1e1d6019-574a-4769-a98d-d81d87bab1e0",
-            "04145cb8-19f5-4e6e-b3c3-15cf21c00cdb",
-            "1ac93420-c78e-4f29-9abe-05eb119a13b8",
-            "ba9b02c1-0866-4515-a56e-e17e7f5bbd5b",
-            "68d5a2eb-bb54-4e4e-92f5-f833792a385e"
-          ],
-          "summary": null,
-          "meta": {
-            "source": "gemini",
-            "rawActionText": "collect wood",
-            "normalizedKind": "action",
-            "tags": [
-              "autonomy",
-              "dynamic-decision"
-            ],
-            "repeatCount": 3,
-            "lastSeenAt": "2026-02-21T04:46:53.503Z"
-          },
-          "accessCount": 13,
-          "repeatCount": 3,
-          "consolidated": false
-        },
-        {
-          "id": "44eaab4e-1777-40bd-b04f-5ec8f141824a",
-          "content": "Action failed: gather wood",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "dynamic-decision"
-          ],
-          "importance": 0.459,
-          "emotion": "negative",
-          "context": [
-            "source:gemini",
-            "rawActionText:gather wood",
-            "normalizedKind:invalid"
-          ],
-          "createdAt": "2026-02-21T04:44:16.270Z",
-          "references": [
-            "1e1d6019-574a-4769-a98d-d81d87bab1e0",
-            "27a0b15b-d2ca-42cc-b265-660c25d71dc7",
-            "8d4d1ad5-7b8d-4c7e-9109-f79cb97c3f7b",
-            "6020aa7a-aba1-494a-bea4-7c12d6e0de92",
-            "44eaab4e-1777-40bd-b04f-5ec8f141824a",
-            "764a0c9a-c88d-4c5d-b7d4-69ea98a40852",
-            "8075a250-c93b-4d3e-95a8-116e0a76be4f",
-            "dab36fa3-5e3d-461e-8559-489414813433"
-          ],
-          "summary": null,
-          "meta": {
-            "source": "gemini",
-            "rawActionText": "gather wood",
-            "normalizedKind": "invalid",
-            "tags": [
-              "autonomy",
-              "dynamic-decision"
-            ],
-            "repeatCount": 2,
-            "lastSeenAt": "2026-02-21T04:45:55.228Z"
-          },
-          "accessCount": 28,
-          "repeatCount": 2,
-          "consolidated": false
-        },
-        {
-          "id": "04145cb8-19f5-4e6e-b3c3-15cf21c00cdb",
-          "content": "Fallback action failed: COLLECT",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "fallback"
-          ],
-          "importance": 0.39015,
-          "emotion": "negative",
-          "context": [
-            "rawActionText:collect dropped item"
-          ],
-          "createdAt": "2026-02-21T04:44:16.271Z",
-          "references": [
-            "8d4d1ad5-7b8d-4c7e-9109-f79cb97c3f7b",
-            "04145cb8-19f5-4e6e-b3c3-15cf21c00cdb",
-            "fe3d2a75-5ade-4481-937e-4d29a971ad83",
-            "fd071b04-7ad7-4f37-b8e8-99eb805f7e02",
-            "eb9172a5-448e-4136-911b-a4940642fe77",
-            "a414fa0d-364a-4d85-bd71-c5d9858acdce",
-            "ae170772-c146-49e8-b993-69a0ee323c4c",
-            "764a0c9a-c88d-4c5d-b7d4-69ea98a40852"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "fallback"
-            ],
-            "rawActionText": "collect dropped item",
-            "repeatCount": 3,
-            "lastSeenAt": "2026-02-21T04:46:10.590Z"
-          },
-          "accessCount": 13,
-          "repeatCount": 3,
-          "consolidated": false
-        },
-        {
-          "id": "eb8bb930-6eb7-4ccf-863a-197cf4fc89f5",
-          "content": "Intent action failed: Locate and move to the nearest tree.",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "intent-step"
-          ],
-          "importance": 0.39015,
-          "emotion": "negative",
-          "context": [],
-          "createdAt": "2026-02-21T04:44:18.158Z",
-          "references": [
-            "6020aa7a-aba1-494a-bea4-7c12d6e0de92",
-            "2d838463-53b6-47b3-a5de-058001646522",
-            "27a0b15b-d2ca-42cc-b265-660c25d71dc7",
-            "04145cb8-19f5-4e6e-b3c3-15cf21c00cdb",
-            "eb8bb930-6eb7-4ccf-863a-197cf4fc89f5",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "060d5315-1d01-4a07-8f38-ed5ffde89007"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "intent-step"
-            ],
-            "repeatCount": 3,
-            "lastSeenAt": "2026-02-21T04:44:31.634Z"
-          },
-          "accessCount": 14,
-          "repeatCount": 3,
-          "consolidated": false
-        },
-        {
-          "id": "9b51a8d5-1573-4239-9b16-eff29a28b70e",
-          "content": "Subgoal dropped after retries: Locate and move to the nearest tree.",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "intent-layer2",
-            "replan"
-          ],
-          "importance": 0.459,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:44:31.634Z",
-          "references": [
-            "eb8bb930-6eb7-4ccf-863a-197cf4fc89f5",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "060d5315-1d01-4a07-8f38-ed5ffde89007",
-            "7f0feac5-bd32-46f7-ae2d-5163b77a2d68"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "intent-layer2",
-              "replan"
-            ]
-          },
-          "accessCount": 31,
-          "repeatCount": 1,
-          "consolidated": true
-        },
-        {
-          "id": "40481bdb-f88a-428d-adc8-497222811191",
-          "content": "Intent action failed: Travel inland to find trees.",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "intent-step"
-          ],
-          "importance": 0.459,
-          "emotion": "negative",
-          "context": [],
-          "createdAt": "2026-02-21T04:44:54.449Z",
-          "references": [
-            "a2e37fb2-50ed-492d-9ec6-2501057d2fb1",
-            "9d182dc4-dce4-4fa6-b47b-67e5a353be6d",
-            "9b51a8d5-1573-4239-9b16-eff29a28b70e",
-            "852b75f1-0dfe-494b-82b1-a04a593fd68d",
-            "40481bdb-f88a-428d-adc8-497222811191",
-            "2bdb983c-2050-41fb-817a-410d49a94f13",
-            "67adca04-e390-4029-ac6e-2b3061d02ed0"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "intent-step"
-            ],
-            "repeatCount": 2,
-            "lastSeenAt": "2026-02-21T04:45:04.404Z"
-          },
-          "accessCount": 12,
-          "repeatCount": 2,
-          "consolidated": false
-        },
-        {
-          "id": "fd071b04-7ad7-4f37-b8e8-99eb805f7e02",
-          "content": "Intent action failed: Scan surroundings for the nearest tree.",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "intent-step"
-          ],
-          "importance": 0.39015,
-          "emotion": "negative",
-          "context": [],
-          "createdAt": "2026-02-21T04:45:15.843Z",
-          "references": [
-            "54e86d5e-5e0b-4530-8daf-566c890e8221",
-            "cd96ab35-8aa5-43b9-9b5b-5d2dc39ffc22",
-            "eb9172a5-448e-4136-911b-a4940642fe77",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "fd071b04-7ad7-4f37-b8e8-99eb805f7e02",
-            "fe3d2a75-5ade-4481-937e-4d29a971ad83"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "intent-step"
-            ],
-            "repeatCount": 3,
-            "lastSeenAt": "2026-02-21T04:45:28.507Z"
-          },
-          "accessCount": 11,
-          "repeatCount": 3,
-          "consolidated": false
-        },
-        {
-          "id": "fe3d2a75-5ade-4481-937e-4d29a971ad83",
-          "content": "Action failed: search for trees",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "dynamic-decision"
-          ],
-          "importance": 0.459,
-          "emotion": "negative",
-          "context": [
-            "source:gemini",
-            "rawActionText:search for trees",
-            "normalizedKind:invalid"
-          ],
-          "createdAt": "2026-02-21T04:45:27.629Z",
-          "references": [
-            "fd071b04-7ad7-4f37-b8e8-99eb805f7e02",
-            "eb9172a5-448e-4136-911b-a4940642fe77",
-            "44eaab4e-1777-40bd-b04f-5ec8f141824a",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "ae170772-c146-49e8-b993-69a0ee323c4c",
-            "fe3d2a75-5ade-4481-937e-4d29a971ad83",
-            "a414fa0d-364a-4d85-bd71-c5d9858acdce",
-            "764a0c9a-c88d-4c5d-b7d4-69ea98a40852"
-          ],
-          "summary": null,
-          "meta": {
-            "source": "gemini",
-            "rawActionText": "search for trees",
-            "normalizedKind": "invalid",
-            "tags": [
-              "autonomy",
-              "dynamic-decision"
-            ],
-            "repeatCount": 2,
-            "lastSeenAt": "2026-02-21T04:46:10.589Z"
-          },
-          "accessCount": 12,
-          "repeatCount": 2,
-          "consolidated": false
-        },
-        {
-          "id": "e2fa244b-4a1a-4371-8ef5-22ce8a4f0cda",
-          "content": "Subgoal dropped after retries: Scan surroundings for the nearest tree.",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "intent-layer2",
-            "replan"
-          ],
-          "importance": 0.459,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:45:28.507Z",
-          "references": [
-            "fe3d2a75-5ade-4481-937e-4d29a971ad83",
-            "fd071b04-7ad7-4f37-b8e8-99eb805f7e02",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "060d5315-1d01-4a07-8f38-ed5ffde89007"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "intent-layer2",
-              "replan"
-            ]
-          },
-          "accessCount": 12,
-          "repeatCount": 1,
-          "consolidated": true
-        },
-        {
-          "id": "8075a250-c93b-4d3e-95a8-116e0a76be4f",
-          "content": "Intent action failed: Move to the nearest tree.",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "intent-step"
-          ],
-          "importance": 0.54,
-          "emotion": "negative",
-          "context": [],
-          "createdAt": "2026-02-21T04:45:34.330Z",
-          "references": [
-            "e2fa244b-4a1a-4371-8ef5-22ce8a4f0cda",
-            "495d1964-37b7-4d91-9e07-89cd933ba483",
-            "fe3d2a75-5ade-4481-937e-4d29a971ad83",
-            "fd071b04-7ad7-4f37-b8e8-99eb805f7e02"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "intent-step"
-            ]
-          },
-          "accessCount": 32,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "dab36fa3-5e3d-461e-8559-489414813433",
-          "content": "Intent action success: EXPLORE",
-          "type": "action-success",
-          "tags": [
-            "action-success",
-            "autonomy",
-            "intent-step"
-          ],
-          "importance": 0.459,
-          "emotion": "positive",
-          "context": [],
-          "createdAt": "2026-02-21T04:45:40.838Z",
-          "references": [
-            "8075a250-c93b-4d3e-95a8-116e0a76be4f",
-            "daf43fa6-8943-46b7-90fc-32168b4b296d",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "060d5315-1d01-4a07-8f38-ed5ffde89007"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "intent-step"
-            ]
-          },
-          "accessCount": 13,
-          "repeatCount": 1,
-          "consolidated": true
-        },
-        {
-          "id": "2e6b4c02-84b3-49ee-92b2-3d9a17af68dc",
-          "content": "Subgoal completed: Explore the area to locate a tree.",
-          "type": "action-success",
-          "tags": [
-            "action-success",
-            "intent-layer2",
-            "complete"
-          ],
-          "importance": 0.54,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:45:40.838Z",
-          "references": [
-            "daf43fa6-8943-46b7-90fc-32168b4b296d",
-            "64089cc5-dab4-4f0f-85df-cee949d10b39",
-            "8075a250-c93b-4d3e-95a8-116e0a76be4f",
-            "dab36fa3-5e3d-461e-8559-489414813433"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "intent-layer2",
-              "complete"
-            ]
-          },
-          "accessCount": 34,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "eeed8411-7aaf-4d47-a62f-cd2eeed0a3b2",
-          "content": "Intent action completed: Explore the area to locate a tree.",
-          "type": "action-success",
-          "tags": [
-            "action-success",
-            "intent-layer3",
-            "step"
-          ],
-          "importance": 0.54,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:45:40.838Z",
-          "references": [
-            "2e6b4c02-84b3-49ee-92b2-3d9a17af68dc",
-            "8075a250-c93b-4d3e-95a8-116e0a76be4f",
-            "daf43fa6-8943-46b7-90fc-32168b4b296d",
-            "dab36fa3-5e3d-461e-8559-489414813433"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "intent-layer3",
-              "step"
-            ]
-          },
-          "accessCount": 31,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "764a0c9a-c88d-4c5d-b7d4-69ea98a40852",
-          "content": "Intent action failed: Move to the nearest wood log.",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "intent-step"
-          ],
-          "importance": 0.39015,
-          "emotion": "negative",
-          "context": [],
-          "createdAt": "2026-02-21T04:45:42.421Z",
-          "references": [
-            "8075a250-c93b-4d3e-95a8-116e0a76be4f",
-            "eeed8411-7aaf-4d47-a62f-cd2eeed0a3b2",
-            "daf43fa6-8943-46b7-90fc-32168b4b296d",
-            "153be54a-6ae7-415e-9436-159651df1cdb",
-            "764a0c9a-c88d-4c5d-b7d4-69ea98a40852",
-            "a414fa0d-364a-4d85-bd71-c5d9858acdce",
-            "ae170772-c146-49e8-b993-69a0ee323c4c"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "intent-step"
-            ],
-            "repeatCount": 3,
-            "lastSeenAt": "2026-02-21T04:46:11.872Z"
-          },
-          "accessCount": 11,
-          "repeatCount": 3,
-          "consolidated": false
-        },
-        {
-          "id": "a414fa0d-364a-4d85-bd71-c5d9858acdce",
-          "content": "Fallback action failed: SOCIAL",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "fallback"
-          ],
-          "importance": 0.54,
-          "emotion": "negative",
-          "context": [
-            "rawActionText:talk to nearby player"
-          ],
-          "createdAt": "2026-02-21T04:45:55.229Z",
-          "references": [
-            "764a0c9a-c88d-4c5d-b7d4-69ea98a40852",
-            "8075a250-c93b-4d3e-95a8-116e0a76be4f",
-            "dab36fa3-5e3d-461e-8559-489414813433",
-            "eeed8411-7aaf-4d47-a62f-cd2eeed0a3b2"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "fallback"
-            ],
-            "rawActionText": "talk to nearby player"
-          },
-          "accessCount": 19,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "ae170772-c146-49e8-b993-69a0ee323c4c",
-          "content": "=== AUTONOMY CONSOLIDATED SUMMARY ===\nwindow: ~180s\ngeneratedAt: 2026-02-21T04:46:04.260Z\neventsAnalyzed: 34\ngroupClusters: 6\nhighImportanceCount: 0\navgImportance: 0.277\navgRepeatCount: 1.85\n--- event type distribution ---\n- plan x10\n- action-success x6\n- action-fail x2\n- chat-in x2\n- chat-out x2\n- session x1\n--- dominant tags ---\n- autonomy x14\n- intent-layer2 x13\n- plan x10\n- intent-layer3 x7\n- action-success x6\n- craft x4\n- intent-layer1 x4\n- dynamic-decision x2\n--- dominant context cues ---\n- source:gemini x2\n- normalizedkind:action x2\n- rawactiontext:explore for wood x1\n- emergencyreason:water x1\n- rawactiontext:mine wood x1\n--- emotional profile ---\n- neutral x19\n- positive x4\n--- action outcomes ---\n- successes: EXPLORE x2, BREAK x1\n- failures: none\n- player activity: none\n--- intents and direction ---\n- recent intents: Establish basic toolset | Subgoals: Locate and move to the nearest tree. -> Break 3 wood logs. -> Craft wood planks from logs. -> Craft a crafting table. -> Craft wooden sticks. -> Craft a wooden pickaxe. | Acquire wood for basic tools | Subgoals: Travel inland to find trees. -> Locate and move to the nearest tree. -> Break 3 wood logs. -> Craft wood planks. -> Craft a crafting table. -> Craft a wooden pickaxe. | Obtain wood for basic tools | Subgoals: Scan surroundings for the nearest tree. -> Move to the nearest tree. -> Break 3 wood logs. -> Craft wood planks. -> Craft a crafting table. -> Craft a wooden pickaxe. | Obtain wood for crafting | Subgoals: Explore the area to locate a tree. -> Move to the nearest wood log. -> Break 3 wood logs. -> Pick up the dropped log items. -> Craft wood planks. -> Craft a crafting table.\n- mixed event signatures: 4 plan, 6 plan, 4 action-success, 2 action-fail, 2 chat-in, 2 chat-out\n--- world observations ---\n- location cues: no explicit XYZ in recent events\n- notable errors: none\n--- operational guidance ---\n- prioritize survival-critical actions before progression\n- if repeated failures on same action, pivot to fallback resource actions",
-          "type": "summary",
-          "tags": [
-            "summary",
-            "consolidated-window",
-            "structured",
-            "long-summary",
-            "plan",
-            "craft",
-            "intent-layer1",
-            "intent-layer2",
-            "autonomy",
-            "intent-layer3",
-            "action-success",
-            "dynamic-decision"
-          ],
-          "importance": 0.58,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:46:04.260Z",
-          "references": [
-            "6020aa7a-aba1-494a-bea4-7c12d6e0de92",
-            "a2e37fb2-50ed-492d-9ec6-2501057d2fb1",
-            "54e86d5e-5e0b-4530-8daf-566c890e8221",
-            "daf43fa6-8943-46b7-90fc-32168b4b296d",
-            "2d838463-53b6-47b3-a5de-058001646522",
-            "9d182dc4-dce4-4fa6-b47b-67e5a353be6d",
-            "cd96ab35-8aa5-43b9-9b5b-5d2dc39ffc22",
-            "495d1964-37b7-4d91-9e07-89cd933ba483",
-            "64089cc5-dab4-4f0f-85df-cee949d10b39",
-            "153be54a-6ae7-415e-9436-159651df1cdb",
-            "81e50c52-af4f-4f62-8982-a6b6d7302dc8",
-            "60ff5fb5-b1a7-4f11-a117-afb5ff976ec5",
-            "eb9172a5-448e-4136-911b-a4940642fe77",
-            "dab36fa3-5e3d-461e-8559-489414813433",
-            "9b51a8d5-1573-4239-9b16-eff29a28b70e",
-            "e2fa244b-4a1a-4371-8ef5-22ce8a4f0cda",
-            "852b75f1-0dfe-494b-82b1-a04a593fd68d",
-            "4af7d3de-6515-4256-b2ad-b0dba50f2a1d",
-            "2bdb983c-2050-41fb-817a-410d49a94f13",
-            "67adca04-e390-4029-ac6e-2b3061d02ed0"
-          ],
-          "summary": "=== AUTONOMY CONSOLIDATED SUMMARY ===\nwindow: ~180s\ngeneratedAt: 2026-02-21T04:46:04.260Z\neventsAnalyzed: 34\ngroupClusters: 6\nhighImportanceCount: 0\navgImportance: 0.277\navgRepeatCount: 1.85\n--- event type distribution ---\n- plan x10\n- action-success x6\n- action-fail x2\n- chat-in x2\n- chat-out x2\n- session x1\n--- dominant tags ---\n- autonomy x14\n- intent-layer2 x13\n- plan x10\n- intent-layer3 x7\n- action-success x6\n- craft x4\n- intent-layer1 x4\n- dynamic-decision x2\n--- dominant context cues ---\n- source:gemini x2\n- normalizedkind:action x2\n- rawactiontext:explore for wood x1\n- emergencyreason:water x1\n- rawactiontext:mine wood x1\n--- emotional profile ---\n- neutral x19\n- positive x4\n--- action outcomes ---\n- successes: EXPLORE x2, BREAK x1\n- failures: none\n- player activity: none\n--- intents and direction ---\n- recent intents: Establish basic toolset | Subgoals: Locate and move to the nearest tree. -> Break 3 wood logs. -> Craft wood planks from logs. -> Craft a crafting table. -> Craft wooden sticks. -> Craft a wooden pickaxe. | Acquire wood for basic tools | Subgoals: Travel inland to find trees. -> Locate and move to the nearest tree. -> Break 3 wood logs. -> Craft wood planks. -> Craft a crafting table. -> Craft a wooden pickaxe. | Obtain wood for basic tools | Subgoals: Scan surroundings for the nearest tree. -> Move to the nearest tree. -> Break 3 wood logs. -> Craft wood planks. -> Craft a crafting table. -> Craft a wooden pickaxe. | Obtain wood for crafting | Subgoals: Explore the area to locate a tree. -> Move to the nearest wood log. -> Break 3 wood logs. -> Pick up the dropped log items. -> Craft wood planks. -> Craft a crafting table.\n- mixed event signatures: 4 plan, 6 plan, 4 action-success, 2 action-fail, 2 chat-in, 2 chat-out\n--- world observations ---\n- location cues: no explicit XYZ in recent events\n- notable errors: none\n--- operational guidance ---\n- prioritize survival-critical actions before progression\n- if repeated failures on same action, pivot to fallback resource actions",
-          "meta": {
-            "source": "structured-consolidation-v2",
-            "lineCount": 46
-          },
-          "accessCount": 44,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "90fe55c4-b2fa-4271-8db7-75b4cb7f8611",
-          "content": "Subgoal dropped after retries: Move to the nearest wood log.",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "intent-layer2",
-            "replan"
-          ],
-          "importance": 0.459,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:46:11.872Z",
-          "references": [
-            "ae170772-c146-49e8-b993-69a0ee323c4c",
-            "764a0c9a-c88d-4c5d-b7d4-69ea98a40852",
-            "2e6b4c02-84b3-49ee-92b2-3d9a17af68dc",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "intent-layer2",
-              "replan"
-            ]
-          },
-          "accessCount": 23,
-          "repeatCount": 1,
-          "consolidated": true
-        },
-        {
-          "id": "5517e517-6e4f-4d7a-ab32-bc74e36e8a5f",
-          "content": "Intent action failed: BREAK",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "intent-step"
-          ],
-          "importance": 0.54,
-          "emotion": "negative",
-          "context": [],
-          "createdAt": "2026-02-21T04:46:19.588Z",
-          "references": [
-            "ae170772-c146-49e8-b993-69a0ee323c4c",
-            "fbb8794d-1d5d-4307-87f4-6def3319728c",
-            "a414fa0d-364a-4d85-bd71-c5d9858acdce",
-            "90fe55c4-b2fa-4271-8db7-75b4cb7f8611"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "intent-step"
-            ]
-          },
-          "accessCount": 17,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "68d5a2eb-bb54-4e4e-92f5-f833792a385e",
-          "content": "Intent action failed: Locate player 44_3",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "player",
-            "autonomy",
-            "intent-step"
-          ],
-          "importance": 0.39015,
-          "emotion": "negative",
-          "context": [],
-          "createdAt": "2026-02-21T04:46:29.924Z",
-          "references": [
-            "5517e517-6e4f-4d7a-ab32-bc74e36e8a5f",
-            "afa9b8f1-a822-4c0e-ae7b-8337fa5ec08d",
-            "ae170772-c146-49e8-b993-69a0ee323c4c",
-            "0d643ceb-0d8b-4588-844c-0286d8e8089a",
-            "68d5a2eb-bb54-4e4e-92f5-f833792a385e",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "intent-step"
-            ],
-            "repeatCount": 3,
-            "lastSeenAt": "2026-02-21T04:46:45.588Z"
-          },
-          "accessCount": 13,
-          "repeatCount": 3,
-          "consolidated": false
-        },
-        {
-          "id": "1ac93420-c78e-4f29-9abe-05eb119a13b8",
-          "content": "Subgoal dropped after retries: Locate player 44_3",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "player",
-            "intent-layer2",
-            "replan"
-          ],
-          "importance": 0.459,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:46:45.588Z",
-          "references": [
-            "68d5a2eb-bb54-4e4e-92f5-f833792a385e",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "060d5315-1d01-4a07-8f38-ed5ffde89007",
-            "7f0feac5-bd32-46f7-ae2d-5163b77a2d68"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "intent-layer2",
-              "replan"
-            ]
-          },
-          "accessCount": 13,
-          "repeatCount": 1,
-          "consolidated": true
-        },
-        {
-          "id": "b4f79bf3-872c-40e5-9e7f-36f0961978c1",
-          "content": "Intent action failed: Move to player 44_3 at -111, 65, -45",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "player",
-            "autonomy",
-            "intent-step"
-          ],
-          "importance": 0.39015,
-          "emotion": "negative",
-          "context": [],
-          "createdAt": "2026-02-21T04:46:55.047Z",
-          "references": [
-            "ba9b02c1-0866-4515-a56e-e17e7f5bbd5b",
-            "b5ef59f8-072b-44e9-9014-ba7dc2f11384",
-            "1ac93420-c78e-4f29-9abe-05eb119a13b8",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "b4f79bf3-872c-40e5-9e7f-36f0961978c1",
-            "24e66759-c3ec-465b-a8f4-e317779cdd69",
-            "8199955e-d623-42a2-940e-991de00df4ad"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "intent-step"
-            ],
-            "repeatCount": 3,
-            "lastSeenAt": "2026-02-21T04:47:13.489Z"
-          },
-          "accessCount": 10,
-          "repeatCount": 3,
-          "consolidated": false
-        },
-        {
-          "id": "24e66759-c3ec-465b-a8f4-e317779cdd69",
-          "content": "Urgent action failed: EAT",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "dynamic-urgent"
-          ],
-          "importance": 0.28188337499999994,
-          "emotion": "negative",
-          "context": [
-            "source:heuristic-priority",
-            "rawActionText:eat food now",
-            "normalizedKind:action"
-          ],
-          "createdAt": "2026-02-21T04:47:04.480Z",
-          "references": [
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "060d5315-1d01-4a07-8f38-ed5ffde89007",
-            "24e66759-c3ec-465b-a8f4-e317779cdd69",
-            "8199955e-d623-42a2-940e-991de00df4ad",
-            "7323311a-0d4b-47d3-a002-e227424120b3",
-            "b9bb8eb9-428e-4a49-85ec-e731406a7c14",
-            "ad43e46f-c03f-434d-ac77-d8c9af162dab",
-            "62046080-b650-4268-88ca-0fc423d56672"
-          ],
-          "summary": null,
-          "meta": {
-            "source": "heuristic-priority",
-            "rawActionText": "eat food now",
-            "normalizedKind": "action",
-            "tags": [
-              "autonomy",
-              "dynamic-urgent"
-            ],
-            "repeatCount": 5,
-            "lastSeenAt": "2026-02-21T04:47:38.058Z"
-          },
-          "accessCount": 11,
-          "repeatCount": 5,
-          "consolidated": false
-        },
-        {
-          "id": "8199955e-d623-42a2-940e-991de00df4ad",
-          "content": "Action failed: EAT",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "dynamic-decision"
-          ],
-          "importance": 0.20366073843749996,
-          "emotion": "negative",
-          "context": [
-            "source:gemini",
-            "rawActionText:hunt nearby mob for food",
-            "normalizedKind:action"
-          ],
-          "createdAt": "2026-02-21T04:47:12.234Z",
-          "references": [
-            "7323311a-0d4b-47d3-a002-e227424120b3",
-            "b9bb8eb9-428e-4a49-85ec-e731406a7c14",
-            "ad43e46f-c03f-434d-ac77-d8c9af162dab",
-            "82d5fbd9-1d72-4875-9405-ef3146d8532c",
-            "9141b014-3453-4466-881e-9afd5361e0c7",
-            "6508e2a8-cf63-4c1a-896f-e0c7afa3e7a2",
-            "ed4cb25a-f942-4530-a36f-0005d39c4c1d",
-            "a670dc5f-5436-40cb-87c1-dfdc71b28933"
-          ],
-          "summary": null,
-          "meta": {
-            "source": "gemini",
-            "rawActionText": "hunt nearby mob for food",
-            "normalizedKind": "action",
-            "tags": [
-              "autonomy",
-              "dynamic-decision"
-            ],
-            "repeatCount": 7,
-            "lastSeenAt": "2026-02-21T04:48:29.247Z"
-          },
-          "accessCount": 11,
-          "repeatCount": 7,
-          "consolidated": false
-        },
-        {
-          "id": "7323311a-0d4b-47d3-a002-e227424120b3",
-          "content": "Subgoal dropped after retries: Move to player 44_3 at -111, 65, -45",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "player",
-            "intent-layer2",
-            "replan"
-          ],
-          "importance": 0.459,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:47:13.489Z",
-          "references": [
-            "b4f79bf3-872c-40e5-9e7f-36f0961978c1",
-            "1ac93420-c78e-4f29-9abe-05eb119a13b8",
-            "8199955e-d623-42a2-940e-991de00df4ad",
-            "24e66759-c3ec-465b-a8f4-e317779cdd69"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "intent-layer2",
-              "replan"
-            ]
-          },
-          "accessCount": 16,
-          "repeatCount": 1,
-          "consolidated": true
-        },
-        {
-          "id": "7bf5d08f-05ee-4068-a711-2421c0c15a92",
-          "content": "Subgoal expanded: Greet 44_3 in chat | Actions: Greet 44_3 in chat",
-          "type": "plan",
-          "tags": [
-            "plan",
-            "chat",
-            "intent-layer2",
-            "intent-layer3",
-            "autonomy"
-          ],
-          "importance": 0.38,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:47:20.626Z",
-          "references": [
-            "7323311a-0d4b-47d3-a002-e227424120b3",
-            "8199955e-d623-42a2-940e-991de00df4ad",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "060d5315-1d01-4a07-8f38-ed5ffde89007"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "intent-layer2",
-              "intent-layer3",
-              "autonomy"
-            ]
-          },
-          "accessCount": 10,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "62046080-b650-4268-88ca-0fc423d56672",
-          "content": "Intent action failed: SOCIAL",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "intent-step"
-          ],
-          "importance": 0.54,
-          "emotion": "negative",
-          "context": [],
-          "createdAt": "2026-02-21T04:47:20.656Z",
-          "references": [
-            "8199955e-d623-42a2-940e-991de00df4ad",
-            "7323311a-0d4b-47d3-a002-e227424120b3",
-            "24e66759-c3ec-465b-a8f4-e317779cdd69",
-            "b4f79bf3-872c-40e5-9e7f-36f0961978c1"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "intent-step"
-            ]
-          },
-          "accessCount": 14,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "9a2a901c-9245-4204-9ff2-74c9833b391e",
-          "content": "Strategic intent selected: Hunt for food to restore hunger | Subgoals: Locate a nearby food animal -> Move to the animal -> Attack and kill the animal -> Collect the dropped meat -> Eat the meat",
-          "type": "plan",
-          "tags": [
-            "plan",
-            "intent-layer1",
-            "intent-layer2",
-            "autonomy"
-          ],
-          "importance": 0.38,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:47:31.780Z",
-          "references": [
-            "7323311a-0d4b-47d3-a002-e227424120b3",
-            "62046080-b650-4268-88ca-0fc423d56672",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "060d5315-1d01-4a07-8f38-ed5ffde89007"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "intent-layer1",
-              "intent-layer2",
-              "autonomy"
-            ]
-          },
-          "accessCount": 16,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "b9bb8eb9-428e-4a49-85ec-e731406a7c14",
-          "content": "Action failed: COLLECT",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "dynamic-decision"
-          ],
-          "importance": 0.54,
-          "emotion": "negative",
-          "context": [
-            "source:gemini",
-            "rawActionText:collect wood",
-            "normalizedKind:action"
-          ],
-          "createdAt": "2026-02-21T04:47:32.596Z",
-          "references": [
-            "8199955e-d623-42a2-940e-991de00df4ad",
-            "62046080-b650-4268-88ca-0fc423d56672",
-            "1e1d6019-574a-4769-a98d-d81d87bab1e0",
-            "24e66759-c3ec-465b-a8f4-e317779cdd69"
-          ],
-          "summary": null,
-          "meta": {
-            "source": "gemini",
-            "rawActionText": "collect wood",
-            "normalizedKind": "action",
-            "tags": [
-              "autonomy",
-              "dynamic-decision"
-            ]
-          },
-          "accessCount": 15,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "ad43e46f-c03f-434d-ac77-d8c9af162dab",
-          "content": "Fallback action failed: EAT",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "fallback"
-          ],
-          "importance": 0.54,
-          "emotion": "negative",
-          "context": [
-            "rawActionText:eat food"
-          ],
-          "createdAt": "2026-02-21T04:47:32.597Z",
-          "references": [
-            "b9bb8eb9-428e-4a49-85ec-e731406a7c14",
-            "62046080-b650-4268-88ca-0fc423d56672",
-            "8199955e-d623-42a2-940e-991de00df4ad",
-            "24e66759-c3ec-465b-a8f4-e317779cdd69"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "fallback"
-            ],
-            "rawActionText": "eat food"
-          },
-          "accessCount": 18,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "f0f06753-987b-48d8-a814-1f3b658db137",
-          "content": "Subgoal dropped after retries: Locate a nearby food animal",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "intent-layer2",
-            "replan"
-          ],
-          "importance": 0.459,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:47:36.689Z",
-          "references": [
-            "9a2a901c-9245-4204-9ff2-74c9833b391e",
-            "eb093da2-b26b-40ea-9765-06d4846a90a7",
-            "ad43e46f-c03f-434d-ac77-d8c9af162dab",
-            "b9bb8eb9-428e-4a49-85ec-e731406a7c14"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "intent-layer2",
-              "replan"
-            ]
-          },
-          "accessCount": 11,
-          "repeatCount": 1,
-          "consolidated": true
-        },
-        {
-          "id": "82d5fbd9-1d72-4875-9405-ef3146d8532c",
-          "content": "Intent action failed: Move to the animal",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "intent-step"
-          ],
-          "importance": 0.39015,
-          "emotion": "negative",
-          "context": [],
-          "createdAt": "2026-02-21T04:47:38.058Z",
-          "references": [
-            "722637d0-fe3e-4070-9920-6e83a0e41629",
-            "62046080-b650-4268-88ca-0fc423d56672",
-            "ad43e46f-c03f-434d-ac77-d8c9af162dab",
-            "82d5fbd9-1d72-4875-9405-ef3146d8532c",
-            "f0f06753-987b-48d8-a814-1f3b658db137",
-            "8075a250-c93b-4d3e-95a8-116e0a76be4f",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "060d5315-1d01-4a07-8f38-ed5ffde89007"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "intent-step"
-            ],
-            "repeatCount": 3,
-            "lastSeenAt": "2026-02-21T04:47:52.613Z"
-          },
-          "accessCount": 12,
-          "repeatCount": 3,
-          "consolidated": false
-        },
-        {
-          "id": "9141b014-3453-4466-881e-9afd5361e0c7",
-          "content": "Subgoal dropped after retries: Move to the animal",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "intent-layer2",
-            "replan"
-          ],
-          "importance": 0.459,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:47:52.613Z",
-          "references": [
-            "f0f06753-987b-48d8-a814-1f3b658db137",
-            "82d5fbd9-1d72-4875-9405-ef3146d8532c",
-            "90fe55c4-b2fa-4271-8db7-75b4cb7f8611",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "intent-layer2",
-              "replan"
-            ]
-          },
-          "accessCount": 11,
-          "repeatCount": 1,
-          "consolidated": true
-        },
-        {
-          "id": "d93a4a31-5f40-44c5-9a36-0d597a29c972",
-          "content": "Subgoal expanded: Attack and kill the animal | Actions: Attack and kill the animal",
-          "type": "plan",
-          "tags": [
-            "plan",
-            "intent-layer2",
-            "intent-layer3",
-            "autonomy"
-          ],
-          "importance": 0.323,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:48:03.887Z",
-          "references": [
-            "9141b014-3453-4466-881e-9afd5361e0c7",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "060d5315-1d01-4a07-8f38-ed5ffde89007"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "intent-layer2",
-              "intent-layer3",
-              "autonomy"
-            ]
-          },
-          "accessCount": 9,
-          "repeatCount": 1,
-          "consolidated": true
-        },
-        {
-          "id": "ed4cb25a-f942-4530-a36f-0005d39c4c1d",
-          "content": "Intent action failed: Attack and kill the animal",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "intent-step"
-          ],
-          "importance": 0.54,
-          "emotion": "negative",
-          "context": [],
-          "createdAt": "2026-02-21T04:48:03.900Z",
-          "references": [
-            "d93a4a31-5f40-44c5-9a36-0d597a29c972",
-            "9141b014-3453-4466-881e-9afd5361e0c7",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8",
-            "060d5315-1d01-4a07-8f38-ed5ffde89007"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "intent-step"
-            ]
-          },
-          "accessCount": 8,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "6508e2a8-cf63-4c1a-896f-e0c7afa3e7a2",
-          "content": "=== AUTONOMY CONSOLIDATED SUMMARY ===\nwindow: ~180s\ngeneratedAt: 2026-02-21T04:48:04.263Z\neventsAnalyzed: 35\ngroupClusters: 5\nhighImportanceCount: 0\navgImportance: 0.232\navgRepeatCount: 0.97\n--- event type distribution ---\n- plan x11\n- action-fail x5\n- action-success x4\n--- dominant tags ---\n- intent-layer2 x17\n- autonomy x13\n- plan x11\n- intent-layer3 x9\n- player x6\n- action-fail x5\n- replan x5\n- action-success x4\n--- dominant context cues ---\n- source:gemini x2\n- normalizedkind:action x2\n- rawactiontext:mine wood x1\n- rawactiontext:explore for trees x1\n--- emotional profile ---\n- neutral x18\n- positive x2\n--- action outcomes ---\n- successes: BREAK x1, EXPLORE x1\n- failures: none\n- player activity: none\n--- intents and direction ---\n- recent intents: Regroup with player 44_3 | Subgoals: Locate player 44_3 -> Move to player 44_3 -> Scan for trees nearby -> Break 3 wood logs | Regroup with player 44_3 | Subgoals: Move to player 44_3 at -111, 65, -45 -> Greet 44_3 in chat -> Locate a nearby food animal -> Kill the animal to collect food | Hunt for food to restore hunger | Subgoals: Locate a nearby food animal -> Move to the animal -> Attack and kill the animal -> Collect the dropped meat -> Eat the meat\n- mixed event signatures: 2 action-success, 5 plan, 3 action-fail, 4 plan, 2 action-fail\n--- world observations ---\n- location cues: no explicit XYZ in recent events\n- notable errors: none\n--- operational guidance ---\n- prioritize survival-critical actions before progression\n- if repeated failures on same action, pivot to fallback resource actions\n- keep intent stable unless risk level rises sharply\n- use nearby players as social/assist opportunities only when safe\n- avoid redundant action loops by honoring recent success/fail memory",
-          "type": "summary",
-          "tags": [
-            "summary",
-            "consolidated-window",
-            "structured",
-            "long-summary",
-            "action-success",
-            "autonomy",
-            "dynamic-decision",
-            "plan",
-            "intent-layer2",
-            "intent-layer3",
-            "action-fail",
-            "replan"
-          ],
-          "importance": 0.58,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:48:04.263Z",
-          "references": [
-            "eb9172a5-448e-4136-911b-a4940642fe77",
-            "fbb8794d-1d5d-4307-87f4-6def3319728c",
-            "153be54a-6ae7-415e-9436-159651df1cdb",
-            "e75c37cd-ba28-4799-94fa-bb2e3f3a6ca0",
-            "eb093da2-b26b-40ea-9765-06d4846a90a7",
-            "722637d0-fe3e-4070-9920-6e83a0e41629",
-            "d93a4a31-5f40-44c5-9a36-0d597a29c972",
-            "90fe55c4-b2fa-4271-8db7-75b4cb7f8611",
-            "f0f06753-987b-48d8-a814-1f3b658db137",
-            "9141b014-3453-4466-881e-9afd5361e0c7",
-            "afa9b8f1-a822-4c0e-ae7b-8337fa5ec08d",
-            "0d643ceb-0d8b-4588-844c-0286d8e8089a",
-            "ba9b02c1-0866-4515-a56e-e17e7f5bbd5b",
-            "b5ef59f8-072b-44e9-9014-ba7dc2f11384",
-            "1ac93420-c78e-4f29-9abe-05eb119a13b8",
-            "7323311a-0d4b-47d3-a002-e227424120b3"
-          ],
-          "summary": "=== AUTONOMY CONSOLIDATED SUMMARY ===\nwindow: ~180s\ngeneratedAt: 2026-02-21T04:48:04.263Z\neventsAnalyzed: 35\ngroupClusters: 5\nhighImportanceCount: 0\navgImportance: 0.232\navgRepeatCount: 0.97\n--- event type distribution ---\n- plan x11\n- action-fail x5\n- action-success x4\n--- dominant tags ---\n- intent-layer2 x17\n- autonomy x13\n- plan x11\n- intent-layer3 x9\n- player x6\n- action-fail x5\n- replan x5\n- action-success x4\n--- dominant context cues ---\n- source:gemini x2\n- normalizedkind:action x2\n- rawactiontext:mine wood x1\n- rawactiontext:explore for trees x1\n--- emotional profile ---\n- neutral x18\n- positive x2\n--- action outcomes ---\n- successes: BREAK x1, EXPLORE x1\n- failures: none\n- player activity: none\n--- intents and direction ---\n- recent intents: Regroup with player 44_3 | Subgoals: Locate player 44_3 -> Move to player 44_3 -> Scan for trees nearby -> Break 3 wood logs | Regroup with player 44_3 | Subgoals: Move to player 44_3 at -111, 65, -45 -> Greet 44_3 in chat -> Locate a nearby food animal -> Kill the animal to collect food | Hunt for food to restore hunger | Subgoals: Locate a nearby food animal -> Move to the animal -> Attack and kill the animal -> Collect the dropped meat -> Eat the meat\n- mixed event signatures: 2 action-success, 5 plan, 3 action-fail, 4 plan, 2 action-fail\n--- world observations ---\n- location cues: no explicit XYZ in recent events\n- notable errors: none\n--- operational guidance ---\n- prioritize survival-critical actions before progression\n- if repeated failures on same action, pivot to fallback resource actions\n- keep intent stable unless risk level rises sharply\n- use nearby players as social/assist opportunities only when safe\n- avoid redundant action loops by honoring recent success/fail memory",
-          "meta": {
-            "source": "structured-consolidation-v2",
-            "lineCount": 45
-          },
-          "accessCount": 7,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "75176ac7-e3df-448f-a982-7a291e352000",
-          "content": "Strategic intent selected: Explore the area to find food | Subgoals: Walk in a straight line to find new animals -> Locate a cow, pig, sheep, or chicken -> Move to the animal -> Attack the animal until it dies -> Pick up the dropped meat -> Eat the meat to restore hunger",
-          "type": "plan",
-          "tags": [
-            "plan",
-            "intent-layer1",
-            "intent-layer2",
-            "autonomy"
-          ],
-          "importance": 0.38,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:48:09.935Z",
-          "references": [
-            "6508e2a8-cf63-4c1a-896f-e0c7afa3e7a2",
-            "ed4cb25a-f942-4530-a36f-0005d39c4c1d",
-            "9141b014-3453-4466-881e-9afd5361e0c7",
-            "18c5d743-f7f3-4734-96b0-77eb1c8a5dd8"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "intent-layer1",
-              "intent-layer2",
-              "autonomy"
-            ]
-          },
-          "accessCount": 7,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "8f580592-8c53-4088-88cf-12587ea9ef31",
-          "content": "Subgoal expanded: Walk in a straight line to find new animals | Actions: Walk in a straight line to find new animals",
-          "type": "plan",
-          "tags": [
-            "plan",
-            "intent-layer2",
-            "intent-layer3",
-            "autonomy"
-          ],
-          "importance": 0.323,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:48:15.401Z",
-          "references": [
-            "75176ac7-e3df-448f-a982-7a291e352000",
-            "6508e2a8-cf63-4c1a-896f-e0c7afa3e7a2",
-            "ed4cb25a-f942-4530-a36f-0005d39c4c1d",
-            "9141b014-3453-4466-881e-9afd5361e0c7",
-            "a670dc5f-5436-40cb-87c1-dfdc71b28933",
-            "8f580592-8c53-4088-88cf-12587ea9ef31"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "intent-layer2",
-              "intent-layer3",
-              "autonomy"
-            ],
-            "repeatCount": 2,
-            "lastSeenAt": "2026-02-21T04:48:30.543Z"
-          },
-          "accessCount": 6,
-          "repeatCount": 2,
-          "consolidated": false
-        },
-        {
-          "id": "a670dc5f-5436-40cb-87c1-dfdc71b28933",
-          "content": "Intent action failed: Walk in a straight line to find new animals",
-          "type": "action-fail",
-          "tags": [
-            "action-fail",
-            "autonomy",
-            "intent-step"
-          ],
-          "importance": 0.459,
-          "emotion": "negative",
-          "context": [],
-          "createdAt": "2026-02-21T04:48:15.461Z",
-          "references": [
-            "6508e2a8-cf63-4c1a-896f-e0c7afa3e7a2",
-            "75176ac7-e3df-448f-a982-7a291e352000",
-            "8f580592-8c53-4088-88cf-12587ea9ef31",
-            "ed4cb25a-f942-4530-a36f-0005d39c4c1d",
-            "a670dc5f-5436-40cb-87c1-dfdc71b28933"
-          ],
-          "summary": null,
-          "meta": {
-            "tags": [
-              "autonomy",
-              "intent-step"
-            ],
-            "repeatCount": 2,
-            "lastSeenAt": "2026-02-21T04:48:30.558Z"
-          },
-          "accessCount": 5,
-          "repeatCount": 2,
-          "consolidated": false
-        }
-      ],
-      "meta": {
-        "reactedTo": {}
-      }
-    },
-    {
-      "id": "1771649034866-uo4f3a",
-      "startedAt": "2026-02-21T04:43:54.866Z",
-      "endedAt": "2026-02-21T04:43:55.122Z",
-      "entries": [
-        {
-          "id": "3b762191-9bb1-478e-92ee-64bdac63b569",
-          "content": "Session started (bot rebooted into world).",
-          "type": "session",
-          "tags": [
-            "session"
-          ],
-          "importance": 0.5,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:43:54.869Z",
-          "references": [
-            "4d378403-da48-4d6c-8843-8e1ca9ab936e",
-            "060d5315-1d01-4a07-8f38-ed5ffde89007",
-            "148ef94d-ebb0-4139-ae2d-9d0b1943c9ea",
-            "15906110-1a91-435f-b816-8f599ab0d595"
-          ],
-          "summary": null,
-          "meta": {},
-          "accessCount": 11,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "27a0b15b-d2ca-42cc-b265-660c25d71dc7",
-          "content": "Error: AggregateError",
-          "type": "error",
-          "tags": [
-            "error"
-          ],
-          "importance": 0.8300000000000001,
-          "emotion": "negative",
-          "context": [],
-          "createdAt": "2026-02-21T04:43:55.119Z",
-          "references": [
-            "8d4d1ad5-7b8d-4c7e-9109-f79cb97c3f7b",
-            "3b762191-9bb1-478e-92ee-64bdac63b569",
-            "2235c893-df7d-4a8e-9e02-541670668d48",
-            "712e5f7b-79e2-42b7-b120-092ee6fc0b90"
-          ],
-          "summary": null,
-          "meta": {},
-          "accessCount": 88,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "eeddd9b4-e54d-4577-8512-024b746fc89e",
-          "content": "Training recorder stopped.",
-          "type": "training",
-          "tags": [
-            "training"
-          ],
-          "importance": 0.323,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:43:55.120Z",
-          "references": [
-            "27a0b15b-d2ca-42cc-b265-660c25d71dc7",
-            "b11e6941-9a4f-42a4-8ede-18d5b50dd34b",
-            "8d4d1ad5-7b8d-4c7e-9109-f79cb97c3f7b",
-            "3ae7f220-595c-4e9f-915f-f98c43bd3256",
-            "eeddd9b4-e54d-4577-8512-024b746fc89e"
-          ],
-          "summary": null,
-          "meta": {
-            "repeatCount": 2,
-            "lastSeenAt": "2026-02-21T04:43:55.122Z"
-          },
-          "accessCount": 8,
-          "repeatCount": 2,
-          "consolidated": false
-        },
-        {
-          "id": "12834ad3-4f4f-486d-92d4-3f630884afe9",
-          "content": "Disconnected: socketClosed",
-          "type": "world",
-          "tags": [
-            "world"
-          ],
-          "importance": 0.5,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:43:55.121Z",
-          "references": [
-            "2235c893-df7d-4a8e-9e02-541670668d48",
-            "27a0b15b-d2ca-42cc-b265-660c25d71dc7",
-            "8d4d1ad5-7b8d-4c7e-9109-f79cb97c3f7b",
-            "3b762191-9bb1-478e-92ee-64bdac63b569"
-          ],
-          "summary": null,
-          "meta": {},
-          "accessCount": 11,
-          "repeatCount": 1,
-          "consolidated": false
-        },
-        {
-          "id": "ec157a53-0908-4592-be6d-6f35923f68a6",
-          "content": "Session ending (bot disconnected).",
-          "type": "session",
-          "tags": [
-            "session"
-          ],
-          "importance": 0.5,
-          "emotion": "neutral",
-          "context": [],
-          "createdAt": "2026-02-21T04:43:55.121Z",
-          "references": [
-            "712e5f7b-79e2-42b7-b120-092ee6fc0b90",
-            "27a0b15b-d2ca-42cc-b265-660c25d71dc7",
-            "3b762191-9bb1-478e-92ee-64bdac63b569",
-            "4d378403-da48-4d6c-8843-8e1ca9ab936e"
-          ],
-          "summary": null,
-          "meta": {},
-          "accessCount": 11,
-          "repeatCount": 1,
-          "consolidated": false
-        }
-      ],
       "meta": {
         "reactedTo": {}
       }
