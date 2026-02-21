@@ -449,10 +449,8 @@ function createActionRunner({
     }
 
     if (action === 'EXPLORE') {
-      if (state.getMode() === 'idle' && config.autoExploreOnSpawn) {
-        movement.startExploring(false)
-        return true
-      }
+      movement.startExploring(false)
+      return true
     }
 
     return false

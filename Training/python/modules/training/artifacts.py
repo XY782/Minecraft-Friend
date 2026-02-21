@@ -45,6 +45,7 @@ def build_artifact_meta(args, dataset_path, n, in_features, model_type, class_we
         'hybrid_enabled': True,
         'temporal_context_features': True,
         'intent_loss_weight': float(args.intent_loss_weight),
+        'explicit_intent_supervision': bool(args.explicit_intent_supervision),
         'control_loss_weight': float(args.control_loss_weight),
         'grad_clip_norm': float(args.grad_clip_norm),
         'use_lr_scheduler': bool(args.use_lr_scheduler),

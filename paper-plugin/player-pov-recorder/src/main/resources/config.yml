@@ -1,0 +1,7 @@
+target-player: ""
+output-file: "Training/datasets/latest-user-telemetry.json"
+sample-interval-ticks: 2
+line-of-sight-max-distance: 8
+nearby-block-radius: 2
+nearby-entity-distance: 10
+action-ttl-ms: 1500

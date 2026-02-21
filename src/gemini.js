@@ -9,6 +9,9 @@ function createGeminiClient({ apiKey, model, shouldSuppress = () => false }) {
   })
 
   let suppressCheck = typeof shouldSuppress === 'function' ? shouldSuppress : () => false
+  let disabledReason = ''
+  let lastDisableLogAt = 0
+  let lastTransientLogAt = 0
 
   function setSuppressionCheck(nextCheck) {
     suppressCheck = typeof nextCheck === 'function' ? nextCheck : () => false
@@ -22,8 +25,80 @@ function createGeminiClient({ apiKey, model, shouldSuppress = () => false }) {
     }
   }
 
+  function markDisabled(reason) {
+    if (disabledReason) return
+    disabledReason = String(reason || 'unknown')
+    const now = Date.now()
+    if (now - lastDisableLogAt > 10_000) {
+      lastDisableLogAt = now
+      console.warn(`[gemini] disabled for this session (${disabledReason}). Using fallback responses until restart.`)
+    }
+  }
+
+  function isAuthOrLeakedKeyError(error) {
+    const status = Number(error?.status || 0)
+    const statusText = String(error?.statusText || '').toLowerCase()
+    const message = String(error?.message || '').toLowerCase()
+    const forbidden = status === 401 || status === 403 || statusText.includes('forbidden')
+    if (!forbidden) return false
+    return message.includes('api key was reported as leaked') || message.includes('api key') || message.includes('forbidden')
+  }
+
+  function isTransientServiceError(error) {
+    const status = Number(error?.status || 0)
+    const statusText = String(error?.statusText || '').toLowerCase()
+    const message = String(error?.message || '').toLowerCase()
+    return (
+      status === 429 ||
+      status === 500 ||
+      status === 502 ||
+      status === 503 ||
+      status === 504 ||
+      statusText.includes('service unavailable') ||
+      message.includes('high demand') ||
+      message.includes('service unavailable')
+    )
+  }
+
+  function wait(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms))
+  }
+
+  async function safeGenerateContent(request, { fallback = '' } = {}) {
+    if (isSuppressed() || disabledReason) return fallback
+    const maxAttempts = 3
+    for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
+      try {
+        const result = await geminiModel.generateContent(request)
+        return String(result?.response?.text?.() || '').trim()
+      } catch (error) {
+        if (isAuthOrLeakedKeyError(error)) {
+          markDisabled(error?.message || 'auth_error')
+          return fallback
+        }
+
+        if (!isTransientServiceError(error)) {
+          throw error
+        }
+
+        if (attempt >= maxAttempts) {
+          const now = Date.now()
+          if (now - lastTransientLogAt > 10_000) {
+            lastTransientLogAt = now
+            console.warn('[gemini] transient service issue (high demand). Falling back for now.')
+          }
+          return fallback
+        }
+
+        const backoffMs = 350 * (2 ** (attempt - 1)) + Math.floor(Math.random() * 120)
+        await wait(backoffMs)
+      }
+    }
+    return fallback
+  }
+
   async function generateReply({ botName, playerName, message, memory, sessionContext, profileContext, avoidPhrases }) {
-    if (isSuppressed()) return ''
+    if (isSuppressed() || disabledReason) return ''
 
     const system = `
   You are ${botName}, chatting as a normal Minecraft player in multiplayer.
@@ -58,23 +133,18 @@ function createGeminiClient({ apiKey, model, shouldSuppress = () => false }) {
       .filter(Boolean)
       .join('\n\n')
 
-    const result = await geminiModel.generateContent({
+    return safeGenerateContent({
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
         temperature: 1.5,
         topP: 0.95,
         topK: 56
       }
-    })
-
-    const text =
-      result?.response?.text?.() || ''
-
-    return String(text).trim()
+    }, { fallback: '' })
   }
 
   async function generatePlan({ botName, worldState, allowedActions, maxSteps = 5, sessionContext, profileContext }) {
-    if (isSuppressed()) return '{"plan":[]}'
+    if (isSuppressed() || disabledReason) return '{"plan":[]}'
     const system = `
 You are the autonomous planner for ${botName}, a Minecraft bot.
 
@@ -98,21 +168,18 @@ Rules:
       profileContext ? `Current Minecraft profile context:\n${profileContext}` : '',
     ].join('\n\n')
 
-    const result = await geminiModel.generateContent({
+    return safeGenerateContent({
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
         temperature: 1.0,
         topP: 0.9,
         topK: 28,
       }
-    })
-
-    const text = result?.response?.text?.() || ''
-    return String(text).trim()
+    }, { fallback: '{"plan":[]}' })
   }
 
   async function generateCreativeTarget({ botName, profileContext, sessionContext }) {
-    if (isSuppressed()) return ''
+    if (isSuppressed() || disabledReason) return ''
     const prompt = [
       `You are choosing one Minecraft item/block id for ${botName} to obtain in creative mode.`,
       'Return exactly one valid Minecraft identifier like: firework_rocket, enchanting_table, diamond_sword, oak_log.',
@@ -121,21 +188,18 @@ Rules:
       sessionContext ? `Session context:\n${sessionContext}` : '',
     ].filter(Boolean).join('\n\n')
 
-    const result = await geminiModel.generateContent({
+    return safeGenerateContent({
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
         temperature: 1.0,
         topP: 0.9,
         topK: 20,
       }
-    })
-
-    const text = result?.response?.text?.() || ''
-    return String(text).trim()
+    }, { fallback: '' })
   }
 
   async function generateDynamicAction({ botName, worldState, drives, missionGoal, recentMemory, profileContext }) {
-    if (isSuppressed()) return ''
+    if (isSuppressed() || disabledReason) return ''
     const prompt = [
       `You are the autonomous decision core for ${botName}, a Minecraft bot.`,
       'Decide one immediate next step based on the world snapshot, internal drives, and recent memory.',
@@ -156,20 +220,18 @@ Rules:
       profileContext ? `Profile context:\n${profileContext}` : '',
     ].filter(Boolean).join('\n\n')
 
-    const result = await geminiModel.generateContent({
+    return safeGenerateContent({
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
         temperature: 1.0,
         topP: 0.93,
         topK: 44,
       },
-    })
-
-    return String(result?.response?.text?.() || '').trim()
+    }, { fallback: '' })
   }
 
   async function generateUrgency({ botName, worldState, drives, recentMemory, profileContext }) {
-    if (isSuppressed()) return '{"urgent":[],"why":"manual control active"}'
+    if (isSuppressed() || disabledReason) return '{"urgent":[],"why":"manual control active"}'
     const prompt = [
       `You are the urgency evaluator for ${botName}, a Minecraft bot.`,
       'Return ONLY valid JSON in this shape:',
@@ -185,20 +247,18 @@ Rules:
       profileContext ? `Profile context:\n${profileContext}` : '',
     ].filter(Boolean).join('\n\n')
 
-    const result = await geminiModel.generateContent({
+    return safeGenerateContent({
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
         temperature: 1.0,
         topP: 0.9,
         topK: 30,
       },
-    })
-
-    return String(result?.response?.text?.() || '').trim()
+    }, { fallback: '{"urgent":[],"why":"gemini unavailable"}' })
   }
 
   async function generateIntentPlan({ botName, worldState, drives, currentIntent, progressNotes, recentMemory, profileContext }) {
-    if (isSuppressed()) return '{"intent":"","steps":[]}'
+    if (isSuppressed() || disabledReason) return '{"intent":"","steps":[]}'
     const prompt = [
       `You are the autonomous intent planner for ${botName}, a Minecraft bot.`,
       'Pick one clear high-level intent and a short ordered step list.',
@@ -217,20 +277,18 @@ Rules:
       profileContext ? `Profile context:\n${profileContext}` : '',
     ].filter(Boolean).join('\n\n')
 
-    const result = await geminiModel.generateContent({
+    return safeGenerateContent({
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
         temperature: 1.0,
         topP: 0.9,
         topK: 28,
       },
-    })
-
-    return String(result?.response?.text?.() || '').trim()
+    }, { fallback: '{"intent":"","steps":[]}' })
   }
 
   async function generateSubgoalActions({ botName, strategicIntent, subgoal, worldState, drives, recentMemory, profileContext }) {
-    if (isSuppressed()) return '{"actions":[]}'
+    if (isSuppressed() || disabledReason) return '{"actions":[]}'
     const prompt = [
       `You are decomposing one tactical subgoal for ${botName}, a Minecraft bot.`,
       'Return ONLY valid JSON in this exact shape:',
@@ -248,16 +306,14 @@ Rules:
       profileContext ? `Profile context:\n${profileContext}` : '',
     ].filter(Boolean).join('\n\n')
 
-    const result = await geminiModel.generateContent({
+    return safeGenerateContent({
       contents: [{ parts: [{ text: prompt }] }],
       generationConfig: {
         temperature: 1.0,
         topP: 1.0,
         topK: 24,
       },
-    })
-
-    return String(result?.response?.text?.() || '').trim()
+    }, { fallback: '{"actions":[]}' })
   }
 
   return {

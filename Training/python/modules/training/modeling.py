@@ -100,23 +100,31 @@ def build_scheduler(optimizer, args):
 
 
 def compute_losses(model, xb, yb, intent_b, control_b, action_loss_fn, intent_loss_fn, control_loss_fn, args):
+    explicit_intent_supervision = bool(getattr(args, 'explicit_intent_supervision', True))
     sequence_supervision = bool(args.sequence_supervision) and yb.dim() == 2
     if sequence_supervision:
         action_logits, intent_logits, control_pred = model(xb, return_sequence=True)
         action_loss = action_loss_fn(action_logits.reshape(-1, action_logits.shape[-1]), yb.reshape(-1))
-        intent_loss = intent_loss_fn(intent_logits.reshape(-1, intent_logits.shape[-1]), intent_b.reshape(-1, intent_b.shape[-1]))
+        if explicit_intent_supervision:
+            intent_loss = intent_loss_fn(intent_logits.reshape(-1, intent_logits.shape[-1]), intent_b.reshape(-1, intent_b.shape[-1]))
+        else:
+            intent_loss = torch.zeros((), dtype=action_loss.dtype, device=action_loss.device)
         control_loss = control_loss_fn(control_pred.reshape(-1, control_pred.shape[-1]), control_b.reshape(-1, control_b.shape[-1]))
         predictions = action_logits.argmax(dim=-1)
         intent_binary = (torch.sigmoid(intent_logits) >= 0.5).float()
     else:
         action_logits, intent_logits, control_pred = model(xb)
         action_loss = action_loss_fn(action_logits, yb)
-        intent_loss = intent_loss_fn(intent_logits, intent_b)
+        if explicit_intent_supervision:
+            intent_loss = intent_loss_fn(intent_logits, intent_b)
+        else:
+            intent_loss = torch.zeros((), dtype=action_loss.dtype, device=action_loss.device)
         control_loss = control_loss_fn(control_pred, control_b)
         predictions = action_logits.argmax(dim=1)
         intent_binary = (torch.sigmoid(intent_logits) >= 0.5).float()
 
-    total = action_loss + float(args.intent_loss_weight) * intent_loss + float(args.control_loss_weight) * control_loss
+    effective_intent_weight = float(args.intent_loss_weight) if explicit_intent_supervision else 0.0
+    total = action_loss + effective_intent_weight * intent_loss + float(args.control_loss_weight) * control_loss
     action_acc = (predictions == yb).float().mean()
-    intent_acc = (intent_binary == intent_b).float().mean()
+    intent_acc = (intent_binary == intent_b).float().mean() if explicit_intent_supervision else torch.zeros((), dtype=action_loss.dtype, device=action_loss.device)
     return total, action_loss, intent_loss, control_loss, action_acc, intent_acc

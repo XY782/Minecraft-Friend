@@ -90,6 +90,28 @@ ACTION_INTENT_MAP = {
     'CHAT': ['SOCIAL'],
 }
 
+OBSERVER_LIKELY_ACTION_WEIGHTS = {
+    'BREAK': 1.0,
+    'BUILD': 0.95,
+    'COLLECT': 0.9,
+    'ATTACK_MOB': 0.9,
+    'ATTACK_PLAYER': 0.85,
+    'HELP_PLAYER': 0.85,
+    'USE_ITEM': 0.8,
+    'CRAFT': 0.8,
+    'USE_FURNACE': 0.8,
+    'ENCHANT': 0.75,
+    'USE_ANVIL': 0.75,
+    'SOCIAL': 0.7,
+    'CHAT': 0.65,
+    'EXPLORE': 0.55,
+    'RECOVER': 0.5,
+    'DEFEND': 0.45,
+    'IDLE': 0.1,
+}
+
+TEMPORAL_DELTA_CLIP = 5.0
+
 
 def _safe_float(value, default=0.0):
     try:
@@ -509,8 +531,50 @@ def state_to_feature_vector(state: Dict, delta_time: float = 0.0) -> np.ndarray:
 
 def normalize_action_label(action: Dict) -> str:
     label = str(action.get('label', 'IDLE') or 'IDLE').strip().upper()
-    if label not in ACTION_TO_ID:
-        return 'IDLE'
+    if label in ACTION_TO_ID:
+        return label
+
+    if label.startswith('OBSERVER_'):
+        observer_suffix = label[len('OBSERVER_'):]
+        observer_map = {
+            'IDLE': 'IDLE',
+            'MOVE': 'EXPLORE',
+            'SPRINT': 'EXPLORE',
+            'JUMP': 'EXPLORE',
+            'LOOK': 'SOCIAL',
+            'CHAT': 'CHAT',
+            'BREAK': 'BREAK',
+            'BUILD': 'BUILD',
+            'COLLECT': 'COLLECT',
+            'ATTACK': 'ATTACK_MOB',
+            'CRAFT': 'CRAFT',
+            'USE_FURNACE': 'USE_FURNACE',
+            'ENCHANT': 'ENCHANT',
+            'USE_ANVIL': 'USE_ANVIL',
+            'EAT': 'EAT',
+            'DEFEND': 'DEFEND',
+        }
+        mapped = observer_map.get(observer_suffix)
+        if mapped is not None and mapped in ACTION_TO_ID:
+            return mapped
+
+        metadata = action.get('metadata') if isinstance(action, dict) else None
+        likely_actions = metadata.get('likelyActions') if isinstance(metadata, dict) else None
+        if isinstance(likely_actions, list):
+            best_candidate = None
+            best_score = -1.0
+            for candidate in likely_actions:
+                candidate_label = str(candidate or '').strip().upper()
+                if candidate_label in ACTION_TO_ID:
+                    score = float(OBSERVER_LIKELY_ACTION_WEIGHTS.get(candidate_label, 0.4))
+                    if score > best_score:
+                        best_score = score
+                        best_candidate = candidate_label
+            if best_candidate is not None:
+                return best_candidate
+
+        return 'EXPLORE'
+
     return label
 
 
@@ -527,8 +591,11 @@ def augment_feature_with_temporal_context(
     prev_action_id: Optional[int],
 ) -> np.ndarray:
     current = np.array(current_feature, dtype=np.float32)
-    previous = np.zeros_like(current, dtype=np.float32) if prev_feature is None else np.array(prev_feature, dtype=np.float32)
-    delta = current - previous
+    if prev_feature is None:
+        previous = np.array(current, dtype=np.float32)
+    else:
+        previous = np.array(prev_feature, dtype=np.float32)
+    delta = np.clip(current - previous, -float(TEMPORAL_DELTA_CLIP), float(TEMPORAL_DELTA_CLIP))
     prev_action = _action_one_hot(prev_action_id)
     return np.concatenate([current, delta, prev_action], axis=0).astype(np.float32)
 
@@ -623,7 +690,7 @@ def _control_target_from_states(current_state: Dict, next_state: Dict) -> np.nda
     next_speed = float(np.sqrt(next_vx * next_vx + next_vz * next_vz))
 
     dyaw = _angle_wrap(next_yaw - current_yaw)
-    dpitch = float(next_pitch - current_pitch)
+    dpitch = _angle_wrap(next_pitch - current_pitch)
     jump_like = 1.0 if (next_vy > 0.08 or bool(next_state.get('inAir'))) else 0.0
 
     target = np.array([

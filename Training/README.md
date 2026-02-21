@@ -2,7 +2,7 @@
 
 This folder stores all training-related assets:
 
-- `datasets/` state-action logs from the live bot (JSONL)
+- `datasets/` state-action logs from runtime recording (bot or player-POV observer telemetry) (JSONL)
 - `models/` trained model artifacts (`.pt`, `.onnx` later)
 - `logs/` optional training/runtime logs
 - `python/` Python training + inference code

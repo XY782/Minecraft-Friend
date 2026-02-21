@@ -32,4 +32,14 @@ serve policy with uvicorn serve_policy:app --host 127.0.0.1 --port 8765
 
 If you want to run, use npm start after cd minecraft
 
+Player POV recording (observer mode):
+
+cd minecraft/paper-plugin/player-pov-recorder
+
+mvn clean package
+
+copy target/player-pov-recorder-1.0.0.jar into your Paper server plugins folder
+
+set BOT_OBSERVER_MODE=true, BOT_USER_TELEMETRY_ENABLED=true, BOT_USER_TELEMETRY_FILE=Training/datasets/latest-user-telemetry.json in .env
+
 p.s. you have to train it yourself for now, might add trained data later

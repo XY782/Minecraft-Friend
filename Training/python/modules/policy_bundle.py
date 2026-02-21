@@ -82,6 +82,7 @@ def load_model(model_path: Path):
         'intent_vocab': intent_vocab,
         'control_dim': control_dim,
         'hybrid_enabled': hybrid_enabled,
+        'explicit_intent_supervision': bool(payload.get('explicit_intent_supervision', True)),
         'sequence_supervision': bool(payload.get('sequence_supervision', False)),
         'temporal_context_features': bool(payload.get('temporal_context_features', False)),
     }

@@ -59,6 +59,7 @@ def build_parser(config=None):
         ('--class-weighted-loss', 'class_weighted_loss'),
         ('--oversample-meaningful', 'oversample_meaningful'),
         ('--intent-balanced-loss', 'intent_balanced_loss'),
+        ('--explicit-intent-supervision', 'explicit_intent_supervision'),
         ('--sequence-supervision', 'sequence_supervision'),
         ('--lstm-bidirectional', 'lstm_bidirectional'),
         ('--lstm-layer-norm', 'lstm_layer_norm'),

@@ -99,13 +99,12 @@ const config = {
   trainingLiveConsole: boolEnv('BOT_TRAINING_LIVE_CONSOLE', true),
   observerModeEnabled: boolEnv('BOT_OBSERVER_MODE', false),
   observerUsername: strEnv('BOT_OBSERVER_USERNAME', ''),
-  observerCaptureRadius: numEnv('BOT_OBSERVER_CAPTURE_RADIUS', 24, { min: 0, max: 128 }),
-  observerSampleMinMs: numEnv('BOT_OBSERVER_SAMPLE_MIN_MS', 2000, { min: 150, max: 60_000 }),
-  observerIdleSampleMinMs: numEnv('BOT_OBSERVER_IDLE_SAMPLE_MIN_MS', 4000, { min: 250, max: 60_000 }),
   observerFollowEnabled: boolEnv('BOT_OBSERVER_FOLLOW_ENABLED', true),
   observerFollowDistance: numEnv('BOT_OBSERVER_FOLLOW_DISTANCE', 3.5, { min: 1.5, max: 12 }),
   observerFollowRefreshMs: numEnv('BOT_OBSERVER_FOLLOW_REFRESH_MS', 700, { min: 250, max: 5_000 }),
-  observerMoveSampleMinDistance: numEnv('BOT_OBSERVER_MOVE_MIN_DISTANCE', 1.0, { min: 0.1, max: 8 }),
+  userTelemetryEnabled: boolEnv('BOT_USER_TELEMETRY_ENABLED', false),
+  userTelemetryFile: strEnv('BOT_USER_TELEMETRY_FILE', ''),
+  userTelemetryMaxAgeMs: numEnv('BOT_USER_TELEMETRY_MAX_AGE_MS', 2000, { min: 250, max: 60000 }),
 }
 
 config.autonomousModeDefault = config.autonomousMode

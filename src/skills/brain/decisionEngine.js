@@ -3,6 +3,7 @@ const { createIntentLoop } = require('./intentLoop')
 function createDecisionEngine({ bot, config, dynamicAgent, runAction, runDynamicAction, sessionMemory, onActionChosen, onGoalChosen, internalState, onActionOutcome = () => {} }) {
   let decisionBusy = false
   let lastDecisionAt = 0
+  let consecutivePolicyPassive = 0
   const actionCooldownUntil = new Map()
   const intentLoop = createIntentLoop({ bot, dynamicAgent, sessionMemory })
   const ENABLE_INTENT_LOOP = true
@@ -11,6 +12,7 @@ function createDecisionEngine({ bot, config, dynamicAgent, runAction, runDynamic
     'USE_TRIDENT', 'ENCHANT', 'USE_ANVIL', 'BUILD', 'BREAK', 'SLEEP', 'USE_FURNACE', 'CRAFT', 'COLLECT',
     'HELP_PLAYER', 'SOCIAL', 'TOGGLE_OFFHAND', 'EXPLORE', 'RECOVER',
   ])
+  const POLICY_PASSIVE_ACTIONS = new Set(['IDLE', 'EXPLORE'])
 
   function safeNumber(value, fallback = 0) {
     const n = Number(value)
@@ -303,14 +305,25 @@ function createDecisionEngine({ bot, config, dynamicAgent, runAction, runDynamic
         const policyAction = String(policyDecision?.action || '').trim().toUpperCase()
         const policyConfidence = Number(policyDecision?.confidence || 0)
         const minConfidence = Number(config.policyMinConfidence || 0.35)
+        const minIdleConfidence = Math.max(minConfidence, 0.55)
 
-        if (policyAction && POLICY_ACTIONS.has(policyAction) && (policyConfidence >= minConfidence || policyAction === 'IDLE')) {
+        const allowByConfidence = policyAction === 'IDLE'
+          ? policyConfidence >= minIdleConfidence
+          : policyConfidence >= minConfidence
+
+        if (policyAction && POLICY_ACTIONS.has(policyAction) && allowByConfidence) {
           onGoalChosen?.(`policy: ${policyAction}`)
 
           let policyActed = true
           if (policyAction !== 'IDLE') {
             policyActed = Boolean(await runAction(policyAction))
             markCooldown(policyAction, policyActed ? Number(config.actionRepeatCooldownMs || 4_000) : 1_200)
+          }
+
+          if (POLICY_PASSIVE_ACTIONS.has(policyAction) && policyActed) {
+            consecutivePolicyPassive += 1
+          } else if (policyActed) {
+            consecutivePolicyPassive = 0
           }
 
           onActionChosen?.(policyAction)
@@ -325,7 +338,10 @@ function createDecisionEngine({ bot, config, dynamicAgent, runAction, runDynamic
             policyActed ? 'action-success' : 'action-fail',
             { tags: ['autonomy', 'policy-model'] }
           )
-          return
+
+          const passiveLooping = POLICY_PASSIVE_ACTIONS.has(policyAction) && consecutivePolicyPassive >= 3
+          const shouldContinueToFallback = !policyActed || passiveLooping
+          if (!shouldContinueToFallback) return
         }
       }
 

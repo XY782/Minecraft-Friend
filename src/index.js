@@ -21,6 +21,7 @@ const { createChatSender } = require('./runtime/chatSender')
 const { createChatRuntime } = require('./runtime/chatRuntime')
 const { createAntiFlightGuard } = require('./runtime/antiFlight')
 const { createTrainingRecorder } = require('./training/dataRecorder')
+const { createUserTelemetryReader } = require('./training/dataRecorder/runtime/userTelemetryReader')
 
 const gemini = createGeminiClient({
   apiKey: process.env.GEMINI_API_KEY,
@@ -145,6 +146,16 @@ const antiFlight = createAntiFlightGuard({
   enforceNoCreativeFlight,
 })
 
+const userTelemetryReader = createUserTelemetryReader({
+  filePath: config.userTelemetryEnabled ? config.userTelemetryFile : '',
+  maxAgeMs: config.userTelemetryMaxAgeMs,
+  liveConsole: config.trainingLiveConsole,
+})
+
+if (config.observerModeEnabled && !config.userTelemetryEnabled) {
+  console.log('[TRAINING] observer mode is enabled but user telemetry is disabled; no observer samples will be recorded until BOT_USER_TELEMETRY_ENABLED=true.')
+}
+
 let brain = null
 let lastDisconnectReason = 'unknown'
 let observerFollowTimer = null
@@ -170,6 +181,7 @@ function stopObserverFollow() {
 }
 
 function startObserverFollow() {
+  if (config.userTelemetryEnabled) return
   if (!runtimeObserverModeEnabled || !config.observerFollowEnabled) return
   if (observerFollowTimer) return
   observerFollowTimer = setInterval(() => {
@@ -224,6 +236,9 @@ function setRuntimeObserverMode(nextEnabled, source = 'chat') {
     config.autonomousMode = false
     brain.stop?.()
     startObserverFollow()
+    if (!config.userTelemetryEnabled) {
+      sessionMemory.addMemory('Observer mode enabled without user telemetry; recorder is waiting for player POV telemetry.', 'training')
+    }
     sessionMemory.addMemory(`Observer mode enabled at runtime (${source}).`, 'training')
   } else {
     stopObserverFollow()
@@ -291,12 +306,7 @@ const trainingRecorder = createTrainingRecorder({
   dedupLogIntervalMs: config.trainingDedupLogIntervalMs,
   liveConsole: config.trainingLiveConsole,
   observerModeEnabled: config.observerModeEnabled,
-  observerUsername: config.observerUsername,
-  observerCaptureRadius: config.observerCaptureRadius,
-  observerSampleMinMs: config.observerSampleMinMs,
-  observerIdleSampleMinMs: config.observerIdleSampleMinMs,
-  observerMoveSampleMinDistance: config.observerMoveSampleMinDistance,
-  getObserverEntity,
+  getUserTelemetry: userTelemetryReader.getLatestSnapshot,
   getIntent: () => brain?.getGoal?.() || '',
   getMode: () => brain?.getMode?.() || 'idle',
   getLastAction: () => brain?.getLastAction?.() || null,

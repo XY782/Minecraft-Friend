@@ -1,0 +1,6 @@
+name: PlayerPovRecorder
+version: 1.0.0
+main: com.minecraftfriend.telemetry.PlayerPovRecorderPlugin
+api-version: '1.20'
+author: minecraft-friend
+description: Writes player POV telemetry snapshots for external state-action recording.

@@ -1,6 +1,7 @@
 from pathlib import Path
 from typing import Any, Dict, Optional
 from collections import deque
+import time
 
 import numpy as np
 import torch
@@ -24,6 +25,7 @@ class PredictRequest(BaseModel):
     state: Dict[str, Any]
     agent_id: str = 'default'
     timestamp: Optional[Any] = None
+    temperature: Optional[float] = None
 
 
 MODEL_PATH = Path(__file__).resolve().parents[1] / 'models' / 'behavior_model.pt'
@@ -32,9 +34,58 @@ SEQUENCE_BUFFERS: Dict[str, deque] = {}
 LAST_ACTION_BY_AGENT: Dict[str, str] = {}
 LAST_TS_BY_AGENT: Dict[str, float] = {}
 LAST_BASE_FEATURE_BY_AGENT: Dict[str, np.ndarray] = {}
+LAST_SEEN_BY_AGENT: Dict[str, float] = {}
 ACTION_INERTIA_THRESHOLD = 0.6
+AGENT_STATE_TTL_SECONDS = 1800.0
+MAX_TRACKED_AGENTS = 4096
+PREDICT_COUNTER = 0
+DEFAULT_ACTION_TEMPERATURE = 0.8
+MIN_TEMPERATURE = 1e-3
 
 app = FastAPI(title='Minecraft Policy Server', version='0.1.0')
+
+
+def _drop_agent_state(agent_key: str):
+    SEQUENCE_BUFFERS.pop(agent_key, None)
+    LAST_ACTION_BY_AGENT.pop(agent_key, None)
+    LAST_TS_BY_AGENT.pop(agent_key, None)
+    LAST_BASE_FEATURE_BY_AGENT.pop(agent_key, None)
+    LAST_SEEN_BY_AGENT.pop(agent_key, None)
+
+
+def _cleanup_agent_state(now_ts: float):
+    expiration_cutoff = float(now_ts) - float(AGENT_STATE_TTL_SECONDS)
+    expired_keys = [agent_key for agent_key, last_seen in LAST_SEEN_BY_AGENT.items() if float(last_seen) < expiration_cutoff]
+    for agent_key in expired_keys:
+        _drop_agent_state(agent_key)
+
+    excess = len(LAST_SEEN_BY_AGENT) - int(MAX_TRACKED_AGENTS)
+    if excess > 0:
+        oldest = sorted(LAST_SEEN_BY_AGENT.items(), key=lambda item: float(item[1]))[:excess]
+        for agent_key, _ in oldest:
+            _drop_agent_state(agent_key)
+
+
+def _resolve_temperature(raw_temperature: Optional[float]) -> float:
+    if raw_temperature is None:
+        return float(DEFAULT_ACTION_TEMPERATURE)
+    try:
+        value = float(raw_temperature)
+    except (TypeError, ValueError):
+        return float(DEFAULT_ACTION_TEMPERATURE)
+    if not np.isfinite(value):
+        return float(DEFAULT_ACTION_TEMPERATURE)
+    return max(float(MIN_TEMPERATURE), value)
+
+
+def _select_action(action_logits: torch.Tensor, temperature: float) -> tuple[int, torch.Tensor]:
+    if float(temperature) <= float(MIN_TEMPERATURE):
+        probs = torch.softmax(action_logits, dim=1).squeeze(0)
+        return int(torch.argmax(probs).item()), probs
+    scaled_logits = action_logits / float(temperature)
+    probs = torch.softmax(scaled_logits, dim=1).squeeze(0)
+    sampled_id = int(torch.multinomial(probs, num_samples=1).item())
+    return sampled_id, probs
 
 
 @app.get('/health')
@@ -46,11 +97,14 @@ def health():
         'model_type': MODEL_BUNDLE.get('model_type') if MODEL_BUNDLE else None,
         'sequence_length': MODEL_BUNDLE.get('sequence_length') if MODEL_BUNDLE else None,
         'hybrid_enabled': MODEL_BUNDLE.get('hybrid_enabled') if MODEL_BUNDLE else None,
+        'action_selection': 'temperature_sampling',
+        'default_temperature': float(DEFAULT_ACTION_TEMPERATURE),
     }
 
 
 @app.post('/predict')
 def predict(request: PredictRequest):
+    global PREDICT_COUNTER
     if MODEL_BUNDLE is None:
         return {
             'ok': False,
@@ -60,6 +114,12 @@ def predict(request: PredictRequest):
 
     agent_key = str(request.agent_id or 'default')
     current_ts = safe_timestamp_seconds(request.timestamp if request.timestamp is not None else request.state.get('timestamp'))
+    observed_ts = float(current_ts) if current_ts > 0.0 else float(time.time())
+    LAST_SEEN_BY_AGENT[agent_key] = observed_ts
+    PREDICT_COUNTER += 1
+    if len(LAST_SEEN_BY_AGENT) > int(MAX_TRACKED_AGENTS) or (PREDICT_COUNTER % 128 == 0):
+        _cleanup_agent_state(observed_ts)
+
     previous_ts = LAST_TS_BY_AGENT.get(agent_key, 0.0)
     delta_time = max(0.0, current_ts - previous_ts) if current_ts > 0.0 and previous_ts > 0.0 else 0.0
     if current_ts > 0.0:
@@ -119,20 +179,25 @@ def predict(request: PredictRequest):
             intent_logits = None
             control_pred = None
             hybrid_runtime = False
-        probs = torch.softmax(action_logits, dim=1).squeeze(0)
+        action_temperature = _resolve_temperature(request.temperature)
+        action_id, probs = _select_action(action_logits, action_temperature)
 
-    action_id = int(torch.argmax(probs).item())
     action_name = ID_TO_ACTION.get(action_id, 'IDLE')
     confidence = float(probs[action_id].item())
 
     if hybrid_runtime and intent_logits is not None and control_pred is not None:
-        intent_probs = torch.sigmoid(intent_logits).squeeze(0)
-        intent_vocab = MODEL_BUNDLE.get('intent_vocab') or INTENT_VOCAB
-        intent_scores = {
-            str(intent_vocab[idx]): float(intent_probs[idx].item())
-            for idx in range(min(len(intent_vocab), int(intent_probs.shape[0])))
-        }
-        active_intents = [name for name, score in intent_scores.items() if score >= 0.5]
+        explicit_intent_supervision = bool(MODEL_BUNDLE.get('explicit_intent_supervision', True))
+        if explicit_intent_supervision:
+            intent_probs = torch.sigmoid(intent_logits).squeeze(0)
+            intent_vocab = MODEL_BUNDLE.get('intent_vocab') or INTENT_VOCAB
+            intent_scores = {
+                str(intent_vocab[idx]): float(intent_probs[idx].item())
+                for idx in range(min(len(intent_vocab), int(intent_probs.shape[0])))
+            }
+            active_intents = [name for name, score in intent_scores.items() if score >= 0.5]
+        else:
+            intent_scores = {}
+            active_intents = []
 
         control_values = control_pred.squeeze(0).detach().cpu().numpy().tolist()
         continuous_control = {
@@ -159,6 +224,8 @@ def predict(request: PredictRequest):
         'agent_id': agent_key,
         'model_type': model_type,
         'hybrid_enabled': bool(MODEL_BUNDLE.get('hybrid_enabled', False) and hybrid_runtime),
+        'action_temperature': float(action_temperature),
+        'explicit_intent_supervision': bool(MODEL_BUNDLE.get('explicit_intent_supervision', True)),
         'intent_scores': intent_scores,
         'active_intents': active_intents,
         'continuous_control': continuous_control,
